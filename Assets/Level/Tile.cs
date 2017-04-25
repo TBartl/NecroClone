@@ -10,7 +10,11 @@ public struct Tile {
     public void Draw(IntVector2 position, Transform parent) {
         if (floor != null)
             floor = (GameObject)GameObject.Instantiate(floor, (Vector3)position, Quaternion.identity, parent);
-        if (occupant != null)
+        if (occupant != null) {
             occupant = (GameObject)GameObject.Instantiate(occupant, (Vector3)position, Quaternion.identity, parent);
+            Movable mov = occupant.GetComponent<Movable>();
+            if (mov)
+                mov.SetInitialPos(position);
+        }
     }
 }

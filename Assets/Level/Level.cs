@@ -21,4 +21,14 @@ public class Level {
         }
     }
 
+    public bool InBounds(IntVector2 pos) {
+        return (pos.x >= 0 && pos.y >= 0 && pos.x < size.x && pos.y < size.y);
+    }
+
+    public bool Occuppied(IntVector2 pos) {
+        if (!InBounds(pos))
+            return true;
+        return tiles[pos.x, pos.y].occupant != null;
+    }
+
 }
