@@ -5,11 +5,11 @@ using UnityEngine;
 public class ActionMove : Action {
     Movable movable;
 
-    void Awake() {
+    protected virtual void Awake() {
         movable = this.GetComponent<Movable>();
     }
 
-    public override void Execute(IntVector2 direction) {
+    protected override void Execute(IntVector2 direction) {
         movable.TryMove(movable.GetPos() + direction);
     }
 }

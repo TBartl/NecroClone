@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [System.Serializable]
-public class Level {
-    public IntVector2 size;
+public class Level : NetworkBehaviour {
+    public LevelGenerator generator;
     public Tile[,] tiles;
+    [HideInInspector] public IntVector2 size;
+    [HideInInspector] public List<IntVector2> spawnPositions = new List<IntVector2>();
+    [HideInInspector] public Transform parent;
+
+    void Start() {
+        generator.GenLevel(this);
+        Draw();
+    }
 
     public Level(IntVector2 size) {
         this.size = size;
@@ -13,10 +22,10 @@ public class Level {
     }
 
     public void Draw() {
-        GameObject parent = new GameObject("Level");
+        parent = new GameObject("Level").transform;
         for (int y = 0; y < size.y; y++) {
             for (int x = 0; x < size.x; x++) {
-                tiles[x, y].Draw(new IntVector2(x, y), parent.transform);
+                tiles[x, y].Draw(new IntVector2(x, y), parent);
             }
         }
     }

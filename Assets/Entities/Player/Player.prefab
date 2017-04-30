@@ -237,9 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35983a0e292c8b4586ea8db4117cbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPos:
-    x: 0
-    y: 0
 --- !u!114 &114837469026378812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,8 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f343533fc83453844ae149f95a5fcef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 114214362195842060}
+  isLocal: 0
   keyDirectionPairs:
   - key: 119
     direction:
@@ -270,3 +266,4 @@ MonoBehaviour:
     direction:
       x: -1
       y: 0
+  move: {fileID: 114214362195842060}

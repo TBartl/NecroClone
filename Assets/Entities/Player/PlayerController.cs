@@ -9,15 +9,28 @@ public struct KeyDirectionPair {
     public IntVector2 direction;
 }
 
-public class PlayerController : Controller {
+public class PlayerController : NetworkBehaviour {
+    
     public List<KeyDirectionPair> keyDirectionPairs;
-	
-	// Update is called once per frame
-	void Update () {
+    public Action move;
+    //List<KeyCode> buffer = new List<KeyCode>(); TODO
+
+    [Client]
+    void Update() {
         foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
             if (Input.GetKeyDown(keyDirectionPair.key)) {
-                DoAction(0, keyDirectionPair.direction);
+                CmdSendInput(keyDirectionPair.key);
             }
         }
-	}
+    }
+
+    [Command]
+    public void CmdSendInput(KeyCode input) {
+        foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
+            if (input == keyDirectionPair.key) {
+                move.RpcExecute(keyDirectionPair.direction);
+                break;
+            }
+        }
+    }
 }

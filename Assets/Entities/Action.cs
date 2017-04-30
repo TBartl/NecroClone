@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 // Actions - Instant things that affect the board state
 // Move (Direction)
@@ -8,13 +9,16 @@ using UnityEngine;
 // Spell
 
 
-public class Action : MonoBehaviour {
+public class Action : NetworkBehaviour {
 
-    public virtual void Execute() {
+    [ClientRpc]
+    public void RpcExecute(IntVector2 direction) {
+        Execute(direction);
+    }
+
+    protected virtual void Execute(IntVector2 direction) {
 
     }
 
-    public virtual void Execute(IntVector2 direction) {
-        Execute();
-    }
+
 }

@@ -6,21 +6,36 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour {
 
     public static Player S;
+    public GameObject playerPrefab;
+    GameObject playerInstance;
 
     public override void OnStartClient() {
         S = this;
     }
 
-    [Command]
-    public void CmdUpdateBoard(IntVector2 pos, int command, IntVector2 direction) {
-        GameObject occupant = LevelManager.S.level.tiles[pos.x, pos.y].occupant;
-        if (occupant == null)
-            Debug.LogError("Error! No occupant at point");
+    void Update() {
+        if (!isLocalPlayer)
+            return;
 
-        Controller controller = occupant.GetComponent<Controller>();
-        if (controller == null)
-            Debug.LogError("Error! No controller at point");
-        controller.actions[command].Execute(direction);
+        if (playerInstance == null) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                CmdSpawnPlayer();
+            }
+        }
     }
 
+    [Command]
+    public void CmdSpawnPlayer() {
+        if (playerInstance != null)
+            return;
+        foreach(IntVector2 pos in LevelManager.S.level.spawnPositions) {
+            if (LevelManager.S.level.Occuppied(pos) == false) {
+                playerInstance = (GameObject)GameObject.Instantiate(playerPrefab, LevelManager.S.level.parent);
+                Movable mov = playerInstance.GetComponent<Movable>();
+                mov.SetPos(pos);
+                NetworkServer.Spawn(playerInstance);
+                break;
+            }
+        }
+    }
 }
