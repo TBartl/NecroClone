@@ -10,7 +10,7 @@ public class NetMessage_StartSendLevel : NetMessage {
     public NetMessage_StartSendLevel() { }
 
     public override byte GetRecognizeByte() {
-        return 2;
+        return (byte)NetMessageID.startSendLevel;
     }
 
     public override void EncodeToBuffer() {
@@ -23,7 +23,7 @@ public class NetMessage_StartSendLevel : NetMessage {
         writer.Write(LevelManager.S.serializer.serialised.Length);
     }
 
-    public override void DecodeBufferAndExecute() {
+    protected override void DecodeBufferAndExecute() {
         MemoryStream stream = new MemoryStream(buffer);
         BinaryReader reader = new BinaryReader(stream);
         reader.ReadByte();
@@ -47,7 +47,7 @@ public class NetMessage_SendLevelPiece : NetMessage {
     }
 
     public override byte GetRecognizeByte() {
-        return 3;
+        return (byte)NetMessageID.sendLevelPiece;
     }
 
     public override void EncodeToBuffer() {
@@ -62,7 +62,7 @@ public class NetMessage_SendLevelPiece : NetMessage {
         }
     }
 
-    public override void DecodeBufferAndExecute() {
+    protected override void DecodeBufferAndExecute() {
         pieceNumber = LevelManager.S.serializer.numMessages;
         LevelManager.S.serializer.numMessages += 1;
 

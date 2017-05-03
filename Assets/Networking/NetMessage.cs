@@ -4,12 +4,20 @@ using UnityEngine;
 using System.IO;
 
 [System.Serializable]
+public enum NetMessageID : byte {
+    none, debug,
+    startSendLevel, sendLevelPiece,
+    clientInput,
+    spawnOccupant, actionOccupant
+}
+
+[System.Serializable]
 public class NetMessage {
     public static int bufferSize = 1024;
     public static byte[] buffer = new byte[bufferSize];
 
     public virtual byte GetRecognizeByte() {
-        return 0;
+        return (byte)NetMessageID.none;
     }
     public virtual bool AlsoExecuteOnServer() {
         return false;
@@ -23,8 +31,10 @@ public class NetMessage {
 
     }   
 
-    public virtual void DecodeBufferAndExecute() {
+    protected virtual void DecodeBufferAndExecute() { }
 
+    public virtual void DecodeBufferAndExecute(ClientData clientData) {
+        DecodeBufferAndExecute();
     }
 }
 
@@ -39,7 +49,7 @@ public class NetMessageDebug : NetMessage {
     }
 
     public override byte GetRecognizeByte() {
-        return 1;
+        return (byte)NetMessageID.debug;
     }
 
     public override void EncodeToBuffer() {
@@ -49,7 +59,7 @@ public class NetMessageDebug : NetMessage {
         writer.Write(message);
     }
 
-    public override void DecodeBufferAndExecute() {
+    protected override void DecodeBufferAndExecute() {
         MemoryStream stream = new MemoryStream(buffer);
         BinaryReader reader = new BinaryReader(stream);
         reader.ReadByte();

@@ -34,4 +34,31 @@ public class Level {
         return tiles[pos.x, pos.y].occupant != null;
     }
 
+    public IntVector2 GetOpenPlayerSpawnPosition() {
+        foreach (IntVector2 pos in spawnPositions) {
+            if (Occuppied(pos) == false) {
+                return pos;
+            }
+        }
+        return IntVector2.error;
+    }
+
+    public GameObject AddOccupant(OccupantId id, IntVector2 pos) {
+        GameObject prefab = LevelDatabase.S.GetOccupantPrefab(id);
+        if (prefab == null || Occuppied(pos)) {
+            Debug.Log("Error adding occupant!");
+            return null;
+        }
+
+        GameObject instance = (GameObject)GameObject.Instantiate(prefab, LevelManager.S.level.parent);
+        tiles[pos.x, pos.y].occupant = instance;
+        instance.transform.position = (Vector3)pos;
+
+        Movable mov = instance.GetComponent<Movable>();
+        if (mov) {
+            mov.SetPos(pos);
+        }
+
+        return instance;
+    }
 }

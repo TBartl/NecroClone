@@ -55,9 +55,10 @@ public struct IntVector2 {
 	public static IntVector2 up = new IntVector2(0, 1);
 	public static IntVector2 right = new IntVector2(1, 0);
 	public static IntVector2 down = new IntVector2(0, -1);
-	public static IntVector2 left = new IntVector2(-1, 0);
+    public static IntVector2 left = new IntVector2(-1, 0);
+    public static IntVector2 error = new IntVector2(-420420, -420420);
 
-	public static IntVector2 fromDirection(Direction d)
+    public static IntVector2 fromDirection(Direction d)
 	{
 		if (d == Direction.north)
 			return up;
@@ -68,4 +69,8 @@ public struct IntVector2 {
 		else
 			return left;
 	}
+
+    public override string ToString() {
+        return "(" + x.ToString() + "," +y.ToString() + ")";
+    }
 }

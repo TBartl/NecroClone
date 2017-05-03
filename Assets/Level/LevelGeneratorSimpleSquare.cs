@@ -23,7 +23,6 @@ public class LevelGeneratorSimpleSquare : LevelGenerator {
         level.spawnPositions.Add(center + IntVector2.up);
         level.spawnPositions.Add(center + IntVector2.right);
         level.spawnPositions.Add(center + IntVector2.up + IntVector2.right);
-
         return level;
     }
 

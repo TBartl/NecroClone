@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4690293312341574}
   - component: {fileID: 114614241708651108}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c2642432984f15a43a2cbc68dd997c1c, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +109,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
-  m_Mesh: {fileID: 4300002, guid: cf90f76137e2dd64bb155949e38f368c, type: 3}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114614241708651108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d2994027c05c4e9c8439e38f9fec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2

@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+public class ClientData {
+    public int connectionID;
+    public GameObject player;
+
+    public ClientData(int connectionID) {
+        this.connectionID = connectionID;
+    }
+}
+
 public class NetManager : MonoBehaviour {
 
     public static NetManager S;
@@ -15,11 +24,15 @@ public class NetManager : MonoBehaviour {
     int channelID;
     int hostID;
     int serverConnectionID;
-    List<int> connectedClients = new List<int>();
+    ClientData serverClient;
+    List<ClientData> connectedClients = new List<ClientData>();
 
     NetMessage[] messageTypes = {
         new NetMessage(), new NetMessageDebug(),
-        new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece()};
+        new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece(),
+        new NetMessage_ClientInput(),
+        new NetMessage_SpawnOccupant(), new NetMessage_ActionOccupant(),
+    };
 
     [HideInInspector] public bool isConnected = false;
     public delegate void OnNetworkSetup(bool isServer);
@@ -37,7 +50,12 @@ public class NetManager : MonoBehaviour {
         SceneManager.LoadScene(1);
     }
 
-    public void StartConnect() {
+    public void StartConnect(string address = "") {
+        if (address == "")
+            this.address = "127.0.0.1";
+        else
+            this.address = address;
+
         isServer = false;
         SceneManager.LoadScene(1);
     }
@@ -59,7 +77,10 @@ public class NetManager : MonoBehaviour {
         else
             hostID = NetworkTransport.AddHost(topology, 0);
 
-        if (!isServer) {
+        if (isServer) {
+            serverClient = new ClientData(-1);
+        }
+        else {
             byte error;
             serverConnectionID = NetworkTransport.Connect(hostID, address, socketPort, 0, out error);
             if (error != (byte)NetworkError.Ok)
@@ -77,29 +98,41 @@ public class NetManager : MonoBehaviour {
                 UpdateClient();
 
             if (!isServer && Input.GetKeyDown(KeyCode.Space))
-                SendNetMessage(new NetMessageDebug("TEST"), serverConnectionID);
+                SendServerMessageToOne(new NetMessageDebug("TEST"), serverConnectionID);
         }
     }
 
-    public void SendNetMessage(NetMessage message, int connectionID) {
+    public void SendClientMessage(NetMessage message) {
+        message.EncodeToBuffer();
+
+        if (isServer)
+            message.DecodeBufferAndExecute(GetThisServerClient());
+        else {
+            byte error;
+            NetworkTransport.Send(hostID, serverConnectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+        }
+    }
+
+    public void SendServerMessageToOne(NetMessage message, int connectionID) {
+        message.EncodeToBuffer();
+
         List<int> list = new List<int>();
         list.Add(connectionID);
-        SendNetMessage(message, list);
+        byte error;
+        NetworkTransport.Send(hostID, connectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
     }
-    public void SendNetMessage(NetMessage message, List<int> connectionIDs) {
+    public void SendServerMessageToAll(NetMessage message) {
         message.EncodeToBuffer();
         byte error;
 
         // Execute it locally
         if (isServer && message.AlsoExecuteOnServer())
-            message.DecodeBufferAndExecute();
+            message.DecodeBufferAndExecute(GetThisServerClient());
 
         // Send it out
-        /// TODO Optimize how much data we are sending so we don't just always send the full buffer
-        foreach (int id in connectionIDs) {
-            NetworkTransport.Send(hostID, id, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+        foreach (ClientData client in connectedClients) {
+            NetworkTransport.Send(hostID, client.connectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
         }
-
     }
 
     void UpdateServer() {
@@ -152,12 +185,12 @@ public class NetManager : MonoBehaviour {
     }
 
     void OnClientConnect(int connectionId) {
-        connectedClients.Add(connectionId);
+        connectedClients.Add(new ClientData(connectionId));
         LevelManager.S.serializer.Serialise();
-        SendNetMessage(new NetMessage_StartSendLevel(), connectionId);
+        SendServerMessageToOne(new NetMessage_StartSendLevel(), connectionId);
         Debug.Log(LevelManager.S.serializer.GetRequiredNumOfPieces());
         for (int i = 0; i < LevelManager.S.serializer.GetRequiredNumOfPieces(); i++) {
-            SendNetMessage(new NetMessage_SendLevelPiece(i), connectionId);
+            SendServerMessageToOne(new NetMessage_SendLevelPiece(i), connectionId);
         }
 
     }
@@ -165,8 +198,12 @@ public class NetManager : MonoBehaviour {
     void HandleDataMessage(int connectionId) {
         foreach (NetMessage messageType in messageTypes) {
             if (messageType.IsThisMessage()) {
-                messageType.DecodeBufferAndExecute();
+                messageType.DecodeBufferAndExecute(GetThisServerClient());
             }
         }
+    }
+
+    public ClientData GetThisServerClient() {
+        return serverClient;
     }
 }
