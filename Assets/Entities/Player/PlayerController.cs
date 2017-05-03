@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 [System.Serializable]
 public struct KeyDirectionPair {
@@ -9,13 +8,12 @@ public struct KeyDirectionPair {
     public IntVector2 direction;
 }
 
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : MonoBehaviour {
     
     public List<KeyDirectionPair> keyDirectionPairs;
     public Action move;
     //List<KeyCode> buffer = new List<KeyCode>(); TODO
-
-    [Client]
+    
     void Update() {
         foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
             if (Input.GetKeyDown(keyDirectionPair.key)) {
@@ -24,7 +22,6 @@ public class PlayerController : NetworkBehaviour {
         }
     }
 
-    [Command]
     public void CmdSendInput(KeyCode input) {
         foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
             if (input == keyDirectionPair.key) {

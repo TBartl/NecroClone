@@ -1,20 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 [System.Serializable]
-public class Level : NetworkBehaviour {
-    public LevelGenerator generator;
+public class Level {
     public Tile[,] tiles;
     [HideInInspector] public IntVector2 size;
     [HideInInspector] public List<IntVector2> spawnPositions = new List<IntVector2>();
     [HideInInspector] public Transform parent;
-
-    void Start() {
-        generator.GenLevel(this);
-        Draw();
-    }
+    
 
     public Level(IntVector2 size) {
         this.size = size;
