@@ -399,50 +399,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &684622647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 684622648}
-  - component: {fileID: 684622649}
-  m_Layer: 0
-  m_Name: LevelDatabase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &684622648
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 684622647}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1368944870}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &684622649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 684622647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7f08bd068aa6d418a33f871fc4b923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floors:
-    basic: {fileID: 1902883780486946, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
-  occupants:
-    wall: {fileID: 1902883780486946, guid: 76db4244433fd024a9cac918b97f2ee3, type: 2}
 --- !u!1 &822003277
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,16 +480,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: m_Channels.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4939052562863426, guid: 2aa909f7369b0864a8385466bdbdf139, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -566,36 +512,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: m_CustomConfig
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: m_Channels.Array.data[0]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1718804689257036, guid: 1c06af8435e34f54cbb645a804ac202e,
-        type: 2}
-    - target: {fileID: 114176230956624320, guid: 2aa909f7369b0864a8385466bdbdf139,
-        type: 2}
-      propertyPath: address
-      value: 127.0.0.1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114355891558623262, guid: 2aa909f7369b0864a8385466bdbdf139, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2aa909f7369b0864a8385466bdbdf139, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1368944870 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4939052562863426, guid: 2aa909f7369b0864a8385466bdbdf139,
-    type: 2}
-  m_PrefabInternal: {fileID: 1368944869}
 --- !u!1 &1880600717
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,16 +540,16 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.2
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -919,8 +838,8 @@ Camera:
   m_GameObject: {fileID: 2137858315}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Square
   m_EditorClassIdentifier: 
   size:
-    x: 9
-    y: 9
-  wall: {fileID: 1902883780486946, guid: 76db4244433fd024a9cac918b97f2ee3, type: 2}
+    x: 14
+    y: 14
+  randomWallChance: 0.15

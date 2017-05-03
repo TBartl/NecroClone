@@ -11,6 +11,9 @@ public class NetMessage {
     public virtual byte GetRecognizeByte() {
         return 0;
     }
+    public virtual bool AlsoExecuteOnServer() {
+        return false;
+    }
 
     public virtual bool IsThisMessage() {
         return buffer[0] == GetRecognizeByte();

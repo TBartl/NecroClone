@@ -14,10 +14,12 @@ public class NetManager : MonoBehaviour {
 
     int channelID;
     int hostID;
-    int connectionID;
+    int serverConnectionID;
     List<int> connectedClients = new List<int>();
 
-    NetMessage[] messageTypes = {new NetMessage(), new NetMessageDebug()};
+    NetMessage[] messageTypes = {
+        new NetMessage(), new NetMessageDebug(),
+        new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece()};
 
     [HideInInspector] public bool isConnected = false;
     public delegate void OnNetworkSetup(bool isServer);
@@ -59,7 +61,7 @@ public class NetManager : MonoBehaviour {
 
         if (!isServer) {
             byte error;
-            connectionID = NetworkTransport.Connect(hostID, address, socketPort, 0, out error);
+            serverConnectionID = NetworkTransport.Connect(hostID, address, socketPort, 0, out error);
             if (error != (byte)NetworkError.Ok)
                 Debug.LogWarning("Warning, potentially caught a network connection error!");
         }
@@ -75,21 +77,28 @@ public class NetManager : MonoBehaviour {
                 UpdateClient();
 
             if (!isServer && Input.GetKeyDown(KeyCode.Space))
-                SendNetMessage(new NetMessageDebug("TEST"));
+                SendNetMessage(new NetMessageDebug("TEST"), serverConnectionID);
         }
     }
 
-    public void SendNetMessage(NetMessage message) {
+    public void SendNetMessage(NetMessage message, int connectionID) {
+        List<int> list = new List<int>();
+        list.Add(connectionID);
+        SendNetMessage(message, list);
+    }
+    public void SendNetMessage(NetMessage message, List<int> connectionIDs) {
         message.EncodeToBuffer();
         byte error;
 
         // Execute it locally
-        if (isServer)
+        if (isServer && message.AlsoExecuteOnServer())
             message.DecodeBufferAndExecute();
 
         // Send it out
         /// TODO Optimize how much data we are sending so we don't just always send the full buffer
-        NetworkTransport.Send(hostID, connectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+        foreach (int id in connectionIDs) {
+            NetworkTransport.Send(hostID, id, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+        }
 
     }
 
@@ -105,7 +114,7 @@ public class NetManager : MonoBehaviour {
             case NetworkEventType.Nothing:         //1
                 break;
             case NetworkEventType.ConnectEvent:    //2
-                connectedClients.Add(connectionId);
+                OnClientConnect(connectionId);
                 Debug.Log("Server Connect Event");
                 break;
             case NetworkEventType.DataEvent:       //3
@@ -140,6 +149,17 @@ public class NetManager : MonoBehaviour {
                 Debug.Log("Client Disconnect Event");
                 break;
         }
+    }
+
+    void OnClientConnect(int connectionId) {
+        connectedClients.Add(connectionId);
+        LevelManager.S.serializer.Serialise();
+        SendNetMessage(new NetMessage_StartSendLevel(), connectionId);
+        Debug.Log(LevelManager.S.serializer.GetRequiredNumOfPieces());
+        for (int i = 0; i < LevelManager.S.serializer.GetRequiredNumOfPieces(); i++) {
+            SendNetMessage(new NetMessage_SendLevelPiece(i), connectionId);
+        }
+
     }
 
     void HandleDataMessage(int connectionId) {

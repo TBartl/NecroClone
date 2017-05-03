@@ -139,10 +139,10 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.2
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -212,6 +212,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114158292748271666, guid: 3747f3798e800d44b9844bb7571fa6b4,
+        type: 2}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 11400000, guid: e00d2017da79a8d4f8002a74e0986100,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 114531148560624860, guid: 3747f3798e800d44b9844bb7571fa6b4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3747f3798e800d44b9844bb7571fa6b4, type: 2}
@@ -264,8 +270,8 @@ Camera:
   m_GameObject: {fileID: 2027198072}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
