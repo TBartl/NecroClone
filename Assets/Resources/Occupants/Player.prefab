@@ -56,7 +56,8 @@ GameObject:
   - component: {fileID: 114143004264236654}
   - component: {fileID: 114253566191178870}
   - component: {fileID: 114547585550266548}
-  - component: {fileID: 114664930363784560}
+  - component: {fileID: 114035495420944280}
+  - component: {fileID: 114595281951150090}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114035495420944280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac8ea2a9f2813b4496b919a8cfbda3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverTime: 0.35
 --- !u!114 &114143004264236654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,6 +191,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f343533fc83453844ae149f95a5fcef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114595281951150090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fd55136e49a534f9735d4273df4fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverTime: 0.5
 --- !u!114 &114614241708651108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,18 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
---- !u!114 &114664930363784560
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902883780486946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfc7f5f98f6e8041b941d9ab0ffdf69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recoverTime: 0.35
 --- !u!114 &114668008599700574
 MonoBehaviour:
   m_ObjectHideFlags: 1

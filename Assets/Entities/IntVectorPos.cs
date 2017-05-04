@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[CreateAssetMenu]
-[System.Serializable]
-public class MoveAnimationData : ScriptableObject {
-    public float animLength;
-    public AnimationCurve horizontal;
-    public AnimationCurve vertical;
-    public AnimationCurve horizontalFail;
-}
-
 public class IntVectorPos : MonoBehaviour {
 
     public MoveAnimationData animationData;
@@ -53,6 +44,10 @@ public class IntVectorPos : MonoBehaviour {
             yield return null;
         }
         this.transform.position = (Vector3)to;        
+    }
+
+    public void Bump(IntVector2 to) {
+        StartCoroutine(JuicyFailMove(pos, to));
     }
 
     IEnumerator JuicyFailMove(IntVector2 from, IntVector2 to) {

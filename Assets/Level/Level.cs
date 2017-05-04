@@ -61,4 +61,10 @@ public class Level {
 
         return instance;
     }
+
+    public GameObject GetOccupantAt(IntVector2 pos) {
+        if (!InBounds(pos))
+            return null;
+        return tiles[pos.x, pos.y].occupant;
+    }
 }

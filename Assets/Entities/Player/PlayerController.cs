@@ -24,6 +24,8 @@ public class PlayerController : Controller {
             DoAction(0, IntVector2.down);
         else if (key == PlayerInputKey.left)
             DoAction(0, IntVector2.left);
+        else if (key == PlayerInputKey.space)
+            DoAction(1, IntVector2.zero);
         else
             StartCoroutine(WaitForInput());
 
