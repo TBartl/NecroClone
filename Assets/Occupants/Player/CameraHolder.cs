@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraHolder : MonoBehaviour {
     Camera main;
+    public float strength = 2f;
 	// Use this for initialization
 	void Start () {
         main = Camera.main;
@@ -12,16 +13,13 @@ public class CameraHolder : MonoBehaviour {
             this.enabled = false;
             return;
         }
-        MoveCameraHere();
+        main.transform.position = this.transform.position;
+        main.transform.rotation = this.transform.rotation;
     }
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        MoveCameraHere();
-    }
-
-    void MoveCameraHere() {
-        main.transform.position = this.transform.position;
-        main.transform.rotation = this.transform.rotation;
+        main.transform.position = Vector3.Lerp(main.transform.position, this.transform.position, strength * Time.deltaTime);
+        main.transform.rotation = Quaternion.Lerp(main.transform.rotation, this.transform.rotation, strength * Time.deltaTime);
     }
 }

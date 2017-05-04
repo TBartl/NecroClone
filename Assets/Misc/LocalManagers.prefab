@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4238470247435042}
   - component: {fileID: 114158292748271666}
-  - component: {fileID: 114531148560624860}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -85,21 +84,6 @@ MonoBehaviour:
     size:
       x: 0
       y: 0
-  levelGenerator: {fileID: 11400000, guid: e00d2017da79a8d4f8002a74e0986100, type: 2}
---- !u!114 &114531148560624860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1909001664931988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7f08bd068aa6d418a33f871fc4b923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floor:
-    basic: {fileID: 1902883780486946, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
-  walls:
-    basic: {fileID: 1902883780486946, guid: 76db4244433fd024a9cac918b97f2ee3, type: 2}
-  entities:
-    player: {fileID: 1718804689257036, guid: 1c06af8435e34f54cbb645a804ac202e, type: 2}
+    spawnPositions: []
+    parent: {fileID: 0}
+  generator: {fileID: 11400000, guid: e00d2017da79a8d4f8002a74e0986100, type: 2}

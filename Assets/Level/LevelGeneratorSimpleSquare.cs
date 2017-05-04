@@ -25,6 +25,9 @@ public class LevelGeneratorSimpleSquare : LevelGenerator {
                 level.spawnPositions.Add(center + new IntVector2(x,y));
             }
         }
+
+        level.tiles[center.x, center.y].occupant = LevelDatabase.S.GetOccupantPrefab(OccupantId.spawner);
+
         return level;
     }
 

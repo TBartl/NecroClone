@@ -35,12 +35,22 @@ public class Level {
     }
 
     public IntVector2 GetOpenPlayerSpawnPosition() {
-        foreach (IntVector2 pos in spawnPositions) {
+        foreach (IntVector2 pos in ShuffleSpawnPositions()) {
             if (Occuppied(pos) == false) {
                 return pos;
             }
         }
         return IntVector2.error;
+    }
+    List<IntVector2> ShuffleSpawnPositions() {
+        List<IntVector2> copy = new List<IntVector2>(spawnPositions);
+        for (int i = 0; i < copy.Count; i++) {
+            IntVector2 temp = copy[i];
+            int randomIndex = Random.Range(i, copy.Count);
+            copy[i] = copy[randomIndex];
+            copy[randomIndex] = temp;
+        }
+        return copy;
     }
 
     public GameObject AddOccupant(OccupantId id, IntVector2 pos) {

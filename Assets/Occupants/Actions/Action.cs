@@ -5,7 +5,10 @@ using UnityEngine;
 public class Action : MonoBehaviour {
 
     protected IntVectorPos pos;
-    public float recoverTime = .5f;
+
+    public virtual float GetRecoverTime() {
+        return 0;
+    }
 
     protected virtual void Awake() {
         pos = this.GetComponent<IntVectorPos>();

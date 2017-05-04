@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public enum OccupantId : byte {
     none,
-    wall, player,
+    wall, player, enemy,
+    spawner, spawnerEnemy,
     count
 }
 
@@ -14,5 +15,8 @@ public class DatabaseID_Occupant : DatabaseID {
 
     public override byte GetID() {
         return (byte)id;
+    }
+    public OccupantId GetOccupantID() {
+        return id;
     }
 }

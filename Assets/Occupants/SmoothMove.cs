@@ -1,38 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class IntVectorPos : MonoBehaviour {
+public class SmoothMove : MonoBehaviour {
 
     public MoveAnimationData animationData;
-    IntVector2 pos;
-    
-    public void SetPos(IntVector2 pos) {
-        this.pos = pos;
-        this.transform.position = (Vector3)pos;
-    }
-    public IntVector2 GetPos() {
-        return pos;
+
+    void Awake() {
+        IntVectorPos pos = this.GetComponentInParent<IntVectorPos>();
+        pos.onRealMove += OnRealMove;
+        pos.onBumpMove += OnBump;
     }
 
-    public bool CanMove(IntVector2 newPos) {
-        if (LevelManager.S.level.Occuppied(newPos))
-            return false;
-        return true;
+    void OnRealMove(IntVector2 from, IntVector2 to) {
+        StartCoroutine(JuicyMove(from, to));
     }
-
-    public bool TryMove(IntVector2 newPos) {
-        if (!CanMove(newPos)) {
-            StartCoroutine(JuicyFailMove(pos, newPos));
-            return false;
-        }
-
-        StartCoroutine(JuicyMove(pos, newPos));
-        LevelManager.S.level.tiles[pos.x, pos.y].occupant = null;
-        LevelManager.S.level.tiles[newPos.x, newPos.y].occupant = this.gameObject;
-        pos = newPos;
-        return true;
+    void OnBump(IntVector2 from, IntVector2 to) {
+        StartCoroutine(JuicyFailMove(from, to));
     }
 
     IEnumerator JuicyMove(IntVector2 from, IntVector2 to) {
@@ -43,11 +27,7 @@ public class IntVectorPos : MonoBehaviour {
             this.transform.position = intermediatePos;
             yield return null;
         }
-        this.transform.position = (Vector3)to;        
-    }
-
-    public void Bump(IntVector2 to) {
-        StartCoroutine(JuicyFailMove(pos, to));
+        this.transform.position = (Vector3)to;
     }
 
     IEnumerator JuicyFailMove(IntVector2 from, IntVector2 to) {
@@ -60,4 +40,5 @@ public class IntVectorPos : MonoBehaviour {
         }
         this.transform.position = (Vector3)from;
     }
+
 }

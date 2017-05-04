@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour {
     Action[] actions;
     bool recovering = false;
 
-    void Awake() {
+    protected virtual void Awake() {
         actions = this.GetComponents<Action>();
     }
     void Start() {
@@ -17,9 +17,11 @@ public class Controller : MonoBehaviour {
 
     IEnumerator Recover(float recoveryTime) {
         recovering = true;
+        EffectDatabase.S.CreateRecovery(this.transform, recoveryTime);
         yield return new WaitForSeconds(recoveryTime);
         recovering = false;
-        OnRecoverFinished();
+        if (NetManager.S.isServer)
+            OnRecoverFinished();
     }
 
     protected virtual void OnRecoverFinished() {
@@ -32,16 +34,16 @@ public class Controller : MonoBehaviour {
 
         if (action < 0 || action >= actions.Length)
             Debug.LogError("ERROR: Action does not exist!");
-
         actions[action].RpcExecute(direction, action);
-        StartCoroutine(Recover(actions[action].recoverTime));
     }
 
     //warning: the controller should never use this
     public void DoActionReal(int action, IntVector2 direction) {
         actions[action].Execute(direction);
-
+        StartCoroutine(Recover(actions[action].GetRecoverTime()));
     }
-    
 
+    protected int GetActionCount() {
+        return actions.Length;
+    }
 }

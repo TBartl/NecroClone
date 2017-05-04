@@ -45,6 +45,8 @@ public class NetMessage_SpawnOccupant : NetMessage {
         position.y = reader.ReadInt32();
         owner = reader.ReadInt32();
         GameObject newOccupant = LevelManager.S.level.AddOccupant(occupant, position);
+        SoundManager.S.Play(SoundManager.S.spawn);
+
         if (newOccupant.GetComponent<PlayerIdentity>() != null) {
             if (owner == NetManager.S.myConnectionId) {
                 newOccupant.GetComponent<PlayerIdentity>().SetAsMyPlayer();

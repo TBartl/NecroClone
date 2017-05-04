@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionEarthSpell : Action {
+public class ActionEarthSpell : ActionFixedRecoverTime {
 
     public override void Execute(IntVector2 direction) {
         for (int y = -1; y <= 1; y++) {
@@ -12,5 +12,6 @@ public class ActionEarthSpell : Action {
                     LevelManager.S.level.AddOccupant(OccupantId.wall, target);
             }
         }
+        SoundManager.S.Play(SoundManager.S.spawn);
     }
 }

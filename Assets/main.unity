@@ -213,6 +213,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5295e83856ee247a01e87c7c5a66e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pairs:
+  - playerInput: 0
+    keys: 20000000
+  - playerInput: 1
+    keys: 7700000011010000
+  - playerInput: 2
+    keys: 6400000013010000
+  - playerInput: 3
+    keys: 7300000012010000
+  - playerInput: 4
+    keys: 6100000014010000
+  - playerInput: 5
+    keys: 31000000
+  - playerInput: 6
+    keys: 32000000
+  - playerInput: 7
+    keys: 33000000
+  - playerInput: 8
+    keys: 34000000
+  - playerInput: 9
+    keys: 35000000
 --- !u!1001 &2016280828
 Prefab:
   m_ObjectHideFlags: 0
@@ -252,14 +273,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114158292748271666, guid: 3747f3798e800d44b9844bb7571fa6b4,
-        type: 2}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 11400000, guid: e00d2017da79a8d4f8002a74e0986100,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114531148560624860, guid: 3747f3798e800d44b9844bb7571fa6b4, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3747f3798e800d44b9844bb7571fa6b4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2027198072
