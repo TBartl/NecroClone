@@ -16,7 +16,7 @@ public class ClientData {
 public class NetManager : MonoBehaviour {
 
     public static NetManager S;
-    bool isServer = false;
+    [HideInInspector] public bool isServer = false;
     public int maxConnections = 10;
     public string address = "127.0.0.1";
     public int socketPort = 7777;
@@ -24,11 +24,14 @@ public class NetManager : MonoBehaviour {
     int channelID;
     int hostID;
     int serverConnectionID;
+
+    public int myConnectionId = -1; //-1 for server, something else for clients
+
     ClientData serverClient;
     List<ClientData> connectedClients = new List<ClientData>();
 
     NetMessage[] messageTypes = {
-        new NetMessage(), new NetMessageDebug(),
+        new NetMessage(), new NetMessageDebug(), new NetMessage_ClientConnectionID(),
         new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece(),
         new NetMessage_ClientInput(),
         new NetMessage_SpawnOccupant(), new NetMessage_ActionOccupant(),
@@ -96,9 +99,6 @@ public class NetManager : MonoBehaviour {
                 UpdateServer();
             else
                 UpdateClient();
-
-            if (!isServer && Input.GetKeyDown(KeyCode.Space))
-                SendServerMessageToOne(new NetMessageDebug("TEST"), serverConnectionID);
         }
     }
 
@@ -155,6 +155,7 @@ public class NetManager : MonoBehaviour {
                 HandleDataMessage(connectionId);
                 break;
             case NetworkEventType.DisconnectEvent: //4
+                OnClientDisconnect(connectionId);
                 Debug.Log("Server Disconnect Event");
                 break;
         }
@@ -187,23 +188,44 @@ public class NetManager : MonoBehaviour {
     void OnClientConnect(int connectionId) {
         connectedClients.Add(new ClientData(connectionId));
         LevelManager.S.serializer.Serialise();
+        SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId), connectionId);
         SendServerMessageToOne(new NetMessage_StartSendLevel(), connectionId);
-        Debug.Log(LevelManager.S.serializer.GetRequiredNumOfPieces());
         for (int i = 0; i < LevelManager.S.serializer.GetRequiredNumOfPieces(); i++) {
             SendServerMessageToOne(new NetMessage_SendLevelPiece(i), connectionId);
         }
+    }
 
+    void OnClientDisconnect(int connectionId) {
+        ClientData client = GetClientById(connectionId);
+        //if (client.player)
+        //    Destroy(client.player); Would need to write a NetMessage for this and it's debatable if we need this
+        connectedClients.Remove(client);
     }
 
     void HandleDataMessage(int connectionId) {
-        foreach (NetMessage messageType in messageTypes) {
-            if (messageType.IsThisMessage()) {
-                messageType.DecodeBufferAndExecute(GetThisServerClient());
+        foreach (NetMessage message in messageTypes) {
+            if (message.IsThisMessage()) {
+                message.DecodeBufferAndExecute(GetClientById(connectionId));
+                break;
             }
         }
     }
 
     public ClientData GetThisServerClient() {
         return serverClient;
+    }
+
+    public ClientData GetClientById (int id) {
+        if (id == -1)
+            return serverClient;
+        foreach (ClientData client in connectedClients) {
+            if (client.connectionID == id)
+                return client;
+        }
+        return null;
+    }
+
+    public List<ClientData> GetClients() {
+        return connectedClients;
     }
 }

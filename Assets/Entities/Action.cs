@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-// Actions - Instant things that affect the board state
-// Move (Direction)
-// Attack (Direction)
-// Spell
+public class Action : MonoBehaviour {
 
+    protected IntVectorPos pos;
+    public float recoverTime = .5f;
 
-public class Action : NetworkBehaviour {
-
-    [ClientRpc]
-    public void RpcExecute(IntVector2 direction) {
-        Execute(direction);
+    protected virtual void Awake() {
+        pos = this.GetComponent<IntVectorPos>();
+    }
+    
+    public void RpcExecute(IntVector2 direction, int actionIndex) {
+        NetManager.S.SendServerMessageToAll(new NetMessage_ActionOccupant(pos.GetPos(), actionIndex, direction));
     }
 
-    protected virtual void Execute(IntVector2 direction) {
+    public virtual void Execute(IntVector2 direction) {
 
     }
 

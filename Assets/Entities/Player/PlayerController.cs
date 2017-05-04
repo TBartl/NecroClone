@@ -2,32 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct KeyDirectionPair {
-    public KeyCode key;
-    public IntVector2 direction;
-}
+public class PlayerController : Controller {
+    List<PlayerInputKey> buffer = new List<PlayerInputKey>();
 
-public class PlayerController : MonoBehaviour {
-    
-    public List<KeyDirectionPair> keyDirectionPairs;
-    public Action move;
-    //List<KeyCode> buffer = new List<KeyCode>(); TODO
-    
-    void Update() {
-        foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
-            if (Input.GetKeyDown(keyDirectionPair.key)) {
-                CmdSendInput(keyDirectionPair.key);
-            }
-        }
+    protected override void OnRecoverFinished() {
+        StartCoroutine(WaitForInput());
     }
 
-    public void CmdSendInput(KeyCode input) {
-        foreach (KeyDirectionPair keyDirectionPair in keyDirectionPairs) {
-            if (input == keyDirectionPair.key) {
-                move.RpcExecute(keyDirectionPair.direction);
-                break;
-            }
-        }
+    IEnumerator WaitForInput() {
+        while (buffer.Count == 0)
+            yield return null;
+
+        PlayerInputKey key = buffer[0];
+        buffer.RemoveAt(0);
+
+        if (key == PlayerInputKey.up)
+            DoAction(0, IntVector2.up);
+        else if (key == PlayerInputKey.right)
+            DoAction(0, IntVector2.right);
+        else if (key == PlayerInputKey.down)
+            DoAction(0, IntVector2.down);
+        else if (key == PlayerInputKey.left)
+            DoAction(0, IntVector2.left);
+        else
+            StartCoroutine(WaitForInput());
+
+    }
+
+    public void OnInput(PlayerInputKey key) {
+        buffer.Add(key);
     }
 }

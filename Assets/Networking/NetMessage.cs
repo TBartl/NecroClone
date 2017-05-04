@@ -5,7 +5,7 @@ using System.IO;
 
 [System.Serializable]
 public enum NetMessageID : byte {
-    none, debug,
+    none, debug, clientConnectionID,
     startSendLevel, sendLevelPiece,
     clientInput,
     spawnOccupant, actionOccupant
@@ -65,5 +65,35 @@ public class NetMessageDebug : NetMessage {
         reader.ReadByte();
         message = reader.ReadString();
         Debug.Log("Debug message recieved: " + message);
+    }
+}
+
+[System.Serializable]
+public class NetMessage_ClientConnectionID: NetMessage {
+
+    public int id;
+
+    public NetMessage_ClientConnectionID() { }
+    public NetMessage_ClientConnectionID(int id) {
+        this.id = id;
+    }
+
+    public override byte GetRecognizeByte() {
+        return (byte)NetMessageID.clientConnectionID;
+    }
+
+    public override void EncodeToBuffer() {
+        MemoryStream stream = new MemoryStream(buffer);
+        BinaryWriter writer = new BinaryWriter(stream);
+        writer.Write(GetRecognizeByte());
+        writer.Write(id);
+    }
+
+    protected override void DecodeBufferAndExecute() {
+        MemoryStream stream = new MemoryStream(buffer);
+        BinaryReader reader = new BinaryReader(stream);
+        reader.ReadByte();
+        id = reader.ReadInt32();
+        NetManager.S.myConnectionId = id;
     }
 }

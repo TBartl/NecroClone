@@ -46,7 +46,7 @@ public class Level {
     public GameObject AddOccupant(OccupantId id, IntVector2 pos) {
         GameObject prefab = LevelDatabase.S.GetOccupantPrefab(id);
         if (prefab == null || Occuppied(pos)) {
-            Debug.Log("Error adding occupant!");
+            Debug.LogError("Error adding occupant!");
             return null;
         }
 
@@ -54,7 +54,7 @@ public class Level {
         tiles[pos.x, pos.y].occupant = instance;
         instance.transform.position = (Vector3)pos;
 
-        Movable mov = instance.GetComponent<Movable>();
+        IntVectorPos mov = instance.GetComponent<IntVectorPos>();
         if (mov) {
             mov.SetPos(pos);
         }

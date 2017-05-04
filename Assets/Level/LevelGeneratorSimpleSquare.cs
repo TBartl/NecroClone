@@ -19,10 +19,12 @@ public class LevelGeneratorSimpleSquare : LevelGenerator {
             }
         }
         IntVector2 center = new IntVector2(Mathf.FloorToInt(size.x / 2f), Mathf.RoundToInt(size.y / 2f));
-        level.spawnPositions.Add(center);
-        level.spawnPositions.Add(center + IntVector2.up);
-        level.spawnPositions.Add(center + IntVector2.right);
-        level.spawnPositions.Add(center + IntVector2.up + IntVector2.right);
+
+        for (int y = -2; y <= 2; y++) {
+            for (int x = -2; x <= 2; x++) {
+                level.spawnPositions.Add(center + new IntVector2(x,y));
+            }
+        }
         return level;
     }
 

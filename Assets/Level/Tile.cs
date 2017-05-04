@@ -12,6 +12,10 @@ public struct Tile {
             floor = (GameObject)GameObject.Instantiate(floor, (Vector3)position, Quaternion.identity, parent);
         if (occupant != null) {
             occupant = (GameObject)GameObject.Instantiate(occupant, (Vector3)position, Quaternion.identity, parent);
+            IntVectorPos mov = occupant.GetComponent<IntVectorPos>();
+            if (mov) {
+                mov.SetPos(position);
+            }
         }
     }
 }
