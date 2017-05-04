@@ -71,6 +71,9 @@ GameObject:
   - component: {fileID: 114614241708651108}
   - component: {fileID: 114143004264236654}
   - component: {fileID: 114253566191178870}
+  - component: {fileID: 114694719903513360}
+  - component: {fileID: 114017321154603978}
+  - component: {fileID: 114378524406639848}
   - component: {fileID: 114547585550266548}
   - component: {fileID: 114035495420944280}
   - component: {fileID: 114595281951150090}
@@ -178,6 +181,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114017321154603978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6c0cf96c87be448a596d63dd1e885f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114035495420944280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,6 +265,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recoverTime: 0.5
   toSpawn: 3
+--- !u!114 &114378524406639848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b79589964e79ca41a3493ccec684199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!114 &114495330644119640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,3 +337,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 2
+--- !u!114 &114694719903513360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e00464e328d05c4fa42441954e89335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3

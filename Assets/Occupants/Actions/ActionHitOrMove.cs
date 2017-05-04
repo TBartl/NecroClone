@@ -17,9 +17,14 @@ public class ActionHitOrMove : Action {
         if (target) {
             pos.Bump(targetPos);
             recoverTime = hitRecoverTime;
-            //if (target.CompareTag("Indestructable") == false)
-            Destroy(target);
-            SoundManager.S.Play(SoundManager.S.hit);
+
+            Killable otherKillable = target.GetComponent<Killable>();
+            if (otherKillable) {
+
+
+                SoundManager.S.Play(SoundManager.S.hit);
+            }
+
         }else {
             pos.TryMove(pos.GetPos() + direction);
             recoverTime = moveRecoverTime;
