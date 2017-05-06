@@ -27,10 +27,7 @@ public class NetMessage_SpawnOccupant : NetMessage {
         return true;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write((byte)occupant);
         writer.Write(position.x);
         writer.Write(position.y);
@@ -93,10 +90,7 @@ public class NetMessage_ActionOccupant : NetMessage {
         return true;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(occupantPos.x);
         writer.Write(occupantPos.y);
         writer.Write(level.levelNum);

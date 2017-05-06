@@ -18,10 +18,7 @@ public class NetMessage_ClientInput : NetMessage {
         return (byte)NetMessageID.clientInput;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write((byte)inputKey);
     }
 

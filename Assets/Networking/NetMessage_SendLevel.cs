@@ -16,10 +16,7 @@ public class NetMessage_StartSendLevel : NetMessage {
         return (byte)NetMessageID.startSendLevel;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(level.levelNum);
         writer.Write(level.size.x);
         writer.Write(level.size.y);
@@ -58,10 +55,7 @@ public class NetMessage_SendLevelPiece : NetMessage {
         return (byte)NetMessageID.sendLevelPiece;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         for (int i = 0; i < NetMessage.bufferSize - 1; i++) {
             int realIndex = i + pieceNumber * (NetMessage.bufferSize - 1);
             if (realIndex >= LevelManager.S.serializer.serialised.Length)

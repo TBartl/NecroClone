@@ -19,7 +19,7 @@ public class RecoverEffect : MonoBehaviour {
         scale.color = finalColor;
         for (float t = 0; t < length; t += Time.deltaTime) {
             float p = t / length;
-            scale.transform.localScale = Vector3.one * Mathf.Pow(p, 1f);
+            scale.transform.localScale = Vector3.one * p;
             alpha.color = new Color(finalColor.r,finalColor.g,finalColor.b, finalColor.a * p);
             yield return null;
         }

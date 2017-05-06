@@ -103,26 +103,26 @@ public class NetManager : MonoBehaviour {
     }
 
     public void SendClientMessage(NetMessage message) {
-        message.EncodeToBuffer();
+        int messageLength = message.Encode();
 
         if (isServer)
             message.DecodeBufferAndExecute(GetThisServerClient());
         else {
             byte error;
-            NetworkTransport.Send(hostID, serverConnectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+            NetworkTransport.Send(hostID, serverConnectionID, channelID, NetMessage.buffer, messageLength, out error);
         }
     }
 
     public void SendServerMessageToOne(NetMessage message, int connectionID) {
-        message.EncodeToBuffer();
+        int messageLength = message.Encode();
 
         List<int> list = new List<int>();
         list.Add(connectionID);
         byte error;
-        NetworkTransport.Send(hostID, connectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+        NetworkTransport.Send(hostID, connectionID, channelID, NetMessage.buffer, messageLength, out error);
     }
     public void SendServerMessageToAll(NetMessage message) {
-        message.EncodeToBuffer();
+        int messageLength = message.Encode();
         byte error;
 
         // Execute it locally
@@ -131,7 +131,7 @@ public class NetManager : MonoBehaviour {
 
         // Send it out
         foreach (ClientData client in connectedClients) {
-            NetworkTransport.Send(hostID, client.connectionID, channelID, NetMessage.buffer, NetMessage.bufferSize, out error);
+            NetworkTransport.Send(hostID, client.connectionID, channelID, NetMessage.buffer, messageLength, out error);
         }
     }
 
@@ -142,21 +142,28 @@ public class NetManager : MonoBehaviour {
         int dataSize;
         byte error;
 
-        NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, NetMessage.buffer, NetMessage.bufferSize, out dataSize, out error);
-        switch (recData) {
-            case NetworkEventType.Nothing:         //1
-                break;
-            case NetworkEventType.ConnectEvent:    //2
-                OnClientConnect(connectionId);
-                Debug.Log("Server Connect Event");
-                break;
-            case NetworkEventType.DataEvent:       //3
-                Debug.Log("Server Data Event");
-                HandleDataMessage(connectionId);
-                break;
-            case NetworkEventType.DisconnectEvent: //4
-                OnClientDisconnect(connectionId);
-                Debug.Log("Server Disconnect Event");
+        bool breakOuterLoop = false;
+        while (true) {
+            NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, NetMessage.buffer, NetMessage.bufferSize, out dataSize, out error);
+            switch (recData) {
+                case NetworkEventType.ConnectEvent:
+                    OnClientConnect(connectionId);
+                    Debug.Log("Server Connect Event");
+                    break;
+                case NetworkEventType.DataEvent:
+                    Debug.Log("Server Data Event");
+                    HandleDataMessage(connectionId);
+                    break;
+                case NetworkEventType.DisconnectEvent:
+                    OnClientDisconnect(connectionId);
+                    Debug.Log("Server Disconnect Event");
+                    break;
+                default:
+                    breakOuterLoop = true;
+                    break;
+            }
+
+            if (breakOuterLoop)
                 break;
         }
     }
@@ -168,19 +175,25 @@ public class NetManager : MonoBehaviour {
         int dataSize;
         byte error;
 
-        NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, NetMessage.buffer, NetMessage.bufferSize, out dataSize, out error);
-        switch (recData) {
-            case NetworkEventType.Nothing:         //1
-                break;
-            case NetworkEventType.ConnectEvent:    //2
-                Debug.Log("Client Connect Event");
-                break;
-            case NetworkEventType.DataEvent:       //3
-                Debug.Log("Client Data Event");
-                HandleDataMessage(connectionId);
-                break;
-            case NetworkEventType.DisconnectEvent: //4
-                Debug.Log("Client Disconnect Event");
+        bool breakOuterLoop = false;
+        while (true) {
+            NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, NetMessage.buffer, NetMessage.bufferSize, out dataSize, out error);
+            switch (recData) {
+                case NetworkEventType.ConnectEvent:
+                    Debug.Log("Client Connect Event");
+                    break;
+                case NetworkEventType.DataEvent:
+                    Debug.Log("Client Data Event");
+                    HandleDataMessage(connectionId);
+                    break;
+                case NetworkEventType.DisconnectEvent:
+                    Debug.Log("Client Disconnect Event");
+                    break;
+                default:
+                    breakOuterLoop = true;
+                    break;
+            }
+            if (breakOuterLoop)
                 break;
         }
     }

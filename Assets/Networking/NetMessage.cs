@@ -27,11 +27,28 @@ public class NetMessage {
         return buffer[0] == GetRecognizeByte();
     }
 
-    public virtual void EncodeToBuffer() {
+    public int Encode() {
+        MemoryStream stream = new MemoryStream();
+        BinaryWriter writer = new BinaryWriter(stream);
+        writer.Write(GetRecognizeByte());
+        EncodeToBuffer(ref writer);
 
-    }   
+        if (stream.Length > bufferSize)
+            Debug.LogError("ERROR: Message length exceeds buffer size");
 
-    protected virtual void DecodeBufferAndExecute() { }
+        int length = (int)stream.Length;
+        byte[] streamArray = stream.ToArray();
+        for (int i = 0; i < length; i++) {
+            buffer[i] = streamArray[i];
+        }
+        return length;
+    }
+
+    protected virtual void EncodeToBuffer(ref BinaryWriter writer) {
+
+    }
+
+    protected virtual void DecodeBufferAndExecute() {}
 
     public virtual void DecodeBufferAndExecute(ClientData clientData) {
         DecodeBufferAndExecute();
@@ -52,10 +69,7 @@ public class NetMessageDebug : NetMessage {
         return (byte)NetMessageID.debug;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(message);
     }
 
@@ -82,10 +96,7 @@ public class NetMessage_ClientConnectionID: NetMessage {
         return (byte)NetMessageID.clientConnectionID;
     }
 
-    public override void EncodeToBuffer() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryWriter writer = new BinaryWriter(stream);
-        writer.Write(GetRecognizeByte());
+    protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(id);
     }
 
