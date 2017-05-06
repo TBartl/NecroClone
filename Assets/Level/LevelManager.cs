@@ -19,10 +19,16 @@ public class LevelManager : MonoBehaviour {
 
     void OnNetworkSetup(bool isServer) {
         if (isServer) {
-            level = generator.GetLevel();
-            level.Draw();
+            GameObject newLevelGO = new GameObject("Level");
+            Level newLevel = newLevelGO.AddComponent<Level>();
+            generator.GetLevel(ref newLevel);
+            newLevel.Draw();
+
+            level = newLevel;
         }
     }
+
+
 
     
 }

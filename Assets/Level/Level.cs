@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Level {
+public class Level : MonoBehaviour {
     public Tile[,] tiles;
     [HideInInspector] public IntVector2 size;
     [HideInInspector] public List<IntVector2> spawnPositions = new List<IntVector2>();
     [HideInInspector] public Transform parent;
     
 
-    public Level(IntVector2 size) {
+    public void Resize(IntVector2 size) {
         this.size = size;
         tiles = new Tile[size.x, size.y];
     }
 
     public void Draw() {
-        parent = new GameObject("Level").transform;
+        parent = this.transform;
         for (int y = 0; y < size.y; y++) {
             for (int x = 0; x < size.x; x++) {
                 tiles[x, y].Draw(new IntVector2(x, y), parent);
@@ -64,7 +64,7 @@ public class Level {
         tiles[pos.x, pos.y].occupant = instance;
         instance.transform.position = (Vector3)pos;
 
-        IntVectorPos mov = instance.GetComponent<IntVectorPos>();
+        IntTransform mov = instance.GetComponent<IntTransform>();
         if (mov) {
             mov.SetPos(pos);
         }

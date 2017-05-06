@@ -7,7 +7,7 @@ public class SpawnerController : Controller {
     public float attemptsBeforeFail = 10;
 
     protected override void OnRecoverFinished() {
-        IntVector2 center = this.GetComponent<IntVectorPos>().GetPos();
+        IntVector2 center = this.GetComponent<IntTransform>().GetPos();
         IntVector2 offset = IntVector2.zero;
         for (int attempt = 0; attempt < attemptsBeforeFail; attempt++) {
             IntVector2 tryOffset = new IntVector2(Random.Range(-radius, radius + 1), Random.Range(-radius, radius + 1));

@@ -6,8 +6,7 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "LevelGen/Base")]
 public class LevelGenerator : ScriptableObject {
 
-    public virtual Level GetLevel() {
-        return null;
+    public virtual void GetLevel(ref Level level) {
     }
 
 }

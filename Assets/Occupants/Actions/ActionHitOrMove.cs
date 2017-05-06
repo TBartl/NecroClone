@@ -20,8 +20,6 @@ public class ActionHitOrMove : Action {
 
             Killable otherKillable = target.GetComponent<Killable>();
             if (otherKillable) {
-
-
                 SoundManager.S.Play(SoundManager.S.hit);
             }
 

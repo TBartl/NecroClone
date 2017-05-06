@@ -7,7 +7,7 @@ public class SmoothMove : MonoBehaviour {
     public MoveAnimationData animationData;
 
     void Awake() {
-        IntVectorPos pos = this.GetComponentInParent<IntVectorPos>();
+        IntTransform pos = this.GetComponentInParent<IntTransform>();
         pos.onRealMove += OnRealMove;
         pos.onBumpMove += OnBump;
     }

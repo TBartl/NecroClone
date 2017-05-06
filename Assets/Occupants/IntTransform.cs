@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public class IntVectorPos : MonoBehaviour {
+public class IntTransform : MonoBehaviour {
 
     public delegate void OnMove(IntVector2 from, IntVector2 to);
     public OnMove onRealMove;
     public OnMove onBumpMove;
     IntVector2 pos;
+    Level level;
 
     void Awake() {
     }
@@ -43,5 +44,9 @@ public class IntVectorPos : MonoBehaviour {
     }
     public void Bump(IntVector2 to) {
         onBumpMove(pos, to);
+    }
+
+    public Level GetLevel() {
+        return level;
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : Controller {
-    protected IntVectorPos intTransform;
+    protected IntTransform intTransform;
     public int detectionRadius = 0;
 
     protected override void Awake() {
         base.Awake();
-        intTransform = this.GetComponent<IntVectorPos>();
+        intTransform = this.GetComponent<IntTransform>();
     }
 
     protected IntVector2 GetTargetPos() {

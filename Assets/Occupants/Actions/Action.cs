@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Action : MonoBehaviour {
 
-    protected IntVectorPos pos;
+    protected IntTransform pos;
 
     public virtual float GetRecoverTime() {
         return 0;
     }
 
     protected virtual void Awake() {
-        pos = this.GetComponent<IntVectorPos>();
+        pos = this.GetComponent<IntTransform>();
     }
     
     public void RpcExecute(IntVector2 direction, int actionIndex) {
