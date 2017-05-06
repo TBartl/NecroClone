@@ -17,6 +17,12 @@ MonoBehaviour:
   - occupant: 1
     chance: 0.2
   - occupant: 3
-    chance: 0.05
+    chance: 0.04
+  - occupant: 4
+    chance: 0.02
   - occupant: 5
+    chance: 0.015
+  - occupant: 7
     chance: 0.01
+  - occupant: 6
+    chance: 0.001

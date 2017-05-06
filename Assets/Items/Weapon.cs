@@ -50,18 +50,18 @@ public class Weapon : ScriptableObject {
 
         if (weaponType == WeaponType.broadsword) {
             if (direction == IntVector2.up || direction == IntVector2.down) {
-                target = intTransform.GetLevel().GetOccupantAt(targetPos + direction + IntVector2.left);
+                target = intTransform.GetLevel().GetOccupantAt(targetPos + IntVector2.left);
                 if (IsValidTarget(target))
                     validTargets.Add(target);
-                target = intTransform.GetLevel().GetOccupantAt(targetPos + direction + IntVector2.right);
+                target = intTransform.GetLevel().GetOccupantAt(targetPos + IntVector2.right);
                 if (IsValidTarget(target))
                     validTargets.Add(target);
             }
             else if (direction == IntVector2.left || direction == IntVector2.right) {
-                target = intTransform.GetLevel().GetOccupantAt(targetPos + direction + IntVector2.up);
+                target = intTransform.GetLevel().GetOccupantAt(targetPos + IntVector2.up);
                 if (IsValidTarget(target))
                     validTargets.Add(target);
-                target = intTransform.GetLevel().GetOccupantAt(targetPos + direction + IntVector2.down);
+                target = intTransform.GetLevel().GetOccupantAt(targetPos + IntVector2.down);
                 if (IsValidTarget(target))
                     validTargets.Add(target);
             }

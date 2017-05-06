@@ -6,6 +6,7 @@ public class EffectDatabase : MonoBehaviour {
     public static EffectDatabase S;
 
     public GameObject recover;
+    public GameObject heart;
 
     void Awake() {
         S = this;

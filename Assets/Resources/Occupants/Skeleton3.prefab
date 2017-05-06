@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 114659487714417008}
   - component: {fileID: 114035495420944280}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Skeleton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 91ceba94ead84d14b813ad1cc0175722, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d2994027c05c4e9c8439e38f9fec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
+  id: 5
 --- !u!114 &114659487714417008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86940a0a171c154d896105720a54267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 0.5
+  recoverTime: 1
 --- !u!114 &114880163033265132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,4 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00464e328d05c4fa42441954e89335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 3

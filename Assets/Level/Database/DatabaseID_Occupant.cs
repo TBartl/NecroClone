@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public enum OccupantId : byte {
     none,
-    wall, player, enemy,
+    wall, player,
+    skeleton1, skeleton2, skeleton3,
     spawner, spawnerEnemy,
     count
 }
