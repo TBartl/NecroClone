@@ -5,6 +5,6 @@ using UnityEngine;
 public class Destructable : MonoBehaviour {
 
     public void DestroyThis() {
-        Destroy(this.gameObject);
+        DestroyImmediate(this.gameObject);
     }
 }

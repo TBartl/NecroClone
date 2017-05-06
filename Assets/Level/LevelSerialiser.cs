@@ -22,8 +22,11 @@ public class LevelSerializer {
                 GameObject occupant = level.tiles[x, y].occupant;
                 if (occupant == null)
                     writer.Write((byte)0);
-                else
+                else {
                     writer.Write((byte)occupant.GetComponent<DatabaseID>().GetID());
+                    //ChangeableProperty[] occupantProperties = occupant.GetComponents<ChangeableProperty>();
+                    //writer.Write(occupantProperties.Length);
+                }
             }
         }
 
@@ -36,7 +39,13 @@ public class LevelSerializer {
         for (int y = 0; y < toSerializeTo.size.y; y++) {
             for (int x = 0; x < toSerializeTo.size.x; x++) {
                 toSerializeTo.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab((FloorId)reader.ReadByte());
-                toSerializeTo.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab((OccupantId)reader.ReadByte());
+
+                OccupantId occupantID = (OccupantId)reader.ReadByte();
+                if (occupantID == OccupantId.none)
+                    toSerializeTo.tiles[x, y].floor = null;
+                else {
+                    toSerializeTo.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab(occupantID);
+                }
             }
         }
 

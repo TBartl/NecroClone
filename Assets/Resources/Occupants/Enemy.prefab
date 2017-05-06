@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveRecoverTime: 0.5
-  hitRecoverTime: 1
+  digRecoverTime: 0
 --- !u!114 &114226820535442162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b79589964e79ca41a3493ccec684199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  weapon: {fileID: 11400000, guid: 86b54af8c41a1cb4aa672191828023ea, type: 2}
 --- !u!114 &114614241708651108
 MonoBehaviour:
   m_ObjectHideFlags: 1
