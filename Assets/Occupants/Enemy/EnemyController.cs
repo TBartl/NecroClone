@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : Controller {
-    protected IntTransform intTransform;
     public int detectionRadius = 0;
 
     protected override void Awake() {
@@ -17,7 +16,7 @@ public class EnemyController : Controller {
         for (int y = -detectionRadius; y <= detectionRadius; y++) {
             for (int x = -detectionRadius; x <= detectionRadius; x++) {
                 IntVector2 testPos = intTransform.GetPos() + new IntVector2(x, y);
-                GameObject occupant = LevelManager.S.level.GetOccupantAt(testPos);
+                GameObject occupant = intTransform.GetLevel().GetOccupantAt(testPos);
                 if (occupant == null)
                     continue;
                 if (occupant.GetComponent<DatabaseID_Occupant>().GetOccupantID() != OccupantId.player)

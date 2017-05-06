@@ -5,12 +5,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
     public static LevelManager S;
-
-    [HideInInspector]
-    public Level level;
+    
     public LevelGenerator generator;
-    [HideInInspector]
-    public LevelSerializer serializer = new LevelSerializer();
+    [HideInInspector] public LevelSerializer serializer = new LevelSerializer();
+    
+    public Level startLevel;
+    public List<Level> levels;
 
     void Awake() {
         S = this;
@@ -19,15 +19,25 @@ public class LevelManager : MonoBehaviour {
 
     void OnNetworkSetup(bool isServer) {
         if (isServer) {
-            GameObject newLevelGO = new GameObject("Level");
-            Level newLevel = newLevelGO.AddComponent<Level>();
+            Level newLevel = CreateNewLevel();
             generator.GetLevel(ref newLevel);
             newLevel.Draw();
-
-            level = newLevel;
+            startLevel = newLevel;            
         }
     }
 
+    public Level CreateNewLevel() {
+        GameObject newLevelGO = new GameObject("Level " + levels.Count.ToString());
+        Level newLevel = newLevelGO.AddComponent<Level>();
+        newLevel.levelNum = levels.Count;
+        levels.Add(newLevel);
+
+        return newLevel;
+    }
+
+    public Level GetLevel(int i) {
+        return levels[i];
+    }
 
 
     

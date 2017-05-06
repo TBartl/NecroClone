@@ -32,12 +32,12 @@ public class NetMessage_ClientInput : NetMessage {
         inputKey = (PlayerInputKey)reader.ReadByte();
         
         if (inputKey == PlayerInputKey.space && clientData.player == null) {
-            IntVector2 spawnPos = LevelManager.S.level.GetOpenPlayerSpawnPosition();
+            IntVector2 spawnPos = LevelManager.S.startLevel.GetOpenPlayerSpawnPosition();
             if (spawnPos == IntVector2.error) {
                 Debug.LogError("No available spawn position!");
                 return;
             }
-            NetManager.S.SendServerMessageToAll(new NetMessage_SpawnOccupant(OccupantId.player, spawnPos, clientData.connectionID));
+            NetManager.S.SendServerMessageToAll(new NetMessage_SpawnOccupant(OccupantId.player, spawnPos, LevelManager.S.startLevel, clientData.connectionID));
         }
         else if (clientData.player != null) {
             clientData.player.GetComponent<PlayerController>().OnInput(inputKey);

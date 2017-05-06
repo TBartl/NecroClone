@@ -13,6 +13,7 @@ public class IntTransform : MonoBehaviour {
     Level level;
 
     void Awake() {
+        level = this.GetComponentInParent<Level>();
     }
     
     public void SetPos(IntVector2 pos) {
@@ -24,7 +25,7 @@ public class IntTransform : MonoBehaviour {
     }
 
     public bool CanMove(IntVector2 newPos) {
-        if (LevelManager.S.level.Occuppied(newPos))
+        if (level.Occuppied(newPos))
             return false;
         return true;
     }
@@ -37,8 +38,8 @@ public class IntTransform : MonoBehaviour {
 
         this.transform.position = (Vector3)newPos;
         onRealMove(pos, newPos);
-        LevelManager.S.level.tiles[pos.x, pos.y].occupant = null;
-        LevelManager.S.level.tiles[newPos.x, newPos.y].occupant = this.gameObject;
+        level.tiles[pos.x, pos.y].occupant = null;
+        level.tiles[newPos.x, newPos.y].occupant = this.gameObject;
         pos = newPos;
         return true;
     }

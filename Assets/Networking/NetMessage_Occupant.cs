@@ -8,12 +8,14 @@ public class NetMessage_SpawnOccupant : NetMessage {
 
     OccupantId occupant;
     IntVector2 position;
+    Level level;
     int owner;
 
     public NetMessage_SpawnOccupant() { }
-    public NetMessage_SpawnOccupant(OccupantId occupant, IntVector2 position, int owner = -2) {
+    public NetMessage_SpawnOccupant(OccupantId occupant, IntVector2 position, Level level, int owner = -2) {
         this.occupant = occupant;
         this.position = position;
+        this.level = level;
         this.owner = owner;
     }
     
@@ -32,19 +34,20 @@ public class NetMessage_SpawnOccupant : NetMessage {
         writer.Write((byte)occupant);
         writer.Write(position.x);
         writer.Write(position.y);
+        writer.Write(level.levelNum);
         writer.Write(owner);
     }
 
     protected override void DecodeBufferAndExecute() {
-        Debug.Log("Occupant");
         MemoryStream stream = new MemoryStream(buffer);
         BinaryReader reader = new BinaryReader(stream);
         reader.ReadByte();
         occupant = (OccupantId)reader.ReadByte();
         position.x = reader.ReadInt32();
         position.y = reader.ReadInt32();
+        level = LevelManager.S.GetLevel(reader.ReadInt32());
         owner = reader.ReadInt32();
-        GameObject newOccupant = LevelManager.S.level.AddOccupant(occupant, position);
+        GameObject newOccupant = level.AddOccupant(occupant, position);
         SoundManager.S.Play(SoundManager.S.spawn);
 
         if (newOccupant.GetComponent<PlayerIdentity>() != null) {
@@ -70,12 +73,14 @@ public class NetMessage_SpawnOccupant : NetMessage {
 public class NetMessage_ActionOccupant : NetMessage {
 
     IntVector2 occupantPos;
+    Level level;
     int action;
     IntVector2 direction;
 
     public NetMessage_ActionOccupant() { }
-    public NetMessage_ActionOccupant(IntVector2 occupantPos, int action, IntVector2 direction) {
+    public NetMessage_ActionOccupant(IntVector2 occupantPos, Level level, int action, IntVector2 direction) {
         this.occupantPos = occupantPos;
+        this.level = level;
         this.action = action;
         this.direction = direction;
     }
@@ -94,6 +99,7 @@ public class NetMessage_ActionOccupant : NetMessage {
         writer.Write(GetRecognizeByte());
         writer.Write(occupantPos.x);
         writer.Write(occupantPos.y);
+        writer.Write(level.levelNum);
         writer.Write(action);
         writer.Write(direction.x);
         writer.Write(direction.y);
@@ -105,10 +111,11 @@ public class NetMessage_ActionOccupant : NetMessage {
         reader.ReadByte();
         occupantPos.x = reader.ReadInt32();
         occupantPos.y = reader.ReadInt32();
+        level = LevelManager.S.GetLevel(reader.ReadInt32());
         action = reader.ReadInt32();
         direction.x = reader.ReadInt32();
         direction.y = reader.ReadInt32();
-        LevelManager.S.level.tiles[occupantPos.x, occupantPos.y].occupant.GetComponent<Controller>().DoActionReal(action, direction);
+        level.tiles[occupantPos.x, occupantPos.y].occupant.GetComponent<Controller>().DoActionReal(action, direction);
     }
 }
 

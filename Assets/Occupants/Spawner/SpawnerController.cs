@@ -12,7 +12,7 @@ public class SpawnerController : Controller {
         for (int attempt = 0; attempt < attemptsBeforeFail; attempt++) {
             IntVector2 tryOffset = new IntVector2(Random.Range(-radius, radius + 1), Random.Range(-radius, radius + 1));
             IntVector2 tryPos = center + tryOffset;
-            if (!LevelManager.S.level.Occuppied(tryPos)) {
+            if (!intTransform.GetLevel().Occuppied(tryPos)) {
                 offset = tryOffset;
                 break;
             }

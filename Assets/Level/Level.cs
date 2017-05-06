@@ -4,11 +4,10 @@ using UnityEngine;
 
 [System.Serializable]
 public class Level : MonoBehaviour {
+    public int levelNum;
     public Tile[,] tiles;
     [HideInInspector] public IntVector2 size;
     [HideInInspector] public List<IntVector2> spawnPositions = new List<IntVector2>();
-    [HideInInspector] public Transform parent;
-    
 
     public void Resize(IntVector2 size) {
         this.size = size;
@@ -16,10 +15,9 @@ public class Level : MonoBehaviour {
     }
 
     public void Draw() {
-        parent = this.transform;
         for (int y = 0; y < size.y; y++) {
             for (int x = 0; x < size.x; x++) {
-                tiles[x, y].Draw(new IntVector2(x, y), parent);
+                tiles[x, y].Draw(new IntVector2(x, y), this.transform);
             }
         }
     }
@@ -60,7 +58,7 @@ public class Level : MonoBehaviour {
             return null;
         }
 
-        GameObject instance = (GameObject)GameObject.Instantiate(prefab, LevelManager.S.level.parent);
+        GameObject instance = (GameObject)GameObject.Instantiate(prefab, this.transform);
         tiles[pos.x, pos.y].occupant = instance;
         instance.transform.position = (Vector3)pos;
 

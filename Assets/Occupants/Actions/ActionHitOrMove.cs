@@ -12,10 +12,10 @@ public class ActionHitOrMove : Action {
     }
 
     public override void Execute(IntVector2 direction) {
-        IntVector2 targetPos = pos.GetPos() + direction;
-        GameObject target = LevelManager.S.level.GetOccupantAt(targetPos);
+        IntVector2 targetPos = intTransform.GetPos() + direction;
+        GameObject target = intTransform.GetLevel().GetOccupantAt(targetPos);
         if (target) {
-            pos.Bump(targetPos);
+            intTransform.Bump(targetPos);
             recoverTime = hitRecoverTime;
 
             Killable otherKillable = target.GetComponent<Killable>();
@@ -24,7 +24,7 @@ public class ActionHitOrMove : Action {
             }
 
         }else {
-            pos.TryMove(pos.GetPos() + direction);
+            intTransform.TryMove(intTransform.GetPos() + direction);
             recoverTime = moveRecoverTime;
         }
     }

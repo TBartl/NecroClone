@@ -6,9 +6,11 @@ public class Controller : MonoBehaviour {
 
     Action[] actions;
     bool recovering = false;
+    protected IntTransform intTransform;
 
     protected virtual void Awake() {
         actions = this.GetComponents<Action>();
+        intTransform = this.GetComponent<IntTransform>();
     }
     void Start() {
         if (NetManager.S.isServer)

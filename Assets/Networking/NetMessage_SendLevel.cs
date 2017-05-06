@@ -6,8 +6,11 @@ using System.IO;
 
 [System.Serializable]
 public class NetMessage_StartSendLevel : NetMessage {
-    
+    Level level;
     public NetMessage_StartSendLevel() { }
+    public NetMessage_StartSendLevel(Level level) {
+        this.level = level;
+    }
 
     public override byte GetRecognizeByte() {
         return (byte)NetMessageID.startSendLevel;
@@ -17,8 +20,9 @@ public class NetMessage_StartSendLevel : NetMessage {
         MemoryStream stream = new MemoryStream(buffer);
         BinaryWriter writer = new BinaryWriter(stream);
         writer.Write(GetRecognizeByte());
-        writer.Write((int)LevelManager.S.level.size.x);
-        writer.Write((int)LevelManager.S.level.size.y);
+        writer.Write(level.levelNum);
+        writer.Write(level.size.x);
+        writer.Write(level.size.y);
 
         writer.Write(LevelManager.S.serializer.serialised.Length);
     }
@@ -27,13 +31,17 @@ public class NetMessage_StartSendLevel : NetMessage {
         MemoryStream stream = new MemoryStream(buffer);
         BinaryReader reader = new BinaryReader(stream);
         reader.ReadByte();
-        LevelManager.S.level.size.x = reader.ReadInt32();
-        LevelManager.S.level.size.y = reader.ReadInt32();
-        LevelManager.S.level.tiles = new Tile[LevelManager.S.level.size.x, LevelManager.S.level.size.y];
-
+        int levelIndex = reader.ReadInt32();
+        while (LevelManager.S.levels.Count < levelIndex + 1)
+            LevelManager.S.CreateNewLevel();
+        level = LevelManager.S.GetLevel(levelIndex);
+        level.size.x = reader.ReadInt32();
+        level.size.y = reader.ReadInt32();
+        level.tiles = new Tile[level.size.x, level.size.y];
         int serialisedLength = reader.ReadInt32();
         LevelManager.S.serializer.serialised = new byte[serialisedLength];
         LevelManager.S.serializer.numMessages = 0;
+        LevelManager.S.serializer.toSerializeTo = level;
     }
 }
 
@@ -78,7 +86,6 @@ public class NetMessage_SendLevelPiece : NetMessage {
 
         if (LevelManager.S.serializer.numMessages >= LevelManager.S.serializer.GetRequiredNumOfPieces()) {
             LevelManager.S.serializer.DeSerialise();
-            LevelManager.S.level.Draw();
         }
     }
 }

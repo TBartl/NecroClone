@@ -4,21 +4,22 @@ using UnityEngine;
 using System.IO;
 
 public class LevelSerializer {
+    public Level toSerializeTo;
     public int numMessages;
     public byte[] serialised;
 
-    public void Serialise() {
+    public void Serialise(Level level) {
         MemoryStream stream = new MemoryStream();
         BinaryWriter writer = new BinaryWriter(stream);
-        for (int y = 0; y < LevelManager.S.level.size.y; y++) {
-            for (int x = 0; x < LevelManager.S.level.size.x; x++) {
-                GameObject floor = LevelManager.S.level.tiles[x, y].floor;
+        for (int y = 0; y < level.size.y; y++) {
+            for (int x = 0; x < level.size.x; x++) {
+                GameObject floor = level.tiles[x, y].floor;
                 if (floor == null)
                     writer.Write((byte)0);
                 else
                     writer.Write((byte)floor.GetComponent<DatabaseID>().GetID());
 
-                GameObject occupant = LevelManager.S.level.tiles[x, y].occupant;
+                GameObject occupant = level.tiles[x, y].occupant;
                 if (occupant == null)
                     writer.Write((byte)0);
                 else
@@ -32,14 +33,14 @@ public class LevelSerializer {
     public void DeSerialise() {
         MemoryStream stream = new MemoryStream(serialised);
         BinaryReader reader = new BinaryReader(stream);
-        for (int y = 0; y < LevelManager.S.level.size.y; y++) {
-            for (int x = 0; x < LevelManager.S.level.size.x; x++) {
-                LevelManager.S.level.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab((FloorId)reader.ReadByte());
-                LevelManager.S.level.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab((OccupantId)reader.ReadByte());
+        for (int y = 0; y < toSerializeTo.size.y; y++) {
+            for (int x = 0; x < toSerializeTo.size.x; x++) {
+                toSerializeTo.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab((FloorId)reader.ReadByte());
+                toSerializeTo.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab((OccupantId)reader.ReadByte());
             }
         }
 
-        serialised = stream.ToArray();
+        toSerializeTo.Draw();
     }
 
     public int GetRequiredNumOfPieces() {
