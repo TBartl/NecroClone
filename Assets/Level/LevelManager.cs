@@ -9,8 +9,8 @@ public class LevelManager : MonoBehaviour {
     public LevelGenerator generator;
     [HideInInspector] public LevelSerializer serializer = new LevelSerializer();
     
-    public Level startLevel;
-    public List<Level> levels;
+    [HideInInspector] public Level startLevel;
+    [HideInInspector] public List<Level> levels;
 
     void Awake() {
         S = this;

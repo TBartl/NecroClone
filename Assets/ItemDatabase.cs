@@ -12,7 +12,7 @@ public enum WeaponID : byte {
 
     endPlayerWeapons,
 
-    enemySlow,
+    enemySluggish,
 
     count
 }
