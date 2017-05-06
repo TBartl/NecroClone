@@ -106,7 +106,7 @@ public class NetManager : MonoBehaviour {
         int messageLength = message.Encode();
 
         if (isServer)
-            message.DecodeBufferAndExecute(GetThisServerClient());
+            message.DecodeAndExecute(GetThisServerClient());
         else {
             byte error;
             NetworkTransport.Send(hostID, serverConnectionID, channelID, NetMessage.buffer, messageLength, out error);
@@ -127,7 +127,7 @@ public class NetManager : MonoBehaviour {
 
         // Execute it locally
         if (isServer && message.AlsoExecuteOnServer())
-            message.DecodeBufferAndExecute(GetThisServerClient());
+            message.DecodeAndExecute(GetThisServerClient());
 
         // Send it out
         foreach (ClientData client in connectedClients) {
@@ -219,7 +219,7 @@ public class NetManager : MonoBehaviour {
     void HandleDataMessage(int connectionId) {
         foreach (NetMessage message in messageTypes) {
             if (message.IsThisMessage()) {
-                message.DecodeBufferAndExecute(GetClientById(connectionId));
+                message.DecodeAndExecute(GetClientById(connectionId));
                 break;
             }
         }

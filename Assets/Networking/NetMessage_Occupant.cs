@@ -35,10 +35,7 @@ public class NetMessage_SpawnOccupant : NetMessage {
         writer.Write(owner);
     }
 
-    protected override void DecodeBufferAndExecute() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
         occupant = (OccupantId)reader.ReadByte();
         position.x = reader.ReadInt32();
         position.y = reader.ReadInt32();
@@ -99,10 +96,7 @@ public class NetMessage_ActionOccupant : NetMessage {
         writer.Write(direction.y);
     }
 
-    protected override void DecodeBufferAndExecute() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
         occupantPos.x = reader.ReadInt32();
         occupantPos.y = reader.ReadInt32();
         level = LevelManager.S.GetLevel(reader.ReadInt32());

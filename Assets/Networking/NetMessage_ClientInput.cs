@@ -22,10 +22,7 @@ public class NetMessage_ClientInput : NetMessage {
         writer.Write((byte)inputKey);
     }
 
-    public override void DecodeBufferAndExecute(ClientData clientData) {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader, ClientData clientData) {
         inputKey = (PlayerInputKey)reader.ReadByte();
         
         if (inputKey == PlayerInputKey.space && clientData.player == null) {

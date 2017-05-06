@@ -24,10 +24,7 @@ public class NetMessage_StartSendLevel : NetMessage {
         writer.Write(LevelManager.S.serializer.serialised.Length);
     }
 
-    protected override void DecodeBufferAndExecute() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
         int levelIndex = reader.ReadInt32();
         while (LevelManager.S.levels.Count < levelIndex + 1)
             LevelManager.S.CreateNewLevel();
@@ -64,13 +61,11 @@ public class NetMessage_SendLevelPiece : NetMessage {
         }
     }
 
-    protected override void DecodeBufferAndExecute() {
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
+
         pieceNumber = LevelManager.S.serializer.numMessages;
         LevelManager.S.serializer.numMessages += 1;
 
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
         for (int i = 0; i < NetMessage.bufferSize - 1; i++) {
             int realIndex = i + pieceNumber * (NetMessage.bufferSize - 1);
             if (realIndex >= LevelManager.S.serializer.serialised.Length)

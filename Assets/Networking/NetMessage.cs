@@ -48,11 +48,18 @@ public class NetMessage {
 
     }
 
-    protected virtual void DecodeBufferAndExecute() {}
+    public virtual void DecodeAndExecute(ClientData clientData) {
+        MemoryStream stream = new MemoryStream(buffer);
+        BinaryReader reader = new BinaryReader(stream);
+        reader.ReadByte();
+        DecodeBufferAndExecute(ref reader, clientData);
 
-    public virtual void DecodeBufferAndExecute(ClientData clientData) {
-        DecodeBufferAndExecute();
     }
+
+    protected virtual void DecodeBufferAndExecute(ref BinaryReader reader, ClientData clientData) {
+        DecodeBufferAndExecute(ref reader);
+    }
+    protected virtual void DecodeBufferAndExecute(ref BinaryReader reader) { }
 }
 
 [System.Serializable]
@@ -73,10 +80,8 @@ public class NetMessageDebug : NetMessage {
         writer.Write(message);
     }
 
-    protected override void DecodeBufferAndExecute() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
         message = reader.ReadString();
         Debug.Log("Debug message recieved: " + message);
     }
@@ -100,10 +105,7 @@ public class NetMessage_ClientConnectionID: NetMessage {
         writer.Write(id);
     }
 
-    protected override void DecodeBufferAndExecute() {
-        MemoryStream stream = new MemoryStream(buffer);
-        BinaryReader reader = new BinaryReader(stream);
-        reader.ReadByte();
+    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
         id = reader.ReadInt32();
         NetManager.S.myConnectionId = id;
     }
