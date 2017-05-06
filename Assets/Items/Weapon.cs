@@ -5,13 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public enum WeaponType : byte {
     dagger,
+    longsword,
     broadsword,
-    spear,
 }
 
 [CreateAssetMenu]
 public class Weapon : ScriptableObject {
 
+    public WeaponID id;
     public WeaponType weaponType;
     public int damage = 1;
     public float recoverTime = .5f;
@@ -41,7 +42,7 @@ public class Weapon : ScriptableObject {
         if (IsValidTarget(target))
             validTargets.Add(target);
 
-        if (weaponType == WeaponType.spear) {
+        if (weaponType == WeaponType.longsword) {
             target = intTransform.GetLevel().GetOccupantAt(targetPos + direction);
             if (IsValidTarget(target))
                 validTargets.Add(target);

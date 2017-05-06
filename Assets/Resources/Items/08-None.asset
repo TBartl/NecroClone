@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
-  m_Name: BaseDagger
+  m_Name: 08-None
   m_EditorClassIdentifier: 
+  id: 8
   weaponType: 0
-  damage: 1
-  recoverTime: 0.5
+  damage: 0
+  recoverTime: 0.25

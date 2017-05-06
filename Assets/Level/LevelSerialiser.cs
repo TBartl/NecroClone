@@ -24,8 +24,11 @@ public class LevelSerializer {
                     writer.Write((byte)0);
                 else {
                     writer.Write((byte)occupant.GetComponent<DatabaseID>().GetID());
-                    //ChangeableProperty[] occupantProperties = occupant.GetComponents<ChangeableProperty>();
-                    //writer.Write(occupantProperties.Length);
+                    ChangeableProperty[] occupantProperties = occupant.GetComponents<ChangeableProperty>();
+                    //writer.Write(occupantProperties.Length); Don't need to write length
+                    foreach(ChangeableProperty property in occupantProperties) {
+                        property.Encode(ref writer);
+                    }
                 }
             }
         }
@@ -41,15 +44,19 @@ public class LevelSerializer {
                 toSerializeTo.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab((FloorId)reader.ReadByte());
 
                 OccupantId occupantID = (OccupantId)reader.ReadByte();
-                if (occupantID == OccupantId.none)
-                    toSerializeTo.tiles[x, y].floor = null;
-                else {
-                    toSerializeTo.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab(occupantID);
+                toSerializeTo.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab(occupantID);
+                toSerializeTo.tiles[x, y].Draw(new IntVector2(x, y), toSerializeTo.transform);
+
+                if (occupantID != OccupantId.none) {
+                    ChangeableProperty[] occupantProperties = toSerializeTo.tiles[x, y].occupant.GetComponents<ChangeableProperty>();
+                    foreach (ChangeableProperty property in occupantProperties) {
+                        property.Decode(ref reader);
+                    }
                 }
             }
         }
 
-        toSerializeTo.Draw();
+        //toSerializeTo.Draw(); Don't need to draw since we are drawing as we go
     }
 
     public int GetRequiredNumOfPieces() {

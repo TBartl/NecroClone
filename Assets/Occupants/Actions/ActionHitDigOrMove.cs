@@ -24,7 +24,7 @@ public class ActionHitDigOrMove : Action {
         IntVector2 targetPos = intTransform.GetPos() + direction;
 
         //Try Weapon
-        if (weaponHolder != null) {
+        if (weaponHolder != null && weaponHolder.weapon != null) {
             if (weaponHolder.weapon.CanHit(this.gameObject, direction)) {
                 weaponHolder.weapon.Hit(this.gameObject, direction);
 
