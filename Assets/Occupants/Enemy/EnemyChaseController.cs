@@ -10,8 +10,19 @@ public class EnemyChaseController : EnemyController {
         IntVector2 target = GetTargetPos();
         if (target == intTransform.GetPos())
             DoAction(0, IntVector2.zero);
-        else
-            DoAction(1, GetDirection(currentPos, target));
+        else {
+            IntVector2 direction = GetDirection(currentPos, target);
+            // If we don't have a shovel, this shouldn't be able to dig, instead change
+            if (this.GetComponent<ShovelHolder>() == null) {
+                GameObject targetGO = intTransform.GetLevel().GetOccupantAt(currentPos + direction);
+                if (targetGO != null && targetGO.GetComponent<Diggable>() != null) {
+                    headingHorizontal = !headingHorizontal;
+                    direction = GetDirection(currentPos, target);
+                }
+
+            }
+            DoAction(1, direction);
+        }
     }
 
 
