@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 3
-  toSpawn: 4
+  toSpawn: 6
 --- !u!114 &114226820535442162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 2
-  toSpawn: 5
+  toSpawn: 7
 --- !u!114 &114547585550266548
 MonoBehaviour:
   m_ObjectHideFlags: 1

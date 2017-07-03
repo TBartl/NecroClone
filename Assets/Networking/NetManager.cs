@@ -29,7 +29,7 @@ public class NetManager : MonoBehaviour {
 
     ClientData serverClient;
     List<ClientData> connectedClients = new List<ClientData>();
-
+    
     NetMessage[] messageTypes = {
         new NetMessage(), new NetMessageDebug(), new NetMessage_ClientConnectionID(),
         new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece(),

@@ -7,6 +7,7 @@ public enum OccupantId : byte {
     none,
     wall, player,
     skeleton1, skeleton2, skeleton3,
+    bat1, bat2,
     spawner, spawnerEnemy,
     count
 }
