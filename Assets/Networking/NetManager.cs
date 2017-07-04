@@ -29,13 +29,6 @@ public class NetManager : MonoBehaviour {
 
     ClientData serverClient;
     List<ClientData> connectedClients = new List<ClientData>();
-    
-    NetMessage[] messageTypes = {
-        new NetMessage(), new NetMessageDebug(), new NetMessage_ClientConnectionID(),
-        new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece(),
-        new NetMessage_ClientInput(),
-        new NetMessage_SpawnOccupant(), new NetMessage_ActionOccupant(),
-    };
 
     [HideInInspector] public bool isConnected = false;
     public delegate void OnNetworkSetup(bool isServer);
@@ -217,7 +210,7 @@ public class NetManager : MonoBehaviour {
     }
 
     void HandleDataMessage(int connectionId) {
-        foreach (NetMessage message in messageTypes) {
+        foreach (NetMessage message in NetMessage.messageTypes) {
             if (message.IsThisMessage()) {
                 message.DecodeAndExecute(GetClientById(connectionId));
                 break;
