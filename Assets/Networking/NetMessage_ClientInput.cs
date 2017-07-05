@@ -31,7 +31,7 @@ public class NetMessage_ClientInput : NetMessage {
                 Debug.LogError("No available spawn position!");
                 return;
             }
-            NetManager.S.SendServerMessageToAll(new NetMessage_SpawnOccupant(OccupantId.player, spawnPos, LevelManager.S.startLevel, clientData.connectionID));
+            NetManager.S.SendServerMessageToAll(new NetMessage_SpawnOccupant("Player", spawnPos, LevelManager.S.startLevel, clientData.connectionID));
         }
         else if (clientData.player != null) {
             clientData.player.GetComponent<PlayerController>().OnInput(inputKey);

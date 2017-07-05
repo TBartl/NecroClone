@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class OccupantAndSpawnChance {
-    public OccupantId occupant;
+    public string occupant;
     public float chance;
 }
 
@@ -21,8 +21,8 @@ public class LevelGeneratorZone1 : LevelGenerator {
         level.Resize(new IntVector2(size, size));
         for (int y = 0; y < level.size.y; y++) {
             for (int x = 0; x < level.size.x; x++) {
-                level.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab(OccupantId.wall);
-                level.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab(FloorId.basic);
+                level.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab("WallBasic");
+                level.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab("Basic");
             }
         }
 
@@ -57,8 +57,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
                 level.spawnPositions.Add(spawnCenter + new IntVector2(x, y));
             }
         }
-
-        //level.tiles[center.x, center.y].occupant = LevelDatabase.S.GetOccupantPrefab(OccupantId.spawner);
 
     }
 

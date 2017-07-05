@@ -18,8 +18,8 @@ public class LevelDatabase : MonoBehaviour {
 
     public static LevelDatabase S;
 
-    GameObject[] floors = new GameObject[(byte)FloorId.count];
-    GameObject[] occupants = new GameObject[(byte)OccupantId.count];
+    Dictionary<string, GameObject> floors = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> occupants = new Dictionary<string, GameObject>();
 
     void Awake() {
         S = this;
@@ -27,18 +27,30 @@ public class LevelDatabase : MonoBehaviour {
         ResourceLoadFolder("Occupants", ref occupants);
     }
 
-    void ResourceLoadFolder(string folderName, ref GameObject[] list) {
+    void ResourceLoadFolder(string folderName, ref Dictionary<string, GameObject> dictionary) {
         GameObject[] unordered = Resources.LoadAll<GameObject>(folderName);
         foreach (GameObject g in unordered) {
-            byte id = g.GetComponent<DatabaseID>().GetID();
-            list[id] = g;
+            string name = g.name;
+            dictionary[name] = g;
         }
     }
 
-    public GameObject GetFloorPrefab(FloorId floorId) {
-        return floors[(byte)floorId];
+    public GameObject GetFloorPrefab(string name) {
+        if (name == "")
+            return null;
+        if (!floors.ContainsKey(name)) {
+            Debug.LogError("No floor with the name: " + name);
+            return null;
+        }
+        return floors[name];
     }
-    public GameObject GetOccupantPrefab(OccupantId occupantId) {
-        return occupants[(byte)occupantId];
+    public GameObject GetOccupantPrefab(string name) {
+        if (name == "")
+            return null;
+        if (!occupants.ContainsKey(name)) {
+            Debug.LogError("No occupant with the name: " + name);
+            return null;
+        }
+        return occupants[name];
     }
 }

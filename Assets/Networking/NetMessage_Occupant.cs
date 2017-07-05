@@ -6,13 +6,13 @@ using System.IO;
 [System.Serializable]
 public class NetMessage_SpawnOccupant : NetMessage {
 
-    OccupantId occupant;
+    string occupant;
     IntVector2 position;
     Level level;
     int owner;
 
     public NetMessage_SpawnOccupant() { }
-    public NetMessage_SpawnOccupant(OccupantId occupant, IntVector2 position, Level level, int owner = -2) {
+    public NetMessage_SpawnOccupant(string occupant, IntVector2 position, Level level, int owner = -2) {
         this.occupant = occupant;
         this.position = position;
         this.level = level;
@@ -28,7 +28,7 @@ public class NetMessage_SpawnOccupant : NetMessage {
     }
 
     protected override void EncodeToBuffer(ref BinaryWriter writer) {
-        writer.Write((byte)occupant);
+        writer.Write(occupant);
         writer.Write(position.x);
         writer.Write(position.y);
         writer.Write(level.levelNum);
@@ -36,12 +36,12 @@ public class NetMessage_SpawnOccupant : NetMessage {
     }
 
     protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
-        occupant = (OccupantId)reader.ReadByte();
+        occupant = reader.ReadString();
         position.x = reader.ReadInt32();
         position.y = reader.ReadInt32();
         level = LevelManager.S.GetLevel(reader.ReadInt32());
         owner = reader.ReadInt32();
-        GameObject newOccupant = level.AddOccupant(occupant, position);
+        GameObject newOccupant = level.SpawnOccupant(occupant, position);
         SoundManager.S.Play(SoundManager.S.spawn);
 
         if (newOccupant.GetComponent<PlayerIdentity>() != null) {
@@ -49,7 +49,7 @@ public class NetMessage_SpawnOccupant : NetMessage {
                 newOccupant.GetComponent<PlayerIdentity>().SetAsMyPlayer();
             }
 
-            if (NetManager.S.isServer && newOccupant.GetComponent<DatabaseID_Occupant>().GetID() == (byte)OccupantId.player) {
+            if (NetManager.S.isServer && newOccupant.name == "Player") {
                 if (NetManager.S.GetThisServerClient().connectionID == owner)
                     NetManager.S.GetThisServerClient().player = newOccupant;
                 foreach (ClientData client in NetManager.S.GetClients()) {

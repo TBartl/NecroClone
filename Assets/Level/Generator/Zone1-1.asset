@@ -14,19 +14,19 @@ MonoBehaviour:
   roomSize: 7
   roomsInRow: 3
   occupantSpawns:
-  - occupant: 1
+  - occupant: WallBasic
     chance: 0.2
-  - occupant: 3
+  - occupant: Skeleton1
     chance: 0.03
-  - occupant: 4
+  - occupant: Skeleton2
     chance: 0.015
-  - occupant: 5
+  - occupant: Skeleton3
     chance: 0.01
-  - occupant: 7
+  - occupant: Bat1
     chance: 0.015
-  - occupant: 6
+  - occupant: Bat2
     chance: 0.005
-  - occupant: 8
+  - occupant: EnemySpawner
     chance: 0.001
-  - occupant: 9
+  - occupant: Spawner
     chance: 0.0025

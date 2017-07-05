@@ -19,7 +19,7 @@ public class EnemyController : Controller {
                 GameObject occupant = intTransform.GetLevel().GetOccupantAt(testPos);
                 if (occupant == null)
                     continue;
-                if (occupant.GetComponent<DatabaseID_Occupant>().GetOccupantID() != OccupantId.player)
+                if (occupant.name != "Player")
                     continue;
 
                 int testDistance = IntVector2.ManDist(intTransform.GetPos(), testPos);

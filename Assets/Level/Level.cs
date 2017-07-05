@@ -17,7 +17,7 @@ public class Level : MonoBehaviour {
     public void Draw() {
         for (int y = 0; y < size.y; y++) {
             for (int x = 0; x < size.x; x++) {
-                tiles[x, y].Draw(new IntVector2(x, y), this.transform);
+                tiles[x, y].Draw(new IntVector2(x, y), this);
             }
         }
     }
@@ -51,14 +51,15 @@ public class Level : MonoBehaviour {
         return copy;
     }
 
-    public GameObject AddOccupant(OccupantId id, IntVector2 pos) {
-        GameObject prefab = LevelDatabase.S.GetOccupantPrefab(id);
-        if (prefab == null || Occuppied(pos)) {
+    public GameObject SpawnOccupant(string name, IntVector2 pos, bool overrideOccupied = false) {
+        GameObject prefab = LevelDatabase.S.GetOccupantPrefab(name);
+        if (prefab == null || (Occuppied(pos) && !overrideOccupied)) {
             Debug.LogError("Error adding occupant!");
             return null;
         }
 
         GameObject instance = (GameObject)GameObject.Instantiate(prefab, this.transform);
+        instance.name = prefab.name;
         tiles[pos.x, pos.y].occupant = instance;
         instance.transform.position = (Vector3)pos;
 
