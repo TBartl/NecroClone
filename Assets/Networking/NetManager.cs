@@ -141,15 +141,15 @@ public class NetManager : MonoBehaviour {
             switch (recData) {
                 case NetworkEventType.ConnectEvent:
                     OnClientConnect(connectionId);
-                    Debug.Log("Server Connect Event");
+                    //Debug.Log("Server Connect Event");
                     break;
                 case NetworkEventType.DataEvent:
-                    Debug.Log("Server Data Event");
+                    //Debug.Log("Server Data Event");
                     HandleDataMessage(connectionId);
                     break;
                 case NetworkEventType.DisconnectEvent:
                     OnClientDisconnect(connectionId);
-                    Debug.Log("Server Disconnect Event");
+                    //Debug.Log("Server Disconnect Event");
                     break;
                 default:
                     breakOuterLoop = true;
@@ -173,14 +173,14 @@ public class NetManager : MonoBehaviour {
             NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, NetMessage.buffer, NetMessage.bufferSize, out dataSize, out error);
             switch (recData) {
                 case NetworkEventType.ConnectEvent:
-                    Debug.Log("Client Connect Event");
+                    //Debug.Log("Client Connect Event");
                     break;
                 case NetworkEventType.DataEvent:
-                    Debug.Log("Client Data Event");
+                    //Debug.Log("Client Data Event");
                     HandleDataMessage(connectionId);
                     break;
                 case NetworkEventType.DisconnectEvent:
-                    Debug.Log("Client Disconnect Event");
+                    //Debug.Log("Client Disconnect Event");
                     break;
                 default:
                     breakOuterLoop = true;
