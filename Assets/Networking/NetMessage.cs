@@ -16,13 +16,6 @@ public class NetMessage {
     public static int bufferSize = 1024;
     public static byte[] buffer = new byte[bufferSize];
 
-    public static NetMessage[] messageTypes = {
-        new NetMessage(), new NetMessageDebug(), new NetMessage_ClientConnectionID(),
-        new NetMessage_StartSendLevel(), new NetMessage_SendLevelPiece(),
-        new NetMessage_ClientInput(),
-        new NetMessage_SpawnOccupant(), new NetMessage_ActionOccupant(),
-    };
-
     public virtual byte GetRecognizeByte() {
         return (byte)NetMessageID.none;
     }
