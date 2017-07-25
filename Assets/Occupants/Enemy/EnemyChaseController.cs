@@ -5,11 +5,20 @@ using UnityEngine;
 public class EnemyChaseController : EnemyController {
     bool headingHorizontal = true;
 
+    ActionFixedRecoverTime actionFixedRecoverTime;
+    ActionHitDigOrMove actionHitDigOrMove;
+
+    protected override void Awake() {
+        base.Awake();
+        actionFixedRecoverTime = this.GetComponent<ActionFixedRecoverTime>();
+        actionHitDigOrMove = this.GetComponent<ActionHitDigOrMove>();
+    }
+
     protected override void OnRecoverFinished() {
         IntVector2 currentPos = intTransform.GetPos();
         IntVector2 target = GetTargetPos();
         if (target == intTransform.GetPos())
-            DoAction(0, IntVector2.zero);
+            DoAction(actionFixedRecoverTime, IntVector2.zero);
         else {
             IntVector2 direction = GetDirection(currentPos, target);
             // If we don't have a shovel, this shouldn't be able to dig, instead change
@@ -21,12 +30,12 @@ public class EnemyChaseController : EnemyController {
                 }
 
             }
-            DoAction(1, direction);
+            DoAction(actionHitDigOrMove, direction);
         }
     }
 
 
-    protected IntVector2 GetDirection (IntVector2 from, IntVector2 target) {
+    protected IntVector2 GetDirection(IntVector2 from, IntVector2 target) {
         IntVector2 direction = IntVector2.zero;
 
         if (headingHorizontal) {

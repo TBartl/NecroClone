@@ -13,9 +13,18 @@ public class Action : MonoBehaviour {
     protected virtual void Awake() {
         intTransform = this.GetComponent<IntTransform>();
     }
-    
-    public void RpcExecute(IntVector2 direction, int actionIndex) {
-        NetManager.S.SendServerMessageToAll(new NetMessage_ActionOccupant(intTransform.GetPos(), intTransform.GetLevel(), actionIndex, direction));
+
+    public void RpcExecute(IntVector2 direction) {
+        Action[] actions = this.GetComponents<Action>();
+        for (int i = 0; i < actions.Length; i++) {
+            Action action = actions[i];
+            if (action == this) {
+                NetManager.S.SendServerMessageToAll(new NetMessage_ActionOccupant(intTransform.GetPos(), intTransform.GetLevel(), i, direction));
+                return;
+            }
+
+        }
+        Debug.LogError("Tried to do an action that didn't exist " + this.GetType().ToString());
     }
 
     public virtual void Execute(IntVector2 direction) {

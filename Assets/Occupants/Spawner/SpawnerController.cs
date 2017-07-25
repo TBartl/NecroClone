@@ -6,6 +6,13 @@ public class SpawnerController : Controller {
     public int radius;
     public float attemptsBeforeFail = 10;
 
+    ActionSpawn actionSpawn;
+
+    protected override void Awake() {
+        base.Awake();
+        actionSpawn = this.GetComponent<ActionSpawn>();
+    }
+
     protected override void OnRecoverFinished() {
         IntVector2 center = this.GetComponent<IntTransform>().GetPos();
         IntVector2 offset = IntVector2.zero;
@@ -18,7 +25,7 @@ public class SpawnerController : Controller {
             }
         }
 
-        DoAction(Random.Range(0,GetActionCount()), offset);
+        DoAction(actionSpawn, offset);
     }
 
 }
