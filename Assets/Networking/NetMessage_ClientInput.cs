@@ -13,10 +13,6 @@ public class NetMessage_ClientInput : NetMessage {
     public NetMessage_ClientInput(PlayerInputKey inputKey) {
         this.inputKey = inputKey;
     }
-    
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.clientInput;
-    }
 
     protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write((byte)inputKey);

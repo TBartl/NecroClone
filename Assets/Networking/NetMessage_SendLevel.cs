@@ -12,10 +12,6 @@ public class NetMessage_StartSendLevel : NetMessage {
         this.level = level;
     }
 
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.startSendLevel;
-    }
-
     protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(level.levelNum);
         writer.Write(level.size.x);
@@ -46,10 +42,6 @@ public class NetMessage_SendLevelPiece : NetMessage {
     public NetMessage_SendLevelPiece() { }
     public NetMessage_SendLevelPiece(int pieceNumber) {
         this.pieceNumber = pieceNumber;
-    }
-
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.sendLevelPiece;
     }
 
     protected override void EncodeToBuffer(ref BinaryWriter writer) {

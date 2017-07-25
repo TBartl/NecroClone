@@ -34,27 +34,11 @@ public class NetManager : MonoBehaviour {
     public delegate void OnNetworkSetup(bool isServer);
     public OnNetworkSetup onNetworkSetup;
 
-    List<NetMessage> messageTypes = new List<NetMessage>();
-
     void Awake() {
         if (S == null)
             S = this;
         SceneManager.activeSceneChanged += SceneChanged;
-        SetupNetworkMessages();
-    }
-
-    void SetupNetworkMessages()
-    {
-        System.Type baseType = typeof(NetMessage);
-        System.Reflection.Assembly assembly = baseType.Assembly;
-        System.Type[] types = assembly.GetTypes();
-        foreach (System.Type type in types)
-        {
-            if (baseType.IsAssignableFrom(type))
-            {
-                messageTypes.Add((NetMessage)System.Activator.CreateInstance(type));
-            }
-        }
+        NetMessageMaintainer.Setup();
     }
 
     public void StartHost() {
@@ -226,12 +210,8 @@ public class NetManager : MonoBehaviour {
     }
 
     void HandleDataMessage(int connectionId) {
-        foreach (NetMessage message in messageTypes) {
-            if (message.IsThisMessage()) {
-                message.DecodeAndExecute(GetClientById(connectionId));
-                break;
-            }
-        }
+        NetMessage message = NetMessageMaintainer.GetFromRecognizeByte(NetMessage.buffer[0]);
+        message.DecodeAndExecute(GetClientById(connectionId));
     }
 
     public ClientData GetThisServerClient() {

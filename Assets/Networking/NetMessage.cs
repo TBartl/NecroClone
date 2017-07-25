@@ -4,11 +4,38 @@ using UnityEngine;
 using System.IO;
 
 [System.Serializable]
-public enum NetMessageID : byte {
-    none, debug, clientConnectionID,
-    startSendLevel, sendLevelPiece,
-    clientInput,
-    spawnOccupant, actionOccupant
+public static class NetMessageMaintainer
+{
+    static List<System.Type> netMessageTypes;
+
+    public static void Setup()
+    {
+        netMessageTypes = new List<System.Type>();
+        System.Type baseType = typeof(NetMessage);
+        System.Reflection.Assembly assembly = baseType.Assembly;
+        System.Type[] types = assembly.GetTypes();
+        foreach (System.Type type in types)
+        {
+            if (baseType.IsAssignableFrom(type))
+            {
+                netMessageTypes.Add(type);
+            }
+        }
+    }
+
+    public static byte GetRecognizeByte(System.Type type)
+    {
+        if (netMessageTypes == null)
+            Setup();
+        return (byte)netMessageTypes.IndexOf(type);
+    }
+
+    public static NetMessage GetFromRecognizeByte(byte b)
+    {
+        if (netMessageTypes == null)
+            Setup();
+        return (NetMessage)System.Activator.CreateInstance(netMessageTypes[b]);
+    }
 }
 
 [System.Serializable]
@@ -16,8 +43,8 @@ public class NetMessage {
     public static int bufferSize = 1024;
     public static byte[] buffer = new byte[bufferSize];
 
-    public virtual byte GetRecognizeByte() {
-        return (byte)NetMessageID.none;
+    public byte GetRecognizeByte() {
+        return NetMessageMaintainer.GetRecognizeByte(this.GetType());
     }
     public virtual bool AlsoExecuteOnServer() {
         return false;
@@ -72,10 +99,6 @@ public class NetMessageDebug : NetMessage {
         this.message = message;
     }
 
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.debug;
-    }
-
     protected override void EncodeToBuffer(ref BinaryWriter writer) {
         writer.Write(message);
     }
@@ -95,10 +118,6 @@ public class NetMessage_ClientConnectionID: NetMessage {
     public NetMessage_ClientConnectionID() { }
     public NetMessage_ClientConnectionID(int id) {
         this.id = id;
-    }
-
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.clientConnectionID;
     }
 
     protected override void EncodeToBuffer(ref BinaryWriter writer) {

@@ -18,10 +18,6 @@ public class NetMessage_SpawnOccupant : NetMessage {
         this.level = level;
         this.owner = owner;
     }
-    
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.spawnOccupant;
-    }
 
     public override bool AlsoExecuteOnServer() {
         return true;
@@ -77,10 +73,6 @@ public class NetMessage_ActionOccupant : NetMessage {
         this.level = level;
         this.action = action;
         this.direction = direction;
-    }
-    
-    public override byte GetRecognizeByte() {
-        return (byte)NetMessageID.actionOccupant;
     }
 
     public override bool AlsoExecuteOnServer() {
