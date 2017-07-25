@@ -10,7 +10,7 @@ public struct Tile {
     public void Draw(IntVector2 position, Level level) {
         if (floor != null) {
             string nameWithoutClone = floor.name;
-            floor = (GameObject)GameObject.Instantiate(floor, (Vector3)position, Quaternion.identity, level.transform.parent);
+            floor = (GameObject)GameObject.Instantiate(floor, (Vector3)position, Quaternion.identity, level.transform);
             floor.name = nameWithoutClone;
         }
         if (occupant != null) {

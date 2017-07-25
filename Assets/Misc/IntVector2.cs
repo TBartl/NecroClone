@@ -16,7 +16,6 @@ public struct IntVector2 {
 		this.y = y;
 	}
 
-
 	public override bool Equals(object obj)
 	{
 		return (x == ((IntVector2)obj).x && (y == ((IntVector2)obj).y));
@@ -60,6 +59,7 @@ public struct IntVector2 {
 	public static IntVector2 right = new IntVector2(1, 0);
 	public static IntVector2 down = new IntVector2(0, -1);
     public static IntVector2 left = new IntVector2(-1, 0);
+    public static IntVector2 one = new IntVector2(1, 1);
     public static IntVector2 error = new IntVector2(-420420, -420420);
 
     public static IntVector2 fromDirection(Direction d)
@@ -73,6 +73,11 @@ public struct IntVector2 {
 		else
 			return left;
 	}
+
+    public static IntVector2 fromVector3(Vector3 v)
+    {
+        return new IntVector2(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.z));
+    }
 
     public override string ToString() {
         return "(" + x.ToString() + "," +y.ToString() + ")";

@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4690293312341574}
   m_Layer: 0
-  m_Name: Basic
+  m_Name: FloorBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

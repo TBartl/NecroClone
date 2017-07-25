@@ -39,7 +39,6 @@ public class LevelDatabase : MonoBehaviour {
         if (name == "")
             return null;
         if (!floors.ContainsKey(name)) {
-            Debug.LogError("No floor with the name: " + name);
             return null;
         }
         return floors[name];
@@ -48,7 +47,6 @@ public class LevelDatabase : MonoBehaviour {
         if (name == "")
             return null;
         if (!occupants.ContainsKey(name)) {
-            Debug.LogError("No occupant with the name: " + name);
             return null;
         }
         return occupants[name];

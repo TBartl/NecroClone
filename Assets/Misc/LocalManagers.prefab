@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1574259578656698}
   m_IsPrefabParent: 1
+--- !u!1 &1064273307348910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4645035238294788}
+  - component: {fileID: 114762125608270254}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1574259578656698
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,6 +69,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4238470247435042}
+  - {fileID: 4645035238294788}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69,6 +86,19 @@ Transform:
   m_Father: {fileID: 4058014773193560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4645035238294788
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064273307348910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4058014773193560}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114158292748271666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,10 +110,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf22ee4cec3014646b5e2557979be1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level:
-    size:
-      x: 0
-      y: 0
-    spawnPositions: []
-    parent: {fileID: 0}
-  generator: {fileID: 11400000, guid: e00d2017da79a8d4f8002a74e0986100, type: 2}
+  generator: {fileID: 11400000, guid: b05312e00c6b81143bc305796378ebff, type: 2}
+  startLevel: {fileID: 0}
+  levels: []
+--- !u!114 &114762125608270254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064273307348910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5295e83856ee247a01e87c7c5a66e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pairs:
+  - playerInput: 0
+    keys: 20000000
+  - playerInput: 1
+    keys: 7700000011010000
+  - playerInput: 2
+    keys: 6400000013010000
+  - playerInput: 3
+    keys: 7300000012010000
+  - playerInput: 4
+    keys: 6100000014010000
+  - playerInput: 5
+    keys: 31000000
+  - playerInput: 6
+    keys: 32000000
+  - playerInput: 7
+    keys: 33000000
+  - playerInput: 8
+    keys: 34000000
+  - playerInput: 9
+    keys: 35000000
