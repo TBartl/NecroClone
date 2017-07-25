@@ -6,12 +6,12 @@ public class EnemyChaseController : EnemyController {
     bool headingHorizontal = true;
 
     ActionFixedRecoverTime actionFixedRecoverTime;
-    ActionHitDigOrMove actionHitDigOrMove;
+    ActionAutoHitDigOrMove hitDigOrMove;
 
     protected override void Awake() {
         base.Awake();
         actionFixedRecoverTime = this.GetComponent<ActionFixedRecoverTime>();
-        actionHitDigOrMove = this.GetComponent<ActionHitDigOrMove>();
+        hitDigOrMove = new ActionAutoHitDigOrMove(this.gameObject);
     }
 
     protected override void OnRecoverFinished() {
@@ -22,7 +22,7 @@ public class EnemyChaseController : EnemyController {
         else {
             IntVector2 direction = GetDirection(currentPos, target);
             // If we don't have a shovel, this shouldn't be able to dig, instead change
-            if (this.GetComponent<ShovelHolder>() == null) {
+            if (this.GetComponent<ActionDig>() == null) {
                 GameObject targetGO = intTransform.GetLevel().GetOccupantAt(currentPos + direction);
                 if (targetGO != null && targetGO.GetComponent<Diggable>() != null) {
                     headingHorizontal = !headingHorizontal;
@@ -30,7 +30,7 @@ public class EnemyChaseController : EnemyController {
                 }
 
             }
-            DoAction(actionHitDigOrMove, direction);
+            DoAction(hitDigOrMove.GetAction(direction), direction);
         }
     }
 

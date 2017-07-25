@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114411104824205506}
   - component: {fileID: 114980081177415764}
   - component: {fileID: 114659487714417008}
-  - component: {fileID: 114035495420944280}
+  - component: {fileID: 114094209156851568}
   m_Layer: 0
   m_Name: Bat1
   m_TagString: Untagged
@@ -145,7 +145,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
   m_Mesh: {fileID: 4300008, guid: e03db07e433f90a4e832e32ac7afa14a, type: 3}
---- !u!114 &114035495420944280
+--- !u!114 &114094209156851568
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -153,11 +153,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1902883780486946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac8ea2a9f2813b4496b919a8cfbda3a, type: 3}
+  m_Script: {fileID: 11500000, guid: ddfc7f5f98f6e8041b941d9ab0ffdf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRecoverTime: 0.5
-  digRecoverTime: 0
+  recoverTime: 0
 --- !u!114 &114226820535442162
 MonoBehaviour:
   m_ObjectHideFlags: 1

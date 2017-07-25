@@ -30,8 +30,11 @@ public class Controller : MonoBehaviour {
 
     protected void DoAction(Action action, IntVector2 direction) {
         if (recovering)
-            Debug.LogError("Did an action while recovering from another one");
-        action.RpcExecute(direction);
+            Debug.LogError("Did an action while recovering from another one " + action.GetType().ToString());
+        else if (!action)
+            Debug.LogError("Tried to do an action that doesn't exist!");
+        else
+            action.RpcExecute(direction);
     }
 
     //warning: the controller should never use this

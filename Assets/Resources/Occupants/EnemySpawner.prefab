@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 3
-  toSpawn: Skeleton1
+  toSpawn: {fileID: 1902883780486946, guid: 73b1ed430c2329740ab1c8684aea9c97, type: 2}
 --- !u!114 &114790135298347970
 MonoBehaviour:
   m_ObjectHideFlags: 1

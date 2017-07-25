@@ -7,12 +7,12 @@ public class EnemyRandomController : EnemyController {
     IntVector2[] randomDirections = { IntVector2.up, IntVector2.right, IntVector2.down, IntVector2.left };
 
     ActionFixedRecoverTime actionFixedRecoverTime;
-    ActionHitDigOrMove actionHitDigOrMove;
+    ActionAutoHitDigOrMove hitDigOrMove;
 
     protected override void Awake() {
         base.Awake();
         actionFixedRecoverTime = this.GetComponent<ActionFixedRecoverTime>();
-        actionHitDigOrMove = this.GetComponent<ActionHitDigOrMove>();
+        hitDigOrMove = new ActionAutoHitDigOrMove(this.gameObject);
     }
 
     protected override void OnRecoverFinished() {
@@ -21,7 +21,7 @@ public class EnemyRandomController : EnemyController {
             DoAction(actionFixedRecoverTime, IntVector2.zero);
         else {
             IntVector2 direction = randomDirections[Random.Range(0, randomDirections.Length)];
-            DoAction(actionHitDigOrMove, direction);
+            DoAction(hitDigOrMove.GetAction(direction) , direction);
         }
     }
 }

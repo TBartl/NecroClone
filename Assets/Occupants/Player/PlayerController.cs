@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerController : Controller {
     List<PlayerInputKey> buffer = new List<PlayerInputKey>();
 
-    ActionHitDigOrMove actionHitDigOrMove;
-    ActionEarthSpell actionEarthSpell;
-    ActionCycleWeapon actionCycleWeapon;
+    ActionAutoHitDigOrMove hitDigOrMove;
 
     protected override void OnRecoverFinished() {
         StartCoroutine(WaitForInput());
@@ -16,7 +14,7 @@ public class PlayerController : Controller {
     protected override void Awake()
     {
         base.Awake();
-        actionHitDigOrMove = this.GetComponent<ActionHitDigOrMove>();
+        hitDigOrMove = new ActionAutoHitDigOrMove(this.gameObject);
     }
 
     IEnumerator WaitForInput() {
@@ -27,13 +25,13 @@ public class PlayerController : Controller {
         buffer.RemoveAt(0);
 
         if (key == PlayerInputKey.up)
-            DoAction(actionHitDigOrMove, IntVector2.up);
+            DoAction(hitDigOrMove.GetAction(IntVector2.up), IntVector2.up);
         else if (key == PlayerInputKey.right)
-            DoAction(actionHitDigOrMove, IntVector2.right);
+            DoAction(hitDigOrMove.GetAction(IntVector2.right), IntVector2.right);
         else if (key == PlayerInputKey.down)
-            DoAction(actionHitDigOrMove, IntVector2.down);
+            DoAction(hitDigOrMove.GetAction(IntVector2.down), IntVector2.down);
         else if (key == PlayerInputKey.left)
-            DoAction(actionHitDigOrMove, IntVector2.left);
+            DoAction(hitDigOrMove.GetAction(IntVector2.left), IntVector2.left);
         //else if (key == PlayerInputKey.space)
         //    DoAction(actionEarthSpell, IntVector2.zero);
         //else if (key == PlayerInputKey.num1)
