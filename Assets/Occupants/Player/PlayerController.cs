@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Controller {
+    public delegate void OnPlayerAction(PlayerController controller);
+    public OnPlayerAction onPlayerAction = delegate { };
+
     List<PlayerInputKey> buffer = new List<PlayerInputKey>();
 
     ActionAutoHitDigOrMove hitDigOrMove;
@@ -11,8 +14,7 @@ public class PlayerController : Controller {
         StartCoroutine(WaitForInput());
     }
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
         hitDigOrMove = new ActionAutoHitDigOrMove(this.gameObject);
     }
@@ -32,12 +34,12 @@ public class PlayerController : Controller {
             DoAction(hitDigOrMove.GetAction(IntVector2.down), IntVector2.down);
         else if (key == PlayerInputKey.left)
             DoAction(hitDigOrMove.GetAction(IntVector2.left), IntVector2.left);
-        //else if (key == PlayerInputKey.space)
-        //    DoAction(actionEarthSpell, IntVector2.zero);
-        //else if (key == PlayerInputKey.num1)
-        //    DoAction(actionCycleWeapon, IntVector2.up);
-        else
+        else {
             StartCoroutine(WaitForInput());
+            yield break; //Break out to signify that valid input wasn't actually provided (don't call onPlayerAction;
+        }
+
+        onPlayerAction(this);
 
     }
 

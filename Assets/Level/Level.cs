@@ -8,6 +8,7 @@ public class Level : MonoBehaviour {
     public Tile[,] tiles;
     [HideInInspector] public IntVector2 size;
     [HideInInspector] public List<IntVector2> spawnPositions = new List<IntVector2>();
+    List<PlayerController> players = new List<PlayerController>();
 
     public void Resize(IntVector2 size) {
         this.size = size;
@@ -68,7 +69,20 @@ public class Level : MonoBehaviour {
             mov.SetPos(pos);
         }
 
+        PlayerController playerController = instance.GetComponent<PlayerController>();
+        if (playerController != null) {
+            players.Add(playerController);
+            playerController.onPlayerAction += OnPlayerAction;
+        }
+
         return instance;
+    }
+
+    void OnPlayerAction(PlayerController controller) {
+        // TODO check if still on this level
+        foreach (EnemyController e in this.GetComponentsInChildren<EnemyController>()) {
+            e.OnPlayerMoved(controller);
+        }
     }
 
     public GameObject GetOccupantAt(IntVector2 pos) {

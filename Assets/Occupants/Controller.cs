@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    
+
     bool recovering = false;
     protected IntTransform intTransform;
 
@@ -26,7 +26,11 @@ public class Controller : MonoBehaviour {
 
     protected virtual void OnRecoverFinished() {
 
-    }    
+    }
+
+    protected virtual bool IsRecovering() {
+        return recovering;
+    }
 
     protected void DoAction(Action action, IntVector2 direction) {
         if (recovering)

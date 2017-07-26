@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114880163033265132}
   - component: {fileID: 114659487714417008}
   - component: {fileID: 114117644867278874}
+  - component: {fileID: 114666953747415234}
   m_Layer: 0
   m_Name: Skeleton1
   m_TagString: Untagged
@@ -191,6 +192,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 1
+--- !u!114 &114666953747415234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b34a3a7ef4225a45b91e8ea15e04aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverTime: 1
+  damage: 1
 --- !u!114 &114880163033265132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb60bfbc7e317b4a8d671f08228c513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 4
+  detectionRadius: 5
 --- !u!114 &114968340692131688
 MonoBehaviour:
   m_ObjectHideFlags: 1

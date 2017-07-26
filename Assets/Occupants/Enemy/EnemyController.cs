@@ -5,30 +5,44 @@ using UnityEngine;
 public class EnemyController : Controller {
     public int detectionRadius = 0;
 
+    GameObject closestTarget = null;
+
     protected override void Awake() {
         base.Awake();
         intTransform = this.GetComponent<IntTransform>();
     }
 
-    protected IntVector2 GetTargetPos() {
-        int bestDistance = int.MaxValue; 
-        IntVector2 targetPos = intTransform.GetPos();
-        for (int y = -detectionRadius; y <= detectionRadius; y++) {
-            for (int x = -detectionRadius; x <= detectionRadius; x++) {
-                IntVector2 testPos = intTransform.GetPos() + new IntVector2(x, y);
-                GameObject occupant = intTransform.GetLevel().GetOccupantAt(testPos);
-                if (occupant == null)
-                    continue;
-                if (occupant.name != "Player")
-                    continue;
+    protected virtual void OnReadyForNextAction(GameObject target) {
+    }
 
-                int testDistance = IntVector2.ManDist(intTransform.GetPos(), testPos);
-                if (testDistance < bestDistance) {
-                    bestDistance = testDistance;
-                    targetPos = testPos;
-                }
+
+    protected override void OnRecoverFinished() {
+        if (closestTarget) {
+            OnReadyForNextAction(closestTarget);
+        }
+    }
+
+    public virtual void OnPlayerMoved(PlayerController player) {
+        GameObject lastClosest = closestTarget;
+        
+        IntVector2 thisPos = intTransform.GetPos();
+        int distToPlayer = IntVector2.ManDist(thisPos, player.GetComponent<IntTransform>().GetPos());
+        if (distToPlayer > detectionRadius)
+            return;
+
+        if (closestTarget == null) {
+            closestTarget = player.gameObject;
+        }
+        else {
+            int currentDist = IntVector2.ManDist(thisPos, closestTarget.GetComponent<IntTransform>().GetPos());
+            
+            if (distToPlayer < currentDist) {
+                closestTarget = player.gameObject;
             }
         }
-        return targetPos;
+
+        if (closestTarget != lastClosest && !IsRecovering()) {
+            OnReadyForNextAction(closestTarget);
+        }
     }
 }

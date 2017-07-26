@@ -70,6 +70,9 @@ public class ActionHit : ActionFixedRecoverTime {
     bool IsValidTarget(GameObject target) {
         if (target == null)
             return false;
+        // Non Players Don't do damage to Non Players (enemies don't have friendly fire)
+        if (!this.gameObject.GetComponent<PlayerController>() && !target.GetComponent<PlayerController>())
+            return false;
         if (target.GetComponent<Killable>() == null)
             return false;
         return true;
