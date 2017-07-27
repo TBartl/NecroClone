@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Controller {
-    public delegate void OnPlayerAction(PlayerController controller);
-    public OnPlayerAction onPlayerAction = delegate { };
 
     List<PlayerInputKey> buffer = new List<PlayerInputKey>();
 
@@ -39,7 +37,7 @@ public class PlayerController : Controller {
             yield break; //Break out to signify that valid input wasn't actually provided (don't call onPlayerAction;
         }
 
-        onPlayerAction(this);
+        intTransform.GetLevel().OnPlayerAction(this);
 
     }
 

@@ -72,13 +72,12 @@ public class Level : MonoBehaviour {
         PlayerController playerController = instance.GetComponent<PlayerController>();
         if (playerController != null) {
             players.Add(playerController);
-            playerController.onPlayerAction += OnPlayerAction;
         }
 
         return instance;
     }
 
-    void OnPlayerAction(PlayerController controller) {
+    public void OnPlayerAction(PlayerController controller) {
         // TODO check if still on this level
         foreach (EnemyController e in this.GetComponentsInChildren<EnemyController>()) {
             e.OnPlayerMoved(controller);
