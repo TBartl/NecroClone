@@ -6,13 +6,13 @@ public class ActionAutoHitDigOrMove {
 
     ActionAuto<ActionHit> hit;
     ActionAuto<ActionDig> dig;
-    ActionAuto<ActionMove> move;
+    ActionAuto<ActionTryMove> move;
 
 
     public ActionAutoHitDigOrMove(GameObject owner) {
         hit = new ActionAuto<ActionHit>(owner);
         dig = new ActionAuto<ActionDig>(owner);
-        move = new ActionAuto<ActionMove>(owner);
+        move = new ActionAuto<ActionTryMove>(owner);
     }
 
     public Action GetAction(IntVector2 direction) {
@@ -26,5 +26,18 @@ public class ActionAutoHitDigOrMove {
             return move.GetAction();
         }
         return null;
+    }
+
+    public bool WillBump(IntVector2 direction) {
+        if (hit.Exists() && hit.GetAction().CanHit(direction)) {
+            return false;
+        }
+        else if (dig.Exists() && dig.GetAction().CanDig(direction)) {
+            return false;
+        }
+        else if (move.Exists() && move.GetAction().CanMove(direction)) {
+            return false;
+        }
+        return true;
     }
 }

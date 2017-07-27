@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyRandomController : Controller {
 
     IntVector2[] randomDirections = { IntVector2.up, IntVector2.right, IntVector2.down, IntVector2.left };
-    
+
     ActionAutoHitDigOrMove hitDigOrMove;
 
     protected override void Awake() {
@@ -14,7 +14,13 @@ public class EnemyRandomController : Controller {
     }
 
     protected override void OnRecoverFinished() {
-        IntVector2 direction = randomDirections[Random.Range(0, randomDirections.Length)];
-        DoAction(hitDigOrMove.GetAction(direction), direction);
+        int randIndex = Random.Range(0, randomDirections.Length);
+        for (int i = 0; i < randomDirections.Length; i++) {
+            IntVector2 direction = randomDirections[(randIndex + i) % randomDirections.Length];
+            if (!hitDigOrMove.WillBump(direction) || i == randomDirections.Length - 1) {
+                DoAction(hitDigOrMove.GetAction(direction), direction);
+                return;
+            }
+        }
     }
 }
