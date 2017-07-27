@@ -12,13 +12,11 @@ public class ActionTryMove : ActionFixedRecoverTime {
         IntVector2 oldPos = intTransform.GetPos();
         IntVector2 newPos = intTransform.GetPos() + direction;
         if (!CanMove(direction)) {
-            Debug.Log("A");
             foreach (SmoothMove smoothMove in this.GetComponentsInChildren<SmoothMove>()) {
                 smoothMove.Bump(newPos);
             }
         }
         else {
-            Debug.Log("B");
             intTransform.UnOccupyCurrentPos();
             intTransform.SetPos(newPos);
             intTransform.OccupyCurrentPos();
