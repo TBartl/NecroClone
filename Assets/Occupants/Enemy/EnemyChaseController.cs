@@ -10,22 +10,39 @@ public class EnemyChaseController : EnemyController {
     protected override void Awake() {
         base.Awake();
         hitDigOrMove = new ActionAutoHitDigOrMove(this.gameObject);
-    }
+    }  
 
     protected override void OnReadyForNextAction(GameObject target) {
+        CheckAndUpdateIfInLineWithPlayer(target);
+
         IntVector2 currentPos = intTransform.GetPos();
         IntVector2 targetPos = target.GetComponent<IntTransform>().GetPos();
         IntVector2 direction = GetDirection(currentPos, targetPos);
-        // If we don't have a shovel, this shouldn't be able to dig, instead change
+        // If we don't have a shovel, this shouldn't be able to dig, instead change direction
         if (this.GetComponent<ActionDig>() == null) {
-            GameObject targetGO = intTransform.GetLevel().GetOccupantAt(currentPos + direction);
-            if (targetGO != null && targetGO.GetComponent<Diggable>() != null) {
+            GameObject immediateGO = intTransform.GetLevel().GetOccupantAt(currentPos + direction);
+            if (immediateGO != null && immediateGO.GetComponent<Diggable>() != null) {
                 headingHorizontal = !headingHorizontal;
                 direction = GetDirection(currentPos, targetPos);
             }
 
         }
         DoAction(hitDigOrMove.GetAction(direction), direction);
+    }
+
+    public override void OnPlayerMoved(PlayerController player) {
+        base.OnPlayerMoved(player);
+        CheckAndUpdateIfInLineWithPlayer(player.gameObject);
+    }
+
+    void CheckAndUpdateIfInLineWithPlayer(GameObject player) {
+        // If the player passes next to the object, make sure the enemy targets where the player was
+        IntVector2 playerPos = player.GetComponent<IntTransform>().GetPos();
+        IntVector2 thisPos = intTransform.GetPos();
+        if (thisPos.x == playerPos.x)
+            headingHorizontal = false;
+        if (thisPos.y == playerPos.y)
+            headingHorizontal = true;
     }
 
 
