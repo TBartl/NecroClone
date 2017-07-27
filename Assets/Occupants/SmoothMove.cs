@@ -5,18 +5,18 @@ using UnityEngine;
 public class SmoothMove : MonoBehaviour {
 
     public MoveAnimationData animationData;
+    IntTransform intTransform;
 
     void Awake() {
-        IntTransform pos = this.GetComponentInParent<IntTransform>();
-        pos.onRealMove += OnRealMove;
-        pos.onBumpMove += OnBump;
+        intTransform = this.GetComponentInParent<IntTransform>();
     }
 
-    void OnRealMove(IntVector2 from, IntVector2 to) {
+    public void Move(IntVector2 from, IntVector2 to) {
         StartCoroutine(JuicyMove(from, to));
     }
-    void OnBump(IntVector2 from, IntVector2 to) {
-        StartCoroutine(JuicyFailMove(from, to));
+    public void Bump(IntVector2 target) {
+        IntVector2 pos = intTransform.GetPos();
+        StartCoroutine(JuicyFailMove(pos, target));
     }
 
     IEnumerator JuicyMove(IntVector2 from, IntVector2 to) {

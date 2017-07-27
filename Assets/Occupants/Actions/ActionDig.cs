@@ -16,7 +16,8 @@ public class ActionDig : ActionFixedRecoverTime {
         foreach (GameObject target in validTargets) {
             target.GetComponent<Diggable>().Dig(/*shovelStrength*/);
         }
-        intTransform.Bump(intTransform.GetPos() + direction);
+        foreach (SmoothMove smoothMove in this.GetComponentsInChildren<SmoothMove>())
+            smoothMove.Bump(intTransform.GetPos() + direction);
         SoundManager.S.Play(SoundManager.S.hit);
     }
 
