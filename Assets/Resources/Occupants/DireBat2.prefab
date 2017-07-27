@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 114094209156851568}
   - component: {fileID: 114447093325679622}
   m_Layer: 0
-  m_Name: Bat1
+  m_Name: DireBat2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1902883780486946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 8}
+  m_LocalPosition: {x: 8, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4241835453552576}
@@ -145,7 +145,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
-  m_Mesh: {fileID: 4300008, guid: e03db07e433f90a4e832e32ac7afa14a, type: 3}
+  m_Mesh: {fileID: 4300028, guid: e03db07e433f90a4e832e32ac7afa14a, type: 3}
 --- !u!114 &114094209156851568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 1
-  damage: 1
+  damage: 4
 --- !u!114 &114659487714417008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00464e328d05c4fa42441954e89335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 3
 --- !u!114 &114980081177415764
 MonoBehaviour:
   m_ObjectHideFlags: 1

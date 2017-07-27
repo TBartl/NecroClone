@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114980081177415764}
   - component: {fileID: 114659487714417008}
   - component: {fileID: 114614505993285440}
+  - component: {fileID: 114201007818182906}
   m_Layer: 0
   m_Name: Bat2
   m_TagString: Untagged
@@ -98,8 +99,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1902883780486946}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4241835453552576}
@@ -119,7 +120,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: cb240bab1539e3b408e814bd8ec83ad6, type: 2}
+  - {fileID: 2100000, guid: 29b31d8f838e8154caec4b19703a2fb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +145,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747407393134870}
-  m_Mesh: {fileID: 4300008, guid: e03db07e433f90a4e832e32ac7afa14a, type: 3}
+  m_Mesh: {fileID: 4300032, guid: e03db07e433f90a4e832e32ac7afa14a, type: 3}
+--- !u!114 &114201007818182906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902883780486946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b34a3a7ef4225a45b91e8ea15e04aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverTime: 0.6
+  damage: 2
 --- !u!114 &114226820535442162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfc7f5f98f6e8041b941d9ab0ffdf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 0
+  recoverTime: 0.6
 --- !u!114 &114659487714417008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00464e328d05c4fa42441954e89335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 1
 --- !u!114 &114980081177415764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,4 +241,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0c5dd74af6de940bc5fc35c8164a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 4

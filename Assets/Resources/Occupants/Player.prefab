@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfc7f5f98f6e8041b941d9ab0ffdf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 0.1
+  recoverTime: 0.3
 --- !u!114 &114017321154603978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b5afaf23500e648962e30aa2d1d745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 1
+  recoverTime: 0.6
 --- !u!114 &114547585550266548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00464e328d05c4fa42441954e89335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 6
 --- !u!114 &114944019055908984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,5 +292,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b34a3a7ef4225a45b91e8ea15e04aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 1
-  damage: 2
+  recoverTime: 0.6
+  damage: 1
