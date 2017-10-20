@@ -13,8 +13,8 @@ public class RotateToDirection : MonoBehaviour {
     }
 
     public void Rotate(IntVector2 direction) {
-        Quaternion rotation = Quaternion.Euler(0, Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg + 90, 0);
-        //rotation = Quaternion.Euler(pitchAmount, 0, 0) * rotation;
-        this.transform.rotation = rotation;
+        Quaternion pitchRotation = Quaternion.Euler(pitchAmount, 0, 0);
+        Quaternion faceRotation = Quaternion.Euler(0, Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg + 90, 0);
+        this.transform.rotation = pitchRotation * faceRotation;
     }
 }
