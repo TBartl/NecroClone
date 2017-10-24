@@ -19,7 +19,7 @@ public class Action : MonoBehaviour {
         for (int i = 0; i < actions.Length; i++) {
             Action action = actions[i];
             if (action == this) {
-                NetManager.S.SendServerMessageToAll(new NetMessage_ActionOccupant(intTransform.GetPos(), intTransform.GetLevel(), i, direction));
+                NetManager.S.SendServerMessageToGroup(new NetMessage_ActionOccupant(intTransform.GetPos(), intTransform.GetLevel(), i, direction), ConnectionGroup.game);
                 return;
             }
 
