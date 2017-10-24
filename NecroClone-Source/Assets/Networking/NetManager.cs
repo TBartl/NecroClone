@@ -202,11 +202,6 @@ public class NetManager : MonoBehaviour {
 
 		//LevelManager.S.serializer.Serialise(LevelManager.S.startLevel);
 		SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId), connectionId);
-		////TODO send all the levels, not just start
-		//SendServerMessageToOne(new NetMessage_StartSendLevel(LevelManager.S.startLevel), connectionId);
-		//for (int i = 0; i < LevelManager.S.serializer.GetRequiredNumOfPieces(); i++) {
-		//    SendServerMessageToOne(new NetMessage_SendLevelPiece(i), connectionId);
-		//}
 	}
 
     void OnClientDisconnect(int connectionId) {

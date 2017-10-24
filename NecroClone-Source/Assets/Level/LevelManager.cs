@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour {
     public static LevelManager S;
     
     public LevelGenerator generator;
-    [HideInInspector] public LevelSerializer serializer = new LevelSerializer();
     
     [HideInInspector] public Level startLevel;
     [HideInInspector] public List<Level> levels;
