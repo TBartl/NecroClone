@@ -35,13 +35,18 @@ public class NetManager : MonoBehaviour {
     public OnNetworkSetup onNetworkSetup;
 
     void Awake() {
-        if (S == null)
-            S = this;
+		if (S != null)
+			return;
+		S = this;
         SceneManager.activeSceneChanged += SceneChanged;
         NetMessageMaintainer.Setup();
     }
 
-    public void StartHost() {
+	public void ResetNetwork() {
+		// TODO
+	}
+
+	public void StartHost() {
         isServer = true;
         SceneManager.LoadScene(1);
     }

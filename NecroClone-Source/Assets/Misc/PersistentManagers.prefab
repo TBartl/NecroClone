@@ -59,22 +59,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1283405035890114
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4554885781517038}
-  - component: {fileID: 114410142685803444}
-  m_Layer: 0
-  m_Name: ScreenManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1307237092367322
 GameObject:
   m_ObjectHideFlags: 1
@@ -225,19 +209,6 @@ Transform:
   m_Father: {fileID: 4237686250724528}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4554885781517038
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283405035890114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4939052562863426}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4554947685990786
 Transform:
   m_ObjectHideFlags: 1
@@ -306,7 +277,6 @@ Transform:
   - {fileID: 4770761387583524}
   - {fileID: 4237686250724528}
   - {fileID: 4554947685990786}
-  - {fileID: 4554885781517038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -498,20 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614995bfc2eeab843b95b9db8b6f538c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114410142685803444
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283405035890114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76265c9c0250324db419f529666d7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  titleScreen: {fileID: 1404981035156096, guid: c5c8e7e1873110f4b98121d15bc812d5,
-    type: 2}
-  lobbyScreen: {fileID: 0}
 --- !u!114 &114595855168730724
 MonoBehaviour:
   m_ObjectHideFlags: 1

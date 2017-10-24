@@ -9,7 +9,9 @@ public class EffectDatabase : MonoBehaviour {
     public GameObject heart;
 
     void Awake() {
-        S = this;
+		if (S != null)
+			return;
+		S = this;
     }
 
     public void CreateRecovery(Transform t, float recoverTime) {

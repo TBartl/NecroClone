@@ -24,7 +24,9 @@ public class ItemDatabase : MonoBehaviour {
     Weapon[] weapons = new Weapon[(byte)WeaponID.count];
 
     void Awake() {
-        S = this;
+		if (S != null)
+			return;
+		S = this;
 
         Weapon[] unordered = Resources.LoadAll<Weapon>("Items");
         foreach (Weapon g in unordered) {

@@ -9,7 +9,9 @@ public class SoundManager : MonoBehaviour {
     public AudioSource spawn;
 
     void Awake() {
-        S = this;
+		if (S != null)
+			return;
+		S = this;
     }
 
     public void Play(AudioSource source) {

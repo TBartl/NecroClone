@@ -22,7 +22,9 @@ public class LevelDatabase : MonoBehaviour {
     Dictionary<string, GameObject> occupants = new Dictionary<string, GameObject>();
 
     void Awake() {
-        S = this;
+		if (S != null)
+			return;
+		S = this;
         ResourceLoadFolder("Floors",    ref floors);
         ResourceLoadFolder("Occupants", ref occupants);
     }
