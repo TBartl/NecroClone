@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 [System.Serializable]
 public enum ConnectionGroup {
@@ -11,12 +12,26 @@ public enum ConnectionGroup {
 
 public class ClientData {
     public int connectionID;
+	public bool inGame;
 	public string name;
     public GameObject player;
 
-    public ClientData(int connectionID) {
+    public ClientData(int connectionID, bool inGame = false, string name = "Unknown") {
         this.connectionID = connectionID;
+		this.inGame = inGame;
+		this.name = name;
     }
+
+	public void Encode(ref BinaryWriter writer) {
+		writer.Write(connectionID);
+		writer.Write(name);
+	}
+
+	public static ClientData Decode(ref BinaryReader reader) {
+		ClientData client = new ClientData(reader.ReadInt32());
+		client.name = reader.ReadString();
+		return client;
+	}
 }
 
 public class NetManager : MonoBehaviour {
@@ -33,12 +48,11 @@ public class NetManager : MonoBehaviour {
 
 	public int myConnectionId;
 
-	List<ClientData> lobbyClients;
-	List<ClientData> gameClients;
+	List<ClientData> clients;
+	public delegate void OnChange();
+	public OnChange onClientChange = delegate { };
 
     [HideInInspector] public bool isConnected = false;
-    public delegate void OnNetworkSetup(bool isServer);
-    public OnNetworkSetup onNetworkSetup;
 
     void Awake() {
 		if (S != null)
@@ -62,12 +76,12 @@ public class NetManager : MonoBehaviour {
 	}
 
     void Setup() {
-		//Reset
+		// Reset
 		myConnectionId = -1;
-		lobbyClients = new List<ClientData>();
-		gameClients = new List<ClientData>();
+		clients = new List<ClientData>();
+		onClientChange();
 
-		SceneManager.LoadScene(1);
+		// Try the connection
 		isConnected = false;
         NetworkTransport.Init();
         ConnectionConfig config = new ConnectionConfig();
@@ -79,8 +93,9 @@ public class NetManager : MonoBehaviour {
             hostID = NetworkTransport.AddHost(topology, 0);
 
         if (isServer) {
-			lobbyClients.Add(new ClientData(-1));
-        }
+			clients.Add(new ClientData(-1, false, "SERVERTODO"));
+			onClientChange();
+		}
         else {
             byte error;
             serverConnectionID = NetworkTransport.Connect(hostID, address, socketPort, 0, out error);
@@ -88,9 +103,12 @@ public class NetManager : MonoBehaviour {
                 Debug.LogWarning("Warning, potentially caught a network connection error!");
         }
         isConnected = true;
-    }
 
-    void Update() {
+		// Load the lobby scene
+		SceneManager.LoadScene(1);
+	}
+
+	void Update() {
         if (isConnected) {
             if (isServer)
                 UpdateServer();
@@ -123,19 +141,19 @@ public class NetManager : MonoBehaviour {
 		int messageLength = message.Encode();
 		byte error;
 
-		List<ClientData> clients = new List<ClientData>();
-		if (group != ConnectionGroup.game)
-			clients.AddRange(lobbyClients);
-		else if (group != ConnectionGroup.lobby)
-			clients.AddRange(gameClients);
-
 		// Send it out
 		foreach (ClientData client in clients) {
+			if (group == ConnectionGroup.lobby && client.inGame)
+				continue;
+			if (group == ConnectionGroup.game && !client.inGame)
+				continue;
+
 			if (client.connectionID == -1) {
 				if (message.AlsoExecuteOnServer()) {
 					message.DecodeAndExecute(client);
 				}
 			}
+
 			NetworkTransport.Send(hostID, client.connectionID, channelID, NetMessage.buffer, messageLength, out error);
 		}
 	}
@@ -198,16 +216,18 @@ public class NetManager : MonoBehaviour {
     }
 
     void OnClientConnect(int connectionId) {
-        lobbyClients.Add(new ClientData(connectionId));
-
-		//LevelManager.S.serializer.Serialise(LevelManager.S.startLevel);
-		SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId), connectionId);
+		//SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId, lobbyClients, gameClients), connectionId);
+		// Send one all clients
+		//lobbyClients.Add(new ClientData(connectionId));
+		// Add all one client
+		//SendServerMessageToGroup()
 	}
 
     void OnClientDisconnect(int connectionId) {
         ClientData client = GetClientById(connectionId);
-		lobbyClients.Remove(client);
-		gameClients.Remove(client);
+		//lobbyClients.Remove(client);
+		//onLobbyClientsUpdated();
+		//gameClients.Remove(client);
 	}
 
     void HandleDataMessage(int connectionId) {
@@ -219,19 +239,15 @@ public class NetManager : MonoBehaviour {
 		return GetClientById(-1);
 	}
 
-
 	public ClientData GetClientById (int id) {
-        foreach (ClientData client in GetClients()) {
+        foreach (ClientData client in clients) {
             if (client.connectionID == id)
                 return client;
         }
         return null;
     }
 
-    public List<ClientData> GetClients() {
-		List<ClientData> clients = new List<ClientData>();
-		clients.AddRange(lobbyClients);
-		clients.AddRange(gameClients);
-        return clients;
-    }
+	public List<ClientData> GetClients() {
+		return clients;
+	}
 }

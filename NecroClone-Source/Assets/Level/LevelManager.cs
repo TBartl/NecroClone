@@ -4,40 +4,39 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-    public static LevelManager S;
-    
-    public LevelGenerator generator;
-    
-    [HideInInspector] public Level startLevel;
-    [HideInInspector] public List<Level> levels;
+	public static LevelManager S;
 
-    void Awake() {
-        S = this;
-        NetManager.S.onNetworkSetup += OnNetworkSetup;
-    }
+	public LevelGenerator generator;
 
-    void OnNetworkSetup(bool isServer) {
-        if (isServer) {
-            Level newLevel = CreateNewLevel();
-            generator.GetLevel(ref newLevel);
-            newLevel.Draw();
-            startLevel = newLevel;            
-        }
-    }
+	[HideInInspector] public Level startLevel;
+	[HideInInspector] public List<Level> levels;
 
-    public Level CreateNewLevel() {
-        GameObject newLevelGO = new GameObject("Level " + levels.Count.ToString());
-        Level newLevel = newLevelGO.AddComponent<Level>();
-        newLevel.levelNum = levels.Count;
-        levels.Add(newLevel);
+	void Awake() {
+		S = this;
+	}
 
-        return newLevel;
-    }
+	void OnNetworkSetup(bool isServer) {
+		if (isServer) {
+			Level newLevel = CreateNewLevel();
+			generator.GetLevel(ref newLevel);
+			newLevel.Draw();
+			startLevel = newLevel;
+		}
+	}
 
-    public Level GetLevel(int i) {
-        return levels[i];
-    }
+	public Level CreateNewLevel() {
+		GameObject newLevelGO = new GameObject("Level " + levels.Count.ToString());
+		Level newLevel = newLevelGO.AddComponent<Level>();
+		newLevel.levelNum = levels.Count;
+		levels.Add(newLevel);
+
+		return newLevel;
+	}
+
+	public Level GetLevel(int i) {
+		return levels[i];
+	}
 
 
-    
+
 }

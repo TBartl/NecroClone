@@ -48,12 +48,12 @@ public class NetMessage_SpawnOccupant : NetMessage {
             if (NetManager.S.isServer && newOccupant.name == "Player") {
                 if (NetManager.S.GetThisServerClient().connectionID == owner)
                     NetManager.S.GetThisServerClient().player = newOccupant;
-                foreach (ClientData client in NetManager.S.GetClients()) {
-                    if (client.connectionID == owner) {
-                        client.player = newOccupant;
-                        break;
-                    }
-                }
+                //foreach (ClientData client in NetManager.S.GetClients()) {
+                //    if (client.connectionID == owner) {
+                //        client.player = newOccupant;
+                //        break;
+                //    }
+                //}
             }
         }
     }

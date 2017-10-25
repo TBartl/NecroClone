@@ -109,23 +109,3 @@ public class NetMessageDebug : NetMessage {
         Debug.Log("Debug message recieved: " + message);
     }
 }
-
-[System.Serializable]
-public class NetMessage_ClientConnectionID: NetMessage {
-
-    public int id;
-
-    public NetMessage_ClientConnectionID() { }
-    public NetMessage_ClientConnectionID(int id) {
-        this.id = id;
-    }
-
-    protected override void EncodeToBuffer(ref BinaryWriter writer) {
-        writer.Write(id);
-    }
-
-    protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
-        id = reader.ReadInt32();
-        NetManager.S.myConnectionId = id;
-    }
-}
