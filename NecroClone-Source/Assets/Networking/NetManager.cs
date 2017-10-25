@@ -216,10 +216,9 @@ public class NetManager : MonoBehaviour {
 
     void OnClientConnect(int connectionId) {
 		SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId, clients), connectionId);
-		// Send one all clients
-		//lobbyClients.Add(new ClientData(connectionId));
-		// Add all one client
-		//SendServerMessageToGroup()
+		ClientData newClient = new ClientData(connectionId, false, "unknown");
+		AddClient(newClient);
+		SendServerMessageToGroup(new NetMessage_AddClient(newClient), ConnectionGroup.both);
 	}
 
     void OnClientDisconnect(int connectionId) {

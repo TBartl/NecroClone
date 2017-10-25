@@ -35,3 +35,22 @@ public class NetMessage_ClientConnectionID : NetMessage {
 		}
 	}
 }
+
+[System.Serializable]
+public class NetMessage_AddClient : NetMessage {
+
+	public ClientData clientData;
+
+	public NetMessage_AddClient() { }
+	public NetMessage_AddClient(ClientData clientData) {
+		this.clientData = clientData;
+	}
+
+	protected override void EncodeToBuffer(ref BinaryWriter writer) {
+		clientData.Encode(ref writer);
+	}
+
+	protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
+		NetManager.S.AddClient(ClientData.Decode(ref reader));
+	}
+}
