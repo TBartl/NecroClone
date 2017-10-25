@@ -24,12 +24,12 @@ public class ClientData {
 
 	public void Encode(ref BinaryWriter writer) {
 		writer.Write(connectionID);
+		writer.Write(inGame);
 		writer.Write(name);
 	}
 
 	public static ClientData Decode(ref BinaryReader reader) {
-		ClientData client = new ClientData(reader.ReadInt32());
-		client.name = reader.ReadString();
+		ClientData client = new ClientData(reader.ReadInt32(), reader.ReadBoolean(), reader.ReadString());
 		return client;
 	}
 }
@@ -93,8 +93,7 @@ public class NetManager : MonoBehaviour {
             hostID = NetworkTransport.AddHost(topology, 0);
 
         if (isServer) {
-			clients.Add(new ClientData(-1, false, "SERVERTODO"));
-			onClientChange();
+			AddClient(new ClientData(-1, false, "SERVERTODO"));
 		}
         else {
             byte error;
@@ -216,7 +215,7 @@ public class NetManager : MonoBehaviour {
     }
 
     void OnClientConnect(int connectionId) {
-		//SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId, lobbyClients, gameClients), connectionId);
+		SendServerMessageToOne(new NetMessage_ClientConnectionID(connectionId, clients), connectionId);
 		// Send one all clients
 		//lobbyClients.Add(new ClientData(connectionId));
 		// Add all one client
@@ -249,5 +248,9 @@ public class NetManager : MonoBehaviour {
 
 	public List<ClientData> GetClients() {
 		return clients;
+	}
+	public void AddClient(ClientData client) {
+		clients.Add(client);
+		onClientChange();
 	}
 }
