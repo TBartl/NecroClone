@@ -222,10 +222,8 @@ public class NetManager : MonoBehaviour {
 	}
 
     void OnClientDisconnect(int connectionId) {
-        ClientData client = GetClientById(connectionId);
-		//lobbyClients.Remove(client);
-		//onLobbyClientsUpdated();
-		//gameClients.Remove(client);
+		RemoveClient(connectionId);
+		SendServerMessageToGroup(new NetMessage_RemoveClient(connectionId), ConnectionGroup.both);
 	}
 
     void HandleDataMessage(int connectionId) {
@@ -250,6 +248,10 @@ public class NetManager : MonoBehaviour {
 	}
 	public void AddClient(ClientData client) {
 		clients.Add(client);
+		onClientChange();
+	}
+	public void RemoveClient(int id) {
+		clients.Remove(GetClientById(id));
 		onClientChange();
 	}
 }

@@ -23,6 +23,11 @@ public class LobbyPlayerContainer : MonoBehaviour {
 	void UpdateClients() {
 		List<ClientData> clients = NetManager.S.GetClients();
 		playerCountText.text = string.Format("Players ({0}/{1})", clients.Count, NetManager.S.maxConnections);
+
+		foreach (Transform child in this.transform) {
+			Destroy(child.gameObject);
+		}
+
 		for (int i = 0; i < clients.Count; i++) {
 			GameObject p = Instantiate(playerPrefab, transform);
 			RectTransform rect = p.GetComponent<RectTransform>();

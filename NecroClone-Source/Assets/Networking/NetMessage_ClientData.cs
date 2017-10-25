@@ -54,3 +54,24 @@ public class NetMessage_AddClient : NetMessage {
 		NetManager.S.AddClient(ClientData.Decode(ref reader));
 	}
 }
+
+[System.Serializable]
+public class NetMessage_RemoveClient : NetMessage {
+
+	public int id;
+
+	public NetMessage_RemoveClient() { }
+	public NetMessage_RemoveClient(int id) {
+		this.id = id;
+	}
+
+	protected override void EncodeToBuffer(ref BinaryWriter writer) {
+		writer.Write(id);
+	}
+
+	protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
+		id = reader.ReadInt32();
+		NetManager.S.RemoveClient(id);
+	}
+}
+
