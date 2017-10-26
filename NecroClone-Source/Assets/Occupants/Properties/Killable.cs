@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Killable : Destructable, ChangeableProperty {
+public class Killable : Destructable {
     public int maxHealth = 1;
     int health;
 
@@ -18,16 +18,6 @@ public class Killable : Destructable, ChangeableProperty {
         if (smoothMove)
             heartHolder = smoothMove.transform;
 
-        UpdateHearts();
-    }
-
-    public void Encode(ref BinaryWriter writer) {
-        writer.Write(maxHealth);
-        writer.Write(health);
-    }
-    public void Decode(ref BinaryReader reader) {
-        maxHealth = reader.ReadInt32();
-        health = reader.ReadInt32();
         UpdateHearts();
     }
 

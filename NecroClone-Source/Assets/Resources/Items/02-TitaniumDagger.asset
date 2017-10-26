@@ -14,4 +14,4 @@ MonoBehaviour:
   id: 2
   weaponType: 0
   damage: 2
-  recoverTime: 0.25
+  recoverTime: 0.6
