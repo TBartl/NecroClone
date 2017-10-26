@@ -41,14 +41,8 @@ public class PlayerController : Controller {
 
     }
 
-    //void DoActionIfExists(int i, IntVector2 direction) {
-    //    if (i < GetActionCount())
-    //        DoAction(i, direction);
-    //    else
-    //        StartCoroutine(WaitForInput());
-    //}
-
     public void OnInput(PlayerInputKey key) {
-        buffer.Add(key);
+		if (buffer.Count < 3)
+			buffer.Add(key);
     }
 }

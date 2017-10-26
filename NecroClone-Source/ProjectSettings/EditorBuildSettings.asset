@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/lobby.unity
     guid: 7223f6e7be0c6cd4994797ea71bf3dc5
   - enabled: 1
-    path: Assets/tutorial.unity
+    path: Assets/testing.unity
     guid: dc0724d74705e5f47a769ccc7ec992db
   - enabled: 1
     path: Assets/main.unity
