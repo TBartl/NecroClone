@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponCollectable : MonoBehaviour {
-	public Weapon weapon;
+public class ItemCollectable : MonoBehaviour {
+	public Item item;
 }

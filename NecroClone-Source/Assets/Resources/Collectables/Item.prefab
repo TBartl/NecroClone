@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114322639346714362}
   - component: {fileID: 114686556400472974}
   m_Layer: 0
-  m_Name: TitaniumDagger
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437501095818550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 1}
+  m_LocalPosition: {x: 2.8000445, y: -2.8180974, z: 2.914836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253510150727148}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1101fd2d73c0846b029cb468f12a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: ec3af2b3cb2c94140878fc0cda7c6b80, type: 2}
+  item: {fileID: 11400000, guid: ec3af2b3cb2c94140878fc0cda7c6b80, type: 2}
 --- !u!114 &114710240279919624
 MonoBehaviour:
   m_ObjectHideFlags: 1

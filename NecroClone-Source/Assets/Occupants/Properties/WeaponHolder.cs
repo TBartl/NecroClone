@@ -16,11 +16,11 @@ public class WeaponHolder : MonoBehaviour, IOnMove {
 
 	public void OnMove(IntVector2 to) {
 		foreach (GameObject collectable in intTransform.GetLevel().GetCollectablesAt(to)) {
-			WeaponCollectable weaponCollectable = collectable.GetComponent<WeaponCollectable>();
-			if (weaponCollectable) {
+			ItemCollectable itemCollectable = collectable.GetComponent<ItemCollectable>();
+			if (itemCollectable && itemCollectable.item.GetType() == typeof(Weapon)) {
 				weapon.OnUnequip(this.gameObject);
 
-				weapon = weaponCollectable.weapon;
+				weapon = (Weapon)itemCollectable.item;
 				weapon.OnEquip(this.gameObject);
 			}
 		}
