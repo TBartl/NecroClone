@@ -63,4 +63,7 @@ public class LevelDatabase : MonoBehaviour {
 		}
 		return collectables[name];
 	}
+	public GameObject GetItemPrefab() {
+		return GetCollectablePrefab("Item");
+	}
 }

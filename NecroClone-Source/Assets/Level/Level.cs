@@ -89,8 +89,13 @@ public class Level : MonoBehaviour {
 		if (mov) {
 			mov.SetPos(pos);
 		}
-
 		return instance;
+	}
+	public GameObject SpawnItem(Item item, IntVector2 pos) {
+		GameObject go = SpawnCollectable(LevelDatabase.S.GetItemPrefab(), pos);
+		go.GetComponent<ItemCollectable>().SetItem(item);
+		tiles[pos.x, pos.y].AddCollectable(go);
+		return go;
 	}
 
     public void OnPlayerAction(PlayerController controller) {
@@ -109,5 +114,10 @@ public class Level : MonoBehaviour {
 		if (!InBounds(pos))
 			return null;
 		return tiles[pos.x, pos.y].GetCollectables();
+	}
+	public void RemoveCollectableAt(GameObject toRemove, IntVector2 pos) {
+		if (!InBounds(pos))
+			return;
+		tiles[pos.x, pos.y].RemoveCollectable(toRemove);
 	}
 }

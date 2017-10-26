@@ -15,13 +15,23 @@ public class WeaponHolder : MonoBehaviour, IOnMove {
 	}
 
 	public void OnMove(IntVector2 to) {
-		foreach (GameObject collectable in intTransform.GetLevel().GetCollectablesAt(to)) {
+		List<GameObject> collectables = intTransform.GetLevel().GetCollectablesAt(to);
+		List<GameObject> toRemove = new List<GameObject>();
+		foreach (GameObject collectable in collectables.ToArray()) {
 			ItemCollectable itemCollectable = collectable.GetComponent<ItemCollectable>();
 			if (itemCollectable && itemCollectable.item.GetType() == typeof(Weapon)) {
-				weapon.OnUnequip(this.gameObject);
 
+				// Drop our item
+				if (weapon) {
+					weapon.OnUnequip(this.gameObject);
+					intTransform.GetLevel().SpawnItem(weapon, to);
+				}
+
+				// Grab the item
 				weapon = (Weapon)itemCollectable.item;
 				weapon.OnEquip(this.gameObject);
+				Destroy(collectable);
+				intTransform.GetLevel().RemoveCollectableAt(collectable, to);
 			}
 		}
 	}

@@ -30,7 +30,4 @@ public class LevelManager : MonoBehaviour {
 	public Level GetLevel(int i) {
 		return levels[i];
 	}
-
-
-
 }
