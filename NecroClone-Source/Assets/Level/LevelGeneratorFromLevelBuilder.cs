@@ -48,7 +48,7 @@ public class LevelGeneratorFromLevelBuilder : LevelGenerator {
 				level.tiles[adjustedPos.x, adjustedPos.y].occupant = occupantPrefab;
 				continue;
 			}
-			GameObject collectablePrefab = LevelDatabase.S.GetCollectablePrefab(correctedName);
+			GameObject collectablePrefab = child.gameObject;
 			if (collectablePrefab) {
 				level.tiles[adjustedPos.x, adjustedPos.y].AddCollectable(collectablePrefab);
 				continue;

@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
-  m_Name: 07-TitaniumBroadsword
+  m_Name: SpearTitanium
   m_EditorClassIdentifier: 
-  weaponType: 2
+  image: {fileID: 21300010, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
+  weaponType: 1
   damage: 2
-  recoverTime: 0.4
+  recoverTime: 0.5

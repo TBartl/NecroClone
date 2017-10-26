@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public enum WeaponType {
     dagger,
-    longsword,
+    spear,
     broadsword,
+	rapier,
 }
 
 [CreateAssetMenu(menuName="Items/Weapon") ]
