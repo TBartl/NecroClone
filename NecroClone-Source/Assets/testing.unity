@@ -30747,7 +30747,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1657127933}
-  - component: {fileID: 1657127934}
   m_Layer: 0
   m_Name: LevelBuilder
   m_TagString: Untagged
@@ -31559,17 +31558,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1657127934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1657127932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ec897b525b7ef46a6fdc0ff548888f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1658223581
 Prefab:
   m_ObjectHideFlags: 0

@@ -18,8 +18,6 @@ public class IntTransform : MonoBehaviour {
         level = this.GetComponentInParent<Level>();
     }
 
-    
-
     public void SetPos(IntVector2 pos) {
         this.pos = pos;
         this.transform.position = (Vector3)pos;

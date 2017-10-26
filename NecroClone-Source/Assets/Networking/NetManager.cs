@@ -124,6 +124,9 @@ public class NetManager : MonoBehaviour {
         else {
             byte error;
             NetworkTransport.Send(hostID, serverConnectionID, channelID, NetMessage.buffer, messageLength, out error);
+			if (error != 0) {
+				SceneManager.LoadScene(0);
+			}
         }
     }
 

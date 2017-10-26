@@ -13,15 +13,10 @@ public class LevelManager : MonoBehaviour {
 
 	void Awake() {
 		S = this;
-	}
-
-	void OnNetworkSetup(bool isServer) {
-		if (isServer) {
-			Level newLevel = CreateNewLevel();
-			generator.GetLevel(ref newLevel);
-			newLevel.Draw();
-			startLevel = newLevel;
-		}
+		Level newLevel = CreateNewLevel();
+		generator.GetLevel(ref newLevel);
+		newLevel.Draw();
+		startLevel = newLevel;
 	}
 
 	public Level CreateNewLevel() {
@@ -29,7 +24,6 @@ public class LevelManager : MonoBehaviour {
 		Level newLevel = newLevelGO.AddComponent<Level>();
 		newLevel.levelNum = levels.Count;
 		levels.Add(newLevel);
-
 		return newLevel;
 	}
 

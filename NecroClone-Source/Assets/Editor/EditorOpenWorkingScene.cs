@@ -16,6 +16,6 @@ public class EditorOpenWorkingScene : EditorWindow
             return;
         }
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
-        EditorSceneManager.OpenScene("Assets/tutorial.unity");
+        EditorSceneManager.OpenScene("Assets/testing.unity");
     }
 }
