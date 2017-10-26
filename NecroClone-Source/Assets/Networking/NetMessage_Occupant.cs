@@ -4,16 +4,14 @@ using UnityEngine;
 using System.IO;
 
 [System.Serializable]
-public class NetMessage_SpawnOccupant : NetMessage {
-
-	string occupant;
+public class NetMessage_SpawnPlayer : NetMessage {
+	
 	IntVector2 position;
 	Level level;
 	int owner;
 
-	public NetMessage_SpawnOccupant() { }
-	public NetMessage_SpawnOccupant(string occupant, IntVector2 position, Level level, int owner = -2) {
-		this.occupant = occupant;
+	public NetMessage_SpawnPlayer() { }
+	public NetMessage_SpawnPlayer(IntVector2 position, Level level, int owner = -2) {
 		this.position = position;
 		this.level = level;
 		this.owner = owner;
@@ -24,7 +22,6 @@ public class NetMessage_SpawnOccupant : NetMessage {
 	}
 
 	protected override void EncodeToBuffer(ref BinaryWriter writer) {
-		writer.Write(occupant);
 		writer.Write(position.x);
 		writer.Write(position.y);
 		writer.Write(level.levelNum);
@@ -32,28 +29,22 @@ public class NetMessage_SpawnOccupant : NetMessage {
 	}
 
 	protected override void DecodeBufferAndExecute(ref BinaryReader reader) {
-		occupant = reader.ReadString();
 		position.x = reader.ReadInt32();
 		position.y = reader.ReadInt32();
 		level = LevelManager.S.GetLevel(reader.ReadInt32());
 		owner = reader.ReadInt32();
-		GameObject newOccupant = level.SpawnOccupant(occupant, position);
+		GameObject newOccupant = level.SpawnOccupant(LevelDatabase.S.GetOccupantPrefab("Player"), position);
 		SoundManager.S.Play(SoundManager.S.spawn);
+		
+		if (owner == NetManager.S.myConnectionId) {
+			newOccupant.GetComponent<PlayerIdentity>().SetAsMyPlayer();
+		}
 
-		if (newOccupant.GetComponent<PlayerIdentity>() != null) {
-			if (owner == NetManager.S.myConnectionId) {
-				newOccupant.GetComponent<PlayerIdentity>().SetAsMyPlayer();
-			}
-
-			if (NetManager.S.isServer && newOccupant.name == "Player") {
-				if (NetManager.S.GetThisServerClient().connectionID == owner)
-					NetManager.S.GetThisServerClient().player = newOccupant;
-
-				foreach (ClientData client in NetManager.S.GetClients()) {
-					if (client.connectionID == owner) {
-						client.player = newOccupant;
-						break;
-					}
+		if (NetManager.S.isServer) {
+			foreach (ClientData client in NetManager.S.GetClients()) {
+				if (client.connectionID == owner) {
+					client.player = newOccupant;
+					break;
 				}
 			}
 		}

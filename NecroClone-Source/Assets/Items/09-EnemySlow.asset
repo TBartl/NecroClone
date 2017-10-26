@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
   m_Name: 09-EnemySlow
   m_EditorClassIdentifier: 
-  id: 9
   weaponType: 0
   damage: 1
   recoverTime: 1

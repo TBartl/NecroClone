@@ -21,6 +21,10 @@ public class ActionTryMove : ActionFixedRecoverTime {
             intTransform.SetPos(newPos);
             intTransform.OccupyCurrentPos();
 
+			foreach (IOnMove onMove in this.GetComponents<IOnMove>()) {
+				onMove.OnMove(newPos);
+			}
+
             foreach (SmoothMove smoothMove in this.GetComponentsInChildren<SmoothMove>()) {
                 smoothMove.Move(oldPos, newPos);
             }

@@ -20,14 +20,16 @@ public class LevelDatabase : MonoBehaviour {
 
     Dictionary<string, GameObject> floors = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> occupants = new Dictionary<string, GameObject>();
+	Dictionary<string, GameObject> collectables = new Dictionary<string, GameObject>();
 
     void Awake() {
 		if (S != null)
 			return;
 		S = this;
         ResourceLoadFolder("Floors",    ref floors);
-        ResourceLoadFolder("Occupants", ref occupants);
-    }
+		ResourceLoadFolder("Occupants", ref occupants);
+		ResourceLoadFolder("Collectables", ref collectables);
+	}
 
     void ResourceLoadFolder(string folderName, ref Dictionary<string, GameObject> dictionary) {
         GameObject[] unordered = Resources.LoadAll<GameObject>(folderName);
@@ -53,4 +55,12 @@ public class LevelDatabase : MonoBehaviour {
         }
         return occupants[name];
     }
+	public GameObject GetCollectablePrefab(string name) {
+		if (name == "")
+			return null;
+		if (!collectables.ContainsKey(name)) {
+			return null;
+		}
+		return collectables[name];
+	}
 }

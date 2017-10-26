@@ -20,4 +20,8 @@ public class Weapon : ScriptableObject {
 		actionHit.damage = this.damage;
 		actionHit.recoverTime = this.recoverTime;
 	}
+
+	public void OnUnequip(GameObject owner) {
+		Destroy(owner.GetComponent<ActionHit>());
+	}
 }

@@ -52,14 +52,13 @@ public class Level : MonoBehaviour {
         return copy;
     }
 
-    public GameObject SpawnOccupant(string name, IntVector2 pos, bool overrideOccupied = false) {
-        GameObject prefab = LevelDatabase.S.GetOccupantPrefab(name);
+    public GameObject SpawnOccupant(GameObject prefab, IntVector2 pos, bool overrideOccupied = false) {
         if (prefab == null || (Occuppied(pos) && !overrideOccupied)) {
             Debug.LogError("Error adding occupant!");
             return null;
         }
 
-        GameObject instance = (GameObject)GameObject.Instantiate(prefab, this.transform);
+        GameObject instance = Instantiate(prefab, this.transform);
         instance.name = prefab.name;
         tiles[pos.x, pos.y].occupant = instance;
         instance.transform.position = (Vector3)pos;
@@ -76,6 +75,23 @@ public class Level : MonoBehaviour {
 
         return instance;
     }
+	public GameObject SpawnCollectable(GameObject prefab, IntVector2 pos) {
+		if (prefab == null) {
+			Debug.LogError("Error adding collectable");
+			return null;
+		}
+
+		GameObject instance = Instantiate(prefab, this.transform);
+		instance.name = prefab.name;
+		instance.transform.position = (Vector3)pos;
+
+		IntTransform mov = instance.GetComponent<IntTransform>();
+		if (mov) {
+			mov.SetPos(pos);
+		}
+
+		return instance;
+	}
 
     public void OnPlayerAction(PlayerController controller) {
         // TODO check if still on this level
@@ -85,8 +101,13 @@ public class Level : MonoBehaviour {
     }
 
     public GameObject GetOccupantAt(IntVector2 pos) {
-        if (!InBounds(pos))
-            return null;
-        return tiles[pos.x, pos.y].occupant;
-    }
+		if (!InBounds(pos))
+			return null;
+		return tiles[pos.x, pos.y].occupant;
+	}
+	public List<GameObject> GetCollectablesAt(IntVector2 pos) {
+		if (!InBounds(pos))
+			return null;
+		return tiles[pos.x, pos.y].GetCollectables();
+	}
 }

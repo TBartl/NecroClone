@@ -9,9 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
-  m_Name: 02-TitaniumDagger
+  m_Name: 01-BaseDagger
   m_EditorClassIdentifier: 
-  id: 2
   weaponType: 0
-  damage: 2
+  damage: 1
   recoverTime: 0.6
