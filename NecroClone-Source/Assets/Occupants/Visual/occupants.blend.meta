@@ -27,6 +27,8 @@ ModelImporter:
     100038: Skeleton_004
     100040: Skeleton_005
     100042: Slime
+    100044: Slime_001
+    100046: Slime_002
     400000: Cube
     400002: //RootNode
     400004: ReferenceCube
@@ -49,6 +51,8 @@ ModelImporter:
     400038: Skeleton_004
     400040: Skeleton_005
     400042: Slime
+    400044: Slime_001
+    400046: Slime_002
     2300000: Cube
     2300002: ReferenceCube
     2300004: Bat
@@ -70,6 +74,8 @@ ModelImporter:
     2300036: Skeleton_004
     2300038: Skeleton_005
     2300040: Slime
+    2300042: Slime_001
+    2300044: Slime_002
     3300000: Cube
     3300002: ReferenceCube
     3300004: Bat
@@ -91,6 +97,8 @@ ModelImporter:
     3300036: Skeleton_004
     3300038: Skeleton_005
     3300040: Slime
+    3300042: Slime_001
+    3300044: Slime_002
     4300000: Cube
     4300002: ReferenceCube
     4300004: Dragon
@@ -112,6 +120,8 @@ ModelImporter:
     4300036: Skeleton_004
     4300038: Skeleton_003
     4300040: Slime
+    4300042: Slime_002
+    4300044: Slime_001
     7400000: Default Take
     9500000: //RootNode
   materials:

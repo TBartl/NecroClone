@@ -11,8 +11,10 @@ public class Controller : MonoBehaviour {
         intTransform = this.GetComponent<IntTransform>();
     }
     void Start() {
-        if (NetManager.S.isServer)
-            StartCoroutine(Recover(.1f));
+		if (NetManager.S.isServer) {
+			float startTime = HasRandomStartTime() ? Random.value : 0;
+			StartCoroutine(Recover(startTime));
+		}
     }
 
     IEnumerator Recover(float recoveryTime) {
@@ -47,4 +49,8 @@ public class Controller : MonoBehaviour {
         actions[action].Execute(direction);
         StartCoroutine(Recover(actions[action].GetRecoverTime()));
     }
+
+	protected virtual bool HasRandomStartTime() {
+		return true;
+	}
 }

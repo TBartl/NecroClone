@@ -16,4 +16,8 @@ public class EnemyFleeController : Controller {
     protected override void OnRecoverFinished() {
         DoAction(hitDigOrMove.GetAction(direction), direction);
     }
+
+	protected override bool HasRandomStartTime() {
+		return false;
+	}
 }
