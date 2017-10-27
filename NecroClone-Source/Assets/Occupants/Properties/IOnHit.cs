@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IOnHit {
-	void OnHit();
+	void OnHit(HitInfo hitInfo);
 }

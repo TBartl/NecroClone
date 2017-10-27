@@ -10,10 +10,12 @@ public class SkeletonHead : MonoBehaviour, IOnHit {
 	void Awake() {
 		killable = this.GetComponent<Killable>();
 	}
-	public void OnHit() {
+	public void OnHit(HitInfo info) {
 		if (killable.GetHealth() <= 1) {
 			Destroy(this.GetComponent<EnemyChaseController>());
 			Destroy(head);
+			EnemyFleeController newController = this.gameObject.AddComponent<EnemyFleeController>();
+			newController.direction = info.direction;
 		}
 	}
 }

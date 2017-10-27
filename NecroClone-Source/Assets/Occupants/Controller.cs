@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour {
     }
     void Start() {
         if (NetManager.S.isServer)
-            StartCoroutine(Recover(.5f));
+            StartCoroutine(Recover(.1f));
     }
 
     IEnumerator Recover(float recoveryTime) {

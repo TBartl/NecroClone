@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+[System.Serializable]
+public struct HitInfo {
+	public int damage;
+	public IntVector2 direction;
+}
+
 public class Killable : Destructable {
     public int maxHealth = 1;
     int health;
@@ -21,10 +27,10 @@ public class Killable : Destructable {
         UpdateHearts();
     }
 
-    public void Hit(int damage) {
-        health -= damage;
+    public void Hit(HitInfo hitInfo) {
+        health -= hitInfo.damage;
 		foreach (IOnHit onHit in this.GetComponents<IOnHit>()) {
-			onHit.OnHit();
+			onHit.OnHit(hitInfo);
 		}
 		if (health <= 0) {
             DestroyThis();

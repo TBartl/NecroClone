@@ -15,7 +15,10 @@ public class ActionHit : ActionFixedRecoverTime {
     public override void Execute(IntVector2 direction) {
         List<GameObject> validTargets = pattern.GetValidTargets(this.gameObject, direction);
         foreach (GameObject target in validTargets) {
-            target.GetComponent<Killable>().Hit(damage);
+			HitInfo hitInfo;
+			hitInfo.damage = damage;
+			hitInfo.direction = direction;
+            target.GetComponent<Killable>().Hit(hitInfo);
         }
         
         foreach (SmoothMove smoothMove in this.GetComponentsInChildren<SmoothMove>())
