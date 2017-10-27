@@ -7,6 +7,7 @@ public class EffectDatabase : MonoBehaviour {
 
     public GameObject recover;
     public GameObject heart;
+	public GameObject hitEffect;
 
     void Awake() {
 		if (S != null)
@@ -15,9 +16,16 @@ public class EffectDatabase : MonoBehaviour {
     }
 
     public void CreateRecovery(Transform t, float recoverTime) {
-        GameObject g = GameObject.Instantiate(recover, t);
-        g.transform.localPosition = Vector3.zero;
-        g.GetComponent<RecoverEffect>().length = recoverTime;
-    }
+		GameObject g = GameObject.Instantiate(recover, t);
+		g.transform.localPosition = Vector3.zero;
+		g.GetComponent<RecoverEffect>().length = recoverTime;
+	}
+
+	public void CreateHitEffect(Sprite sprite, IntVector2 from, IntVector2 direction) {
+		GameObject g = GameObject.Instantiate(hitEffect);
+		g.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+		g.transform.position = (Vector3)from;
+		g.transform.rotation = Quaternion.Euler(0, Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg + 90, 0);
+	}
 
 }

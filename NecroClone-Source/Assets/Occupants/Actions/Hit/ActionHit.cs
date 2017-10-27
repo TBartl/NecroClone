@@ -20,6 +20,7 @@ public class ActionHit : ActionFixedRecoverTime {
         
         foreach (SmoothMove smoothMove in this.GetComponentsInChildren<SmoothMove>())
             smoothMove.Bump(intTransform.GetPos() + direction);
+		EffectDatabase.S.CreateHitEffect(pattern.GetEffect(), intTransform.GetPos(), direction);
         SoundManager.S.Play(SoundManager.S.hit);
     }
 

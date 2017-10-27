@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce867045fb925844b6569639793b106, type: 3}
   m_Name: Longsword
   m_EditorClassIdentifier: 
+  effect: {fileID: 21300002, guid: 66a57cb751b5f68499166b479c947f84, type: 3}

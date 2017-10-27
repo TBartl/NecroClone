@@ -489,3 +489,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recover: {fileID: 1538786335922980, guid: 2c443a100f4bcc0488a9f5786df3682b, type: 2}
   heart: {fileID: 1446464534331192, guid: cc2779b60693f914196dafc73a09dd14, type: 2}
+  hitEffect: {fileID: 1437501095818550, guid: 0c81f9f52c47a1246a3deb620e02e2f5, type: 2}

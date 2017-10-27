@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class HitPattern : ScriptableObject {
 
+	[SerializeField] protected Sprite effect;
+
+	public virtual Sprite GetEffect() {
+		return effect;
+	}
+
 	public virtual List<GameObject> GetValidTargets(GameObject source, IntVector2 direction) {
 		List<GameObject> validTargets = new List<GameObject>();
 		return validTargets;

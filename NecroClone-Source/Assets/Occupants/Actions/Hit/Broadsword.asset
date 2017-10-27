@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c08e67f661ac8438aaf9a4ff915995, type: 3}
   m_Name: Broadsword
   m_EditorClassIdentifier: 
+  effect: {fileID: 21300006, guid: 66a57cb751b5f68499166b479c947f84, type: 3}

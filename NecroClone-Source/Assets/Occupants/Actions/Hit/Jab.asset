@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d8953dec70b0644a6ff3d3eaa77210, type: 3}
   m_Name: Jab
   m_EditorClassIdentifier: 
+  effect: {fileID: 21300000, guid: 66a57cb751b5f68499166b479c947f84, type: 3}
