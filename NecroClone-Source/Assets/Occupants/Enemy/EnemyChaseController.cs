@@ -24,7 +24,9 @@ public class EnemyChaseController : EnemyController {
             direction = GetDirection(currentPos, targetPos);
         }
         DoAction(hitDigOrMove.GetAction(direction), direction);
-		CheckAndUpdateIfInLineWithPlayer(target);
+
+		if (target)
+			CheckAndUpdateIfInLineWithPlayer(target);
     }
 
     public override void OnPlayerMoved(PlayerController player) {
