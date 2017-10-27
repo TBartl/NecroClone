@@ -23,13 +23,20 @@ public class Killable : Destructable {
 
     public void Hit(int damage) {
         health -= damage;
-        if (health <= 0) {
+		foreach (IOnHit onHit in this.GetComponents<IOnHit>()) {
+			onHit.OnHit();
+		}
+		if (health <= 0) {
             DestroyThis();
         }
         else {
             UpdateHearts();
         }
     }
+
+	public int GetHealth() {
+		return health;
+	}
 
     void UpdateHearts() {
         while (hearts.Count != health) {

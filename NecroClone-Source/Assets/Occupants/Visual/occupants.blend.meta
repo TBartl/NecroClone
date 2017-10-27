@@ -23,6 +23,9 @@ ModelImporter:
     100030: Bat_001
     100032: DireBat
     100034: DireBat_001
+    100036: Skeleton_003
+    100038: Skeleton_004
+    100040: Skeleton_005
     400000: Cube
     400002: //RootNode
     400004: ReferenceCube
@@ -41,6 +44,9 @@ ModelImporter:
     400030: Bat_001
     400032: DireBat
     400034: DireBat_001
+    400036: Skeleton_003
+    400038: Skeleton_004
+    400040: Skeleton_005
     2300000: Cube
     2300002: ReferenceCube
     2300004: Bat
@@ -58,6 +64,9 @@ ModelImporter:
     2300028: Bat_001
     2300030: DireBat
     2300032: DireBat_001
+    2300034: Skeleton_003
+    2300036: Skeleton_004
+    2300038: Skeleton_005
     3300000: Cube
     3300002: ReferenceCube
     3300004: Bat
@@ -75,6 +84,9 @@ ModelImporter:
     3300028: Bat_001
     3300030: DireBat
     3300032: DireBat_001
+    3300034: Skeleton_003
+    3300036: Skeleton_004
+    3300038: Skeleton_005
     4300000: Cube
     4300002: ReferenceCube
     4300004: Dragon
@@ -92,6 +104,9 @@ ModelImporter:
     4300028: DireBat_001
     4300030: DireBat
     4300032: Bat_001
+    4300034: Skeleton_005
+    4300036: Skeleton_004
+    4300038: Skeleton_003
     7400000: Default Take
     9500000: //RootNode
   materials:
