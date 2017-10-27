@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b79589964e79ca41a3493ccec684199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: b9c57f10f8a7e0d479bdd511aecc879d, type: 2}
+  weapon: {fileID: 0}
 --- !u!114 &114447093325679622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recoverTime: 1
   damage: 3
+  pattern: {fileID: 11400000, guid: a6542dc5bb3afae42821c684b5e57cf2, type: 2}
 --- !u!114 &114659487714417008
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,7 +16,6 @@ public class WeaponHolder : MonoBehaviour, IOnMove {
 
 	public void OnMove(IntVector2 to) {
 		List<GameObject> collectables = intTransform.GetLevel().GetCollectablesAt(to);
-		List<GameObject> toRemove = new List<GameObject>();
 		foreach (GameObject collectable in collectables.ToArray()) {
 			ItemCollectable itemCollectable = collectable.GetComponent<ItemCollectable>();
 			if (itemCollectable && itemCollectable.item.GetType() == typeof(Weapon)) {

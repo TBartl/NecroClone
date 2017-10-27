@@ -15,12 +15,14 @@ public class Weapon : Item {
     public WeaponType weaponType;
     public int damage = 1;
     public float recoverTime = .5f;
+	public HitPattern pattern;
 
 	public override void OnEquip(GameObject owner) {
 		base.OnEquip(owner);
 		ActionHit actionHit = owner.AddComponent<ActionHit>();
 		actionHit.damage = this.damage;
 		actionHit.recoverTime = this.recoverTime;
+		actionHit.pattern = this.pattern;
 	}
 
 	public override void OnUnequip(GameObject owner) {
