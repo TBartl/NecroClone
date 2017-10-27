@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
   m_Name: BroadswordTitanium
   m_EditorClassIdentifier: 
-  image: {fileID: 21300012, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
-  weaponType: 2
+  image: {fileID: 21300014, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
   damage: 2
   recoverTime: 0.4
-  pattern: {fileID: 11400000, guid: a6542dc5bb3afae42821c684b5e57cf2, type: 2}
+  pattern: {fileID: 11400000, guid: efe1b4fac5c25224e820cb61123fda6b, type: 2}

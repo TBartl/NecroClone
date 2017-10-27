@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
   m_Name: DaggerJeweled
   m_EditorClassIdentifier: 
-  image: {fileID: 21300032, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
-  weaponType: 0
+  image: {fileID: 21300040, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
   damage: 5
   recoverTime: 0.6
   pattern: {fileID: 11400000, guid: a6542dc5bb3afae42821c684b5e57cf2, type: 2}

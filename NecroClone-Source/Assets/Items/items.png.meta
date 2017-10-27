@@ -1,26 +1,30 @@
 fileFormatVersion: 2
 guid: 658635b1f64f3d5409f0532b84634c05
-timeCreated: 1509030261
+timeCreated: 1509123104
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: items_0
-    21300002: items_1
-    21300004: items_2
-    21300006: items_3
-    21300008: items_4
-    21300010: items_5
-    21300012: items_6
-    21300014: items_7
-    21300016: items_8
-    21300018: items_9
-    21300020: items_10
-    21300022: items_11
-    21300024: items_12
-    21300026: items_13
-    21300028: items_14
-    21300030: items_15
-    21300032: items_16
+    21300000: dagger_base
+    21300002: spear_base
+    21300004: broadsword_base
+    21300006: rapier_base
+    21300008: longsword_base
+    21300010: dagger_titanium
+    21300012: spear_titanium
+    21300014: broadsword_titanium
+    21300016: rapier_titanium
+    21300018: longsword_titanium
+    21300020: dagger_obsidian
+    21300022: spead_obsidian
+    21300024: broadsword_obsidian
+    21300026: rapier_obsidian
+    21300028: longsword_obsidian
+    21300030: dagger_blood
+    21300032: spear_blood
+    21300034: broadsword_blood
+    21300036: rapier_blood
+    21300038: longsword_blood
+    21300040: dagger_jeweled
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -108,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: items_0
+      name: dagger_base
       rect:
         serializedVersion: 2
         x: 0
@@ -116,13 +120,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_1
+      name: spear_base
       rect:
         serializedVersion: 2
         x: 128
@@ -130,13 +134,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_2
+      name: broadsword_base
       rect:
         serializedVersion: 2
         x: 256
@@ -144,13 +148,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_3
+      name: rapier_base
       rect:
         serializedVersion: 2
         x: 384
@@ -158,13 +162,27 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_4
+      name: longsword_base
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dagger_titanium
       rect:
         serializedVersion: 2
         x: 0
@@ -172,13 +190,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_5
+      name: spear_titanium
       rect:
         serializedVersion: 2
         x: 128
@@ -186,13 +204,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_6
+      name: broadsword_titanium
       rect:
         serializedVersion: 2
         x: 256
@@ -200,13 +218,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_7
+      name: rapier_titanium
       rect:
         serializedVersion: 2
         x: 384
@@ -214,13 +232,27 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_8
+      name: longsword_titanium
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dagger_obsidian
       rect:
         serializedVersion: 2
         x: 0
@@ -228,13 +260,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_9
+      name: spead_obsidian
       rect:
         serializedVersion: 2
         x: 128
@@ -242,13 +274,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_10
+      name: broadsword_obsidian
       rect:
         serializedVersion: 2
         x: 256
@@ -256,13 +288,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_11
+      name: rapier_obsidian
       rect:
         serializedVersion: 2
         x: 384
@@ -270,13 +302,27 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_12
+      name: longsword_obsidian
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dagger_blood
       rect:
         serializedVersion: 2
         x: 0
@@ -284,13 +330,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_13
+      name: spear_blood
       rect:
         serializedVersion: 2
         x: 128
@@ -298,13 +344,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_14
+      name: broadsword_blood
       rect:
         serializedVersion: 2
         x: 256
@@ -312,13 +358,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_15
+      name: rapier_blood
       rect:
         serializedVersion: 2
         x: 384
@@ -326,13 +372,27 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: items_16
+      name: longsword_blood
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dagger_jeweled
       rect:
         serializedVersion: 2
         x: 0
@@ -340,7 +400,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
