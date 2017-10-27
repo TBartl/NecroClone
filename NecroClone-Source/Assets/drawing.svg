@@ -55,9 +55,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="1510.0999"
-     inkscape:cy="-1144.544"
+     inkscape:zoom="0.25"
+     inkscape:cx="1592.0109"
+     inkscape:cy="-778.17481"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1418,5 +1418,33 @@
        id="rect4562-2-7-9"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
+    <g
+       id="g4387"
+       transform="translate(-2.3355825,0)">
+      <rect
+         transform="matrix(0.72299994,0.69084809,0,1,0,0)"
+         y="-30.820612"
+         x="2061.8782"
+         height="85.107956"
+         width="33.009583"
+         id="rect4562-3"
+         style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke:#c83737;stroke-width:4.7042551;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         transform="matrix(0.72299994,0.69084809,0,1,0,0)"
+         y="28.192926"
+         x="2008.2373"
+         height="64.163284"
+         width="24.88608"
+         id="rect4562-3-5"
+         style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke:#c83737;stroke-width:4.7042551;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         transform="matrix(0.72299994,0.69084809,0,1,0,0)"
+         y="-51.534462"
+         x="2123.6423"
+         height="64.163284"
+         width="24.88608"
+         id="rect4562-3-5-6"
+         style="opacity:1;fill:#ffaaaa;fill-opacity:1;stroke:#c83737;stroke-width:4.7042551;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recoverTime: 2
   damage: 1
-  pattern: {fileID: 11400000, guid: a6542dc5bb3afae42821c684b5e57cf2, type: 2}
+  pattern: {fileID: 11400000, guid: b19bb71a767c1ad43ab020dc3876a965, type: 2}
 --- !u!114 &114726500026769284
 MonoBehaviour:
   m_ObjectHideFlags: 1
