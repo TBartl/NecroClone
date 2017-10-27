@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour {
 
     public AudioSource hit;
     public AudioSource spawn;
+	public AudioSource pickup;
 
     void Awake() {
 		if (S != null)

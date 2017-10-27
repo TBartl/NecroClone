@@ -19,15 +19,12 @@ public class EnemyChaseController : EnemyController {
         IntVector2 targetPos = target.GetComponent<IntTransform>().GetPos();
         IntVector2 direction = GetDirection(currentPos, targetPos);
         // If we don't have a shovel, this shouldn't be able to dig, instead change direction
-        if (this.GetComponent<ActionDig>() == null) {
-            GameObject immediateGO = intTransform.GetLevel().GetOccupantAt(currentPos + direction);
-            if (immediateGO != null && immediateGO.GetComponent<Diggable>() != null) {
-                headingHorizontal = !headingHorizontal;
-                direction = GetDirection(currentPos, targetPos);
-            }
-
+        if (hitDigOrMove.WillBump(direction)) {
+            headingHorizontal = !headingHorizontal;
+            direction = GetDirection(currentPos, targetPos);
         }
         DoAction(hitDigOrMove.GetAction(direction), direction);
+		CheckAndUpdateIfInLineWithPlayer(target);
     }
 
     public override void OnPlayerMoved(PlayerController player) {

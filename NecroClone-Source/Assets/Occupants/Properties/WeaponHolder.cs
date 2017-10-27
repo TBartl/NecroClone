@@ -31,6 +31,8 @@ public class WeaponHolder : MonoBehaviour, IOnMove {
 				weapon.OnEquip(this.gameObject);
 				Destroy(collectable);
 				intTransform.GetLevel().RemoveCollectableAt(collectable, to);
+
+				SoundManager.S.Play(SoundManager.S.pickup);
 			}
 		}
 	}
