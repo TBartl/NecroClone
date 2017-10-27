@@ -9,8 +9,12 @@ public class HitPattern : ScriptableObject {
 		return validTargets;
 	}
 
+	protected GameObject GetPotentialTarget(GameObject source, IntVector2 targetPos) {
+		return source.GetComponent<IntTransform>().GetLevel().GetOccupantAt(targetPos);
+	}
+
 	protected bool AddIfValidTarget(ref List<GameObject> targets, GameObject source, IntVector2 targetPos) {
-		GameObject target = source.GetComponent<IntTransform>().GetLevel().GetOccupantAt(targetPos);
+		GameObject target = GetPotentialTarget(source, targetPos);
 		if (IsValidTarget(source, target)) {
 			targets.Add(target);
 			return true;
