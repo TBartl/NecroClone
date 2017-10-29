@@ -10430,19 +10430,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.0025277033
       objectReference: {fileID: 0}
     - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0006340561
       objectReference: {fileID: 0}
     - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.0007743863
       objectReference: {fileID: 0}
     - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99999636
       objectReference: {fileID: 0}
     - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_RootOrder
@@ -10451,6 +10451,18 @@ Prefab:
     - target: {fileID: 1902883780486946, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
       propertyPath: m_Name
       value: FloorBasic (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.29000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.072000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690293312341574, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.089
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
@@ -26514,11 +26526,6 @@ Prefab:
     - target: {fileID: 4690293312341574, guid: 12ed9a276bc3455489dbc5336998c07f, type: 2}
       propertyPath: m_RootOrder
       value: 517
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694719903513360, guid: 12ed9a276bc3455489dbc5336998c07f,
-        type: 2}
-      propertyPath: maxHealth
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12ed9a276bc3455489dbc5336998c07f, type: 2}
