@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d60e837221bacf45b8d76a4d4411629, type: 3}
+  m_Name: SpearObsidian
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300022, guid: 658635b1f64f3d5409f0532b84634c05, type: 3}
+  damage: 3
+  recoverTime: 0.5
+  pattern: {fileID: 11400000, guid: 0ba1079ddb32e8042a858cf43ad8bf56, type: 2}
