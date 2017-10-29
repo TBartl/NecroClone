@@ -2,62 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class OccupantAndSpawnChance {
-    public string occupant;
-    public float chance;
-}
-
 [CreateAssetMenu(menuName = "LevelGen/zone1")]
 public class LevelGeneratorZone1 : LevelGenerator {
-    public int roomSize = 7;
-    public int roomsInRow = 3;
 
-    public List<OccupantAndSpawnChance> occupantSpawns; 
+	public GameObject floor;
+	public GameObject wallBase;
 
+	struct Room {
+		public IntVector2 center;
+		public IntVector2 size;
+		public Room(IntVector2 center, IntVector2 size) {
+			this.center = center;
+			this.size = size;
+		}
+	}
 
-    public override void GetLevel(ref Level level) {
-        int size = roomsInRow * roomSize + roomsInRow + 1; 
-        level.Resize(new IntVector2(size, size));
-        for (int y = 0; y < level.size.y; y++) {
-            for (int x = 0; x < level.size.x; x++) {
-                level.tiles[x, y].occupant = LevelDatabase.S.GetOccupantPrefab("WallBasic");
-                level.tiles[x, y].floor = LevelDatabase.S.GetFloorPrefab("Basic");
-            }
-        }
+	public override void GetLevel(ref Level level) {
+		List<Room> rooms = new List<Room>();
+		rooms.Add(new Room(new IntVector2(0, 0), new IntVector2(4, 4)));
 
-        for (int yRoom = 0; yRoom < roomsInRow; yRoom++) {
-            for (int xRoom = 0; xRoom < roomsInRow; xRoom++) {
-                for (int y = 0; y < roomSize; y++) {
-                    for (int x = 0; x < roomSize; x++) {
-                        IntVector2 realpos = 
-                            new IntVector2(xRoom * (roomSize + 1), yRoom * (roomSize + 1)) + 
-                            new IntVector2(1,1) +
-                            new IntVector2(x, y);
-                        level.tiles[realpos.x, realpos.y].occupant = null;
-                        if (xRoom == 0 && yRoom == 0)
-                            continue;
+		Dictionary<IntVector2, Tile> tiles = new Dictionary<IntVector2, Tile>();
+		foreach (Room room in rooms) {
+			for (int y = -room.size.y; y <= room.size.y; y++) {
+				for (int x = -room.size.x; x <= room.size.x; x++) {
+					IntVector2 tilePos = new IntVector2(room.center.x + x, room.center.y + y);
+					Tile tile = new Tile();
+					tile.floor = floor;
+					if (x == Mathf.Abs(room.size.x) || y == Mathf.Abs(room.size.y)) {
+						tile.occupant = wallBase;
+					}
+					tiles[tilePos] = tile;
+				}
+			}
+		}
 
-                        foreach(OccupantAndSpawnChance occupantSpawn in occupantSpawns) {
-                            if (Random.value <= occupantSpawn.chance) {
-                                level.tiles[realpos.x, realpos.y].occupant = LevelDatabase.S.GetOccupantPrefab(occupantSpawn.occupant);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-
-        int spawnCenterInt = 1 + Mathf.FloorToInt(roomSize / 2f);
-        IntVector2 spawnCenter = new IntVector2(spawnCenterInt, spawnCenterInt);
-        for (int y = -2; y <= 2; y++) {
-            for (int x = -2; x <= 2; x++) {
-                level.spawnPositions.Add(spawnCenter + new IntVector2(x, y));
-            }
-        }
-
-    }
-
+		IntVector2 bottomLeft = IntVector2.zero;
+		IntVector2 topRight = IntVector2.zero;
+		foreach (KeyValuePair<IntVector2, Tile> pair in tiles) {
+			IntVector2 pos = pair.Key;
+			bottomLeft.x = Mathf.Min(bottomLeft.x, pos.x);
+			bottomLeft.y = Mathf.Min(bottomLeft.x, pos.y);
+			topRight.x = Mathf.Max(topRight.x, pos.x);
+			topRight.y = Mathf.Max(topRight.x, pos.y);
+		}
+		IntVector2 size = topRight - bottomLeft + IntVector2.one;
+		level.Resize(size);
+		for (int y = 0; y < size.y; y++) {
+			for (int x = 0; x < size.x; x++) {
+				IntVector2 realCoord = new IntVector2(x, y) - bottomLeft;
+				level.tiles[x, y] = tiles[realCoord];
+			}
+		}
+	}
 }

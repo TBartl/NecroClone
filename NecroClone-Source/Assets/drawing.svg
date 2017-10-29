@@ -55,9 +55,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.25"
-     inkscape:cx="-1716.1267"
-     inkscape:cy="489.29584"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-750.17574"
+     inkscape:cy="615.32958"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -21499,7 +21499,7 @@ AElFTkSuQmCC
        inkscape:export-ydpi="90"
        style="fill:#49221e;fill-opacity:1" />
     <rect
-       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#201415;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#3c2421;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
        id="rect4136-5-7-7"
        width="512"
        height="512"
@@ -21509,10 +21509,10 @@ AElFTkSuQmCC
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <ellipse
-       style="opacity:1;fill:#4b241e;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5755"
-       cx="-1232.7108"
-       cy="-11.431107"
+       cx="-1268.7922"
+       cy="20.969687"
        rx="40.943211"
        ry="51.454903"
        transform="matrix(0.89351123,-0.44904084,0.34029632,0.94031825,0,0)"
@@ -21520,10 +21520,10 @@ AElFTkSuQmCC
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <ellipse
-       style="opacity:1;fill:#4b241e;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5755-7"
-       cx="-252.25815"
-       cy="1000.2608"
+       cx="-251.91081"
+       cy="1011.3419"
        rx="40.943211"
        ry="51.454903"
        transform="matrix(0.82107231,0.57082419,-0.66386033,0.74785657,0,0)"
@@ -21531,10 +21531,10 @@ AElFTkSuQmCC
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <ellipse
-       style="opacity:1;fill:#4b241e;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5755-0"
-       cx="-919.35211"
-       cy="-103.01056"
+       cx="-1096.2592"
+       cy="-84.434135"
        rx="40.943211"
        ry="51.454903"
        transform="matrix(0.87832796,-0.47805857,0.37090508,0.92867078,0,0)"
@@ -21542,13 +21542,35 @@ AElFTkSuQmCC
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <ellipse
-       style="opacity:1;fill:#4b241e;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path5755-7-9"
-       cx="-326.23248"
-       cy="1075.7091"
+       cx="-355.99469"
+       cy="1068.9386"
        rx="40.943211"
        ry="51.454903"
        transform="matrix(0.62135205,0.78353151,-0.85147349,0.52439765,0,0)"
+       inkscape:export-filename="C:\Users\tabsk\Desktop\Projects-New\NecroClone\NecroClone-Source\Assets\Level\Visual\Floors\floorBasic.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <ellipse
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5755-0-7"
+       cx="-17.240639"
+       cy="906.70605"
+       rx="40.943211"
+       ry="51.454903"
+       transform="matrix(0.60784236,0.79405772,-0.86032933,0.50973861,0,0)"
+       inkscape:export-filename="C:\Users\tabsk\Desktop\Projects-New\NecroClone\NecroClone-Source\Assets\Level\Visual\Floors\floorBasic.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <ellipse
+       style="opacity:1;fill:#402824;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5755-0-9"
+       cx="-615.55688"
+       cy="542.12531"
+       rx="40.943211"
+       ry="51.454903"
+       transform="matrix(0.93172074,0.36317552,-0.47074363,0.88227005,0,0)"
        inkscape:export-filename="C:\Users\tabsk\Desktop\Projects-New\NecroClone\NecroClone-Source\Assets\Level\Visual\Floors\floorBasic.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
