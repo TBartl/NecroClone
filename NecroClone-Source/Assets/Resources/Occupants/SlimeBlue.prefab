@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfc7f5f98f6e8041b941d9ab0ffdf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 2
+  recoverTime: 1
 --- !u!114 &114226820535442162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b5afaf23500e648962e30aa2d1d745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverTime: 2
+  recoverTime: 1
 --- !u!114 &114968340692131688
 MonoBehaviour:
   m_ObjectHideFlags: 1
