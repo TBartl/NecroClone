@@ -91,6 +91,7 @@ public class Level : MonoBehaviour {
 		}
 		return instance;
 	}
+
 	public GameObject SpawnItem(Item item, IntVector2 pos) {
 		GameObject go = SpawnCollectable(LevelDatabase.S.GetItemPrefab(), pos);
 		go.GetComponent<ItemCollectable>().SetItem(item);

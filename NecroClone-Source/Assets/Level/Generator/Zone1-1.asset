@@ -11,22 +11,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba11cdefb262fe45a9ece2b641e4de1, type: 3}
   m_Name: Zone1-1
   m_EditorClassIdentifier: 
-  roomSize: 7
-  roomsInRow: 3
-  occupantSpawns:
-  - occupant: WallBasic
-    chance: 0.2
-  - occupant: Skeleton1
-    chance: 0.03
-  - occupant: Skeleton2
-    chance: 0.015
-  - occupant: Skeleton3
-    chance: 0.01
-  - occupant: Bat1
-    chance: 0.015
-  - occupant: Bat2
-    chance: 0.005
-  - occupant: EnemySpawner
-    chance: 0.001
-  - occupant: Spawner
-    chance: 0.0025
+  floor: {fileID: 1902883780486946, guid: 37bf980aadd0d5b44abbbf3769e00601, type: 2}
+  wallBase: {fileID: 1902883780486946, guid: 76db4244433fd024a9cac918b97f2ee3, type: 2}
+  enemySpawnRate: 0.14
+  enemies:
+  - {fileID: 1902883780486946, guid: 46201fe6445f52747870d10e7988ca4d, type: 2}
+  - {fileID: 1902883780486946, guid: 73b1ed430c2329740ab1c8684aea9c97, type: 2}
+  - {fileID: 1902883780486946, guid: 598242e20df1c7841996fdb31830b1ea, type: 2}
+  - {fileID: 1902883780486946, guid: f4ad92dcaf71e97489131b81de30c03a, type: 2}
+  - {fileID: 1902883780486946, guid: 73b1ed430c2329740ab1c8684aea9c97, type: 2}
+  - {fileID: 1902883780486946, guid: 2c8cc52bf933bf347bf6d8ff98c320fb, type: 2}
+  - {fileID: 1902883780486946, guid: 73b1ed430c2329740ab1c8684aea9c97, type: 2}
+  - {fileID: 1902883780486946, guid: 598242e20df1c7841996fdb31830b1ea, type: 2}
+  - {fileID: 1902883780486946, guid: f085ba7f026b8f642bd9a48254a96806, type: 2}
+  - {fileID: 1902883780486946, guid: 3c9fe780c45921549af3628bb9eb6eab, type: 2}
+  - {fileID: 1902883780486946, guid: bd5c5bd4e0c540b428ff73e254a67d6e, type: 2}
+  - {fileID: 1902883780486946, guid: d949faccc5de53e4bbb8fc1d4c75f1b5, type: 2}
+  - {fileID: 1902883780486946, guid: 49ee267ff860f0349b6b5cd65b618208, type: 2}
+  - {fileID: 1902883780486946, guid: bd5c5bd4e0c540b428ff73e254a67d6e, type: 2}
+  - {fileID: 1902883780486946, guid: 3c9fe780c45921549af3628bb9eb6eab, type: 2}
+  - {fileID: 1902883780486946, guid: bd5c5bd4e0c540b428ff73e254a67d6e, type: 2}
+  - {fileID: 1902883780486946, guid: 49ee267ff860f0349b6b5cd65b618208, type: 2}
+  - {fileID: 1902883780486946, guid: 8424c6bbf87ea9f499390b27d413265b, type: 2}
+  - {fileID: 1902883780486946, guid: 9df4620b616f226499e395e414c0b02a, type: 2}
+  - {fileID: 1902883780486946, guid: 8424c6bbf87ea9f499390b27d413265b, type: 2}
+  weaponSpawnRate: 0.012
+  weapons:
+  - {fileID: 1231008517136870, guid: 9f4dd9c4e2932684e81896ba41484871, type: 2}
+  - {fileID: 1883688986832734, guid: 2f651e85dc175a64c885209b6d467ea2, type: 2}
+  - {fileID: 1983931856103762, guid: c3cc11b516066954281d5dded52e124f, type: 2}
+  - {fileID: 1535616631793484, guid: 3d2f331d899facd4b812554b28ea1524, type: 2}
+  - {fileID: 1970786773935220, guid: 49e7b4f41035f474b9d3d4a7e20a7f53, type: 2}
+  - {fileID: 1186842829389170, guid: 22955d545ce204c4b8de739a7dabdd71, type: 2}
+  - {fileID: 1745985742903520, guid: 61bf1eecd2836f948862744673718763, type: 2}
+  - {fileID: 1873364736828174, guid: 7b41fcd241a328146a1ff10b8c51d8a9, type: 2}
+  - {fileID: 1914139481513912, guid: b49dc814790fb924fb131abdabd58c20, type: 2}
+  - {fileID: 1567613610819218, guid: 363a72851eec8044cb4dba8c35fb0463, type: 2}
+  - {fileID: 1807365074659434, guid: 415d3e24f76067346a3317447f29aa99, type: 2}
+  - {fileID: 1399831966443300, guid: ea9051da2369acb4084b28e6c914e68b, type: 2}
+  - {fileID: 1971500196794094, guid: aab1b6f37f0ec394a9c4b23efec0c363, type: 2}
+  smallestRoomSize: 6
+  largestRoomSize: 9
+  numRooms: 50

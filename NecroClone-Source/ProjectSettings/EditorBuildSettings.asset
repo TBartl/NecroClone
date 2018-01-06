@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/testing.unity
     guid: dc0724d74705e5f47a769ccc7ec992db
   - enabled: 1
-    path: Assets/main.unity
-    guid: 586a27d9d91bd4c408d9d038622aca20
+    path: Assets/zone1.unity
+    guid: 2635747dd5cf7554fa0e3eed1a3a9058
