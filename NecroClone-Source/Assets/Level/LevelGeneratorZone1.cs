@@ -48,7 +48,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 		Random.InitState((int)System.DateTime.Now.Ticks);
 
 		List<Room> rooms = new List<Room>();
-		Debug.Log(Time.realtimeSinceStartup);
 		rooms.Add(Room.RandSized(smallestRoomSize, largestRoomSize));
 		while (rooms.Count < numRooms) {
 			Room fromRoom = rooms[Random.Range(0, rooms.Count)];
@@ -57,7 +56,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			newRoom.lowerCorner += new IntVector2(Random.Range(-largestRoomSize / 2, (largestRoomSize + 1) / 2), Random.Range(-largestRoomSize / 2, (largestRoomSize + 1) / 2));
 			rooms.Add(newRoom);
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		bool changed = true;
 		int iters = 0;
@@ -87,7 +85,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			if (iters > 100)
 				break;
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Put rooms into map
 		Dictionary<IntVector2, Tile> tiles = new Dictionary<IntVector2, Tile>();
@@ -104,7 +101,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 				}
 			}
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Remove connection
 		List<IntVector2> tileKeys = new List<IntVector2>(tiles.Keys);
@@ -118,7 +114,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 				}
 			}
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Add an extra two layer of walls
 		for (int i = 0; i < 2; i++) {
@@ -137,7 +132,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			}
 			tiles = tilesCopy;
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Get the size of the map
 		IntVector2 bottomLeft = new IntVector2(int.MaxValue, int.MaxValue);
@@ -150,7 +144,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			topRight.y = Mathf.Max(topRight.y, pos.y);
 		}
 		IntVector2 size = topRight - bottomLeft + IntVector2.one;
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Add enemies
 		tileKeys = new List<IntVector2>(tiles.Keys);
@@ -164,7 +157,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 				tiles[pos] = tile;
 			}
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Add weapons
 		tileKeys = new List<IntVector2>(tiles.Keys);
@@ -178,7 +170,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 				tiles[pos] = tile;
 			}
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		level.spawnPositions = new List<IntVector2>();
 		int remainingSpawnPositions = 40;
@@ -197,7 +188,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			if (remainingSpawnPositions <= 0)
 				break;
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 
 		// Convert the map to an array
 		level.Resize(size);
@@ -208,7 +198,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 					level.tiles[x, y] = tiles[realCoord];
 			}
 		}
-		Debug.Log(Time.realtimeSinceStartup);
 	}
 
 	bool OnlyFloorAt(ref Dictionary<IntVector2, Tile> tiles, IntVector2 pos) {

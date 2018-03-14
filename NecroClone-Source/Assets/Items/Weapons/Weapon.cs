@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+[CustomEditor(typeof(Weapon))]
+[CanEditMultipleObjects]
+public class WeaponEditor : ItemEditor {
+}
+#endif
+
 [CreateAssetMenu(menuName="Items/Weapon") ]
 public class Weapon : Item {
     public int damage = 1;

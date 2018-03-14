@@ -22,7 +22,7 @@ public struct IntVector2 {
 	}
 	public override int GetHashCode()
 	{
-		return 0;
+		return y.GetHashCode() * 1000 + x.GetHashCode();
 	}
 	static public explicit operator Vector3(IntVector2 intVec2)
 	{
