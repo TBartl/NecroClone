@@ -171,24 +171,6 @@ public class LevelGeneratorZone1 : LevelGenerator {
 			}
 		}
 
-		level.spawnPositions = new List<IntVector2>();
-		int remainingSpawnPositions = 40;
-		for (int y = 0; y < size.y; y++) {
-			for (int x = 0; x < size.x; x++) {
-				IntVector2 pos = new IntVector2(x, y);
-				if (tiles.ContainsKey(pos) && 
-					tiles[pos].floor != null && 
-					tiles[pos].occupant == null) {
-					level.spawnPositions.Add(pos);
-					remainingSpawnPositions -= 1;
-				}
-				if (remainingSpawnPositions <= 0)
-					break;
-			}
-			if (remainingSpawnPositions <= 0)
-				break;
-		}
-
 		// Convert the map to an array
 		level.Resize(size);
 		for (int y = 0; y < size.y; y++) {
@@ -197,6 +179,22 @@ public class LevelGeneratorZone1 : LevelGenerator {
 				if (tiles.ContainsKey(realCoord))
 					level.tiles[x, y] = tiles[realCoord];
 			}
+		}
+
+		level.spawnPositions = new List<IntVector2>();
+		int remainingSpawnPositions = 40;
+		for (int y = 0; y < size.y; y++) {
+			for (int x = 0; x < size.x; x++) {
+				IntVector2 pos = new IntVector2(x, y);
+				if (level.tiles[x, y].floor != null && level.tiles[x,y].occupant == null) {
+					level.spawnPositions.Add(pos);
+					remainingSpawnPositions -= 1;
+				}
+				if (remainingSpawnPositions <= 0)
+					break;
+			}
+			if (remainingSpawnPositions <= 0)
+				break;
 		}
 	}
 
